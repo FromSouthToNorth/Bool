@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.blog.dao.adminDAO.AdminBlogDAO">
+
+    <resultMap id="blog_type" type="com.hy.blog.entity.Blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="recommend" column="recommend"/>
+        <result property="published" column="published"/>
+        <result property="typeId" column="type_id"/>
+        <association property="type" javaType="com.hy.blog.entity.Type">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+    <select id="findAllBlog" resultMap="blog_type">
+        select
+            b.id            ,
+            b.title         ,
+            b.update_time   ,
+            b.recommend     ,
+            b.published     ,
+            b.type_id       ,
+            t.id            ,
+            t.name
+        from t_blog b, t_type t
+        where b.type_id = t.id
+        order by b.update_time desc
+    </select>
+
+    <select id="findByIdBlogOne" resultMap="blog_type">
+
+    </select>
+
+    <update id="updateByIdBlog" parameterType="com.hy.blog.entity.Blog">
+
+    </update>
+
+    <delete id="deleteByIdBlog" parameterType="java.lang.Long">
+
+    </delete>
+
+    <insert id="saveBlog" parameterType="com.hy.blog.entity.Blog">
+
+    </insert>
+
+</mapper>

@@ -1,9 +1,11 @@
 package com.hy.blog;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan({"com.hy.blog.dao","com.hy.blog.dao.adminDAO"})
 public class BlogApplication {
 
     public static void main(String[] args) {
