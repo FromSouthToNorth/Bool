@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.blog.dao.CommentDAO">
+
+    <insert id="saveComment" parameterType="com.hy.blog.entity.Comment">
+        insert into t_comment
+        (
+            nickname            ,
+            email               ,
+            content             ,
+            avatar              ,
+            create_time         ,
+            blog_id             ,
+            parent_comment_id   ,
+            admin_comment
+        )
+        values
+        (
+            #{nickname}         ,
+            #{email}            ,
+            #{content}          ,
+            #{avatar}           ,
+            #{createTime}       ,
+            #{blogId}           ,
+            #{parentCommentId}  ,
+            #{adminComment}
+        )
+    </insert>
+
+    <select id="findByBlogIdComment" resultType="com.hy.blog.entity.Comment">
+        select *
+        from t_comment
+        where blog_id = #{blogId}
+        and parent_comment_id is null
+    </select>
+
+    <select id="findChildComment" resultType="com.hy.blog.entity.Comment">
+        select cc.*
+        from
+        t_comment cc,
+        t_comment c
+        where cc.parent_comment_id = c.id
+        and c.id = #{id}
+        order by cc.create_time desc
+    </select>
+
+    <select id="findByBlogIdAndParentId" resultType="com.hy.blog.entity.Comment">
+        select *
+        from t_comment
+        where blog_id = #{blogId} and parent_comment_id = #{parentId}
+    </select>
+
+    <select id="findByBlogIdAndReplayId" resultType="com.hy.blog.entity.Comment">
+        select *
+        from t_comment
+        where blog_id = #{blogId} and parent_comment_id = #{childId}
+    </select>
+
+    <select id="findByBlogIdCountComment" resultType="java.lang.Long">
+        select count(1)
+        from t_comment
+        where blog_id = #{blogId}
+    </select>
+
+</mapper>

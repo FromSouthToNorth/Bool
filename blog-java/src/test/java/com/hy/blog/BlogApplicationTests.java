@@ -9,15 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class BlogApplicationTests {
 
-    @Autowired
-    private AdminBlogDAO adminBlogDAO;
-
     @Test
     void contextLoads() {
-    }
-
-    @Test
-    void testBlog() {
     }
 
 }
