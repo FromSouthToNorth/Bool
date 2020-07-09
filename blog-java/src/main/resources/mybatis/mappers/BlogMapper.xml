@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.blog.dao.BlogDAO">
+
+    <resultMap id="blog" type="com.hy.blog.entity.Blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="flag" column="flag"/>
+        <result property="views" column="views"/>
+        <result property="like" column="like"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="typeId" column="type_id"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="published" column="published"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="commentabled" column="commentabled"/>
+        <result property="description" column="description"/>
+        <result property="recommend" column="recommend"/>
+        <result property="createTime" column="create_time"/>
+        <result property="typeId" column="type_id"/>
+        <result property="description" column="description"/>
+        <result property="userId" column="user_id"/>
+        <result property="tagIds" column="tag_ids"/>
+        <association property="type" javaType="com.hy.blog.entity.Type">
+            <id property="id" column="typeid"/>
+            <result property="name" column="typename"/>
+        </association>
+        <association property="user" javaType="com.hy.blog.entity.User">
+            <id property="id" column="uid"/>
+            <result property="nickname" column="nickname"/>
+            <result property="username" column="username"/>
+            <result property="email" column="email"/>
+            <result property="avatar" column="avatar"/>
+        </association>
+        <collection property="tags" ofType="com.hy.blog.entity.Tag">
+            <id property="id" column="tagid"/>
+            <result property="name" column="tagname"/>
+        </collection>
+    </resultMap>
+
+    <select id="findAllBlog" resultMap="blog">
+        select
+            b.id                ,
+            b.first_picture     ,
+            b.flag              ,
+            b.title             ,
+            b.content           ,
+            b.views             ,
+            b.`like`            ,
+            b.create_time       ,
+            b.update_time       ,
+            b.commentabled      ,
+            b.published         ,
+            b.recommend         ,
+            b.share_statement   ,
+            b.type_id           ,
+            b.user_id           ,
+            b.appreciation      ,
+            b.description       ,
+            b.tag_ids           ,
+            u.nickname          ,
+            u.avatar            ,
+            tag.id tagid        ,
+            tag.name tagname
+        from
+            t_blog b            ,
+            t_user u            ,
+            t_tag tag           ,
+            t_blog_tags tb
+        where   b.user_id = u.id
+        and     tb.blog_id = b.id
+        and     tb.tags_id = tag.id
+        order by b.update_time desc
+    </select>
+
+    <select id="findByIdBlogOne" resultMap="blog">
+        select
+            b.id                ,
+            b.first_picture     ,
+            b.flag              ,
+            b.title             ,
+            b.content           ,
+            b.views             ,
+            b.`like`            ,
+            b.create_time       ,
+            b.update_time       ,
+            b.commentabled      ,
+            b.published         ,
+            b.recommend         ,
+            b.share_statement   ,
+            b.type_id           ,
+            b.user_id           ,
+            b.appreciation      ,
+            b.description       ,
+            b.tag_ids           ,
+            u.nickname          ,
+            u.avatar            ,
+            tag.id tagid        ,
+            tag.name tagname
+        from
+            t_blog b            ,
+            t_user u            ,
+            t_tag tag           ,
+            t_blog_tags tb
+        where   b.user_id = u.id
+        and     tb.blog_id = b.id
+        and     tb.tags_id = tag.id
+        and     b.id = #{id}
+    </select>
+
+    <update id="updateByIdBlogViews" parameterType="com.hy.blog.entity.Blog">
+        update t_blog set views = #{views} where id = #{id}
+    </update>
+
+    <select id="findRecommendBlog" resultType="com.hy.blog.vo.RecommendBlog">
+        select
+            id              ,
+            title           ,
+            recommend       ,
+            views
+        from t_blog t1 where 5 >
+        (select count(distinct  t2.views)
+            from t_blog t2 where t2.views > t1.views
+        )
+        order by views desc
+    </select>
+
+</mapper>

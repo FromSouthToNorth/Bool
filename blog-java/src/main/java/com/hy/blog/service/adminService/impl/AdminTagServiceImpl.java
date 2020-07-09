@@ -5,11 +5,13 @@ import com.hy.blog.entity.Tag;
 import com.hy.blog.service.adminService.AdminTagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class AdminTagServiceImpl implements AdminTagService {
 
     @Autowired

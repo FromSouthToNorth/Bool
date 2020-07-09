@@ -41,7 +41,7 @@ logging:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  mapper-locations: classpath:mybaits/mappers/*.xml, classpath:mybatis/mappers/admin/*.xml
+  mapper-locations: classpath:mybatis/mappers/*.xml, classpath:mybatis/mappers/admin/*.xml
   type-aliases-package: com.hy.blog.entity
 
 # mybatis插件
