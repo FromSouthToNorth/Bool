@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.blog.dao.adminDAO.AdminTypeDAO">
+
+    <insert id="saveType" parameterType="java.lang.String">
+        insert into t_type (`name`) values (`name` = #{name})
+    </insert>
+
+    <delete id="deleteByIdType" parameterType="java.lang.Long">
+        delete from t_type where id = #{id}
+    </delete>
+
+    <update id="updateByIdType" parameterType="com.hy.blog.entity.Type">
+        update t_type set `name` = #{name} where id = #{id}
+    </update>
+
+    <select id="findByIdType" parameterType="java.lang.Long" resultType="com.hy.blog.entity.Type">
+        select id, `name` from t_type where id = #{id}
+    </select>
+
+    <select id="findByNameType" parameterType="java.lang.String" resultType="com.hy.blog.entity.Type">
+        select id, `name` from t_type where `name` = #{name}
+    </select>
+
+    <select id="findAllType" resultType="com.hy.blog.entity.Type">
+        select id, `name` from t_type
+    </select>
+
+</mapper>

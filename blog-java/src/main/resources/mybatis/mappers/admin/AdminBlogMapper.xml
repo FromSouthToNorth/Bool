@@ -17,35 +17,176 @@
         </association>
     </resultMap>
 
+    <resultMap id="blog_type_tags" type="com.hy.blog.entity.Blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="flag" column="flag"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="commentabled" column="commentabled"/>
+        <result property="published" column="published"/>
+        <result property="recommend" column="recommend"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="typeId" column="type_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="description" column="description"/>
+        <result property="tagIds" column="tag_ids"/>
+        <association property="type" javaType="com.hy.blog.entity.Type">
+            <id property="id" column="typeid"/>
+            <result property="name" column="typename"/>
+        </association>
+        <collection property="tags" ofType="com.hy.blog.entity.Tag">
+            <id property="id" column="tagid"/>
+            <result property="name" column="tagname"/>
+        </collection>
+    </resultMap>
+
     <select id="findAllBlog" resultMap="blog_type">
         select
-            b.id            ,
-            b.title         ,
-            b.update_time   ,
-            b.recommend     ,
-            b.published     ,
-            b.type_id       ,
-            t.id            ,
+            b.id                ,
+            b.title             ,
+            b.update_time       ,
+            b.recommend         ,
+            b.published         ,
+            b.type_id           ,
+            t.id                ,
             t.name
-        from t_blog b, t_type t
+        from t_blog b           ,
+            t_type t
         where b.type_id = t.id
         order by b.update_time desc
     </select>
 
-    <select id="findByIdBlogOne" resultMap="blog_type">
-
+    <select id="findByIdBlogOne" resultMap="blog_type_tags" parameterType="java.lang.Long">
+        select
+            b.id                        ,
+            b.content                   ,
+            b.first_picture             ,
+            b.flag                      ,
+            b.appreciation              ,
+            b.share_statement           ,
+            b.commentabled              ,
+            b.published                 ,
+            b.recommend                 ,
+            b.create_time               ,
+            b.update_time               ,
+            b.type_id                   ,
+            b.user_id                   ,
+            b.description               ,
+            b.tag_ids                   ,
+            t.id    typeid              ,
+            t.name  typename            ,
+            ta.id   tagid               ,
+            ta.name tagname
+        from
+            t_blog b
+        inner join t_type t
+        on  b.type_id = t.id
+        inner join t_blog_tags tbt
+        on  b.id = tbt.blog_id
+        inner join t_tag ta
+        on  tbt.tags_id = ta.id
+        where b.id = #{id}
     </select>
 
     <update id="updateByIdBlog" parameterType="com.hy.blog.entity.Blog">
-
+         update t_blog
+              set
+              title = #{title}                        ,
+              content = #{content}                    ,
+              first_picture = #{firstPicture}         ,
+              flag = #{flag}                          ,
+              views = #{views}                        ,
+              appreciation = #{appreciation}          ,
+              share_statement = #{shareStatement}     ,
+              commentabled = #{commentabled}          ,
+              published = #{published}                ,
+              recommend = #{recommend}                ,
+              update_time = #{updateTime}             ,
+              type_id = #{typeId}                     ,
+              description = #{description}            ,
+              tag_ids = #{tagIds}
+            where id = #{id}
     </update>
 
     <delete id="deleteByIdBlog" parameterType="java.lang.Long">
-
+        delete
+        from t_blog
+        where id = #{id}
     </delete>
 
     <insert id="saveBlog" parameterType="com.hy.blog.entity.Blog">
-
+        insert into t_blog
+            (
+                title               ,
+                content             ,
+                first_picture       ,
+                flag                ,
+                views               ,
+                appreciation        ,
+                share_statement     ,
+                commentabled        ,
+                published           ,
+                recommend           ,
+                create_time         ,
+                update_time         ,
+                type_id             ,
+                user_id             ,
+                description         ,
+                tag_ids
+            )
+            values
+            (
+                #{title}            ,
+                #{content}          ,
+                #{firstPicture}     ,
+                #{flag}             ,
+                #{views}            ,
+                #{appreciation}     ,
+                #{shareStatement}   ,
+                #{commentabled}     ,
+                #{published}        ,
+                #{recommend}        ,
+                #{createTime}       ,
+                #{updateTime}       ,
+                #{typeId}           ,
+                #{userId}           ,
+                #{description}      ,
+                #{tagIds}
+            )
     </insert>
+
+    <select id="findByTitleRoTypeRoRecommend" parameterType="com.hy.blog.vo.BlogQuery">
+        <if test="title != null">
+            <bind name="pattern" value=" '%' + title + '%' "/>
+        </if>
+        select
+        b.id            ,
+        b.title         ,
+        b.update_time   ,
+        b.recommend     ,
+        b.published     ,
+        b.type_id       ,
+        t.id            ,
+        t.name
+        from t_blog b, t_type t
+        <where>
+            <if test="1 == 1">
+                b.type_id = t.id
+            </if>
+            <if test="typeId != null">
+                and b.type_id = #{typeId}
+            </if>
+            <if test="recommend != null">
+                and b.recommend = #{recommend}
+            </if>
+            <if test="title != null">
+                and b.title like #{pattern}
+            </if>
+        </where>
+    </select>
 
 </mapper>

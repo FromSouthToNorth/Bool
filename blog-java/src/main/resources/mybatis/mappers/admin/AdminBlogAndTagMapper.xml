@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.blog.dao.adminDAO.AdminBlogAndTagDAO">
+
+    <delete id="deleteByBlogId" parameterType="java.lang.Long">
+        delete from t_blog_tags where blog_id = #{blogId}
+    </delete>
+
+    <delete id="deleteByTagId" parameterType="java.lang.Long">
+         delete from t_blog_tags where tag_id = #{tagId}
+    </delete>
+
+    <insert id="saveBlogAndTag" parameterType="com.hy.blog.entity.BlogAndTag">
+        insert into t_blog_tags (blog_id, tags_id) values (#{blogId}, #{tagsId})
+    </insert>
+
+</mapper>
