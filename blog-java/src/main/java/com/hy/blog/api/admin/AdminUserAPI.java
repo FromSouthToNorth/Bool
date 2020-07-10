@@ -21,7 +21,6 @@ public class AdminUserAPI {
     @PostMapping("/login")
     public Integer login(@RequestParam String userName, @RequestParam String password, HttpSession session) {
 
-        System.out.println(userName + "   " + password);
         if (userName == null || password == null) {
             return 1;
         }

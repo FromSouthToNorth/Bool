@@ -34,7 +34,6 @@ public class BlogFilter implements Filter {
         Set allowOrigins = new HashSet(Arrays.asList(allowDomains));
         // 获取当前发起请求的域名
         String originHeads = request.getHeader("Origin");
-        System.out.println(originHeads);
         logger.info("originHeads : {}", originHeads);
         if (allowOrigins.contains(originHeads)) {
             response.setHeader("Access-Control-Allow-Origin", originHeads);
@@ -43,7 +42,6 @@ public class BlogFilter implements Filter {
             response.setHeader("Access-Control-Max-Age", "3600");
             response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
         }
-        System.out.println(request.getHeader("token"));
         // 判断请求头参数
         try {
             if (request.getHeader("token").equals("MyToken"))

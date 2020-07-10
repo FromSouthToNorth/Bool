@@ -37,15 +37,25 @@ public class AdminBlogAPI {
         User user = (User) session.getAttribute("user");
         blog.setUserId(user.getId());
         blog.setTags(adminTagService.findTagByStringId(blog.getTagIds()));
-        blog.setId(UuidUtils.getId());
-        return adminBlogService.saveBlog(blog);
+        if (blog.getId() == null) {
+            blog.setId(UuidUtils.getId());
+            return adminBlogService.saveBlog(blog);
+        } else {
+            return adminBlogService.updateByIdBlog(blog);
+        }
     }
 
     @PostMapping("/blog/search")
     public PageInfo<Blog> search(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, BlogQuery blogQuery) {
         PageHelper.startPage(pageNum, 6);
         List<Blog> byTitleRoTypeRoRecommend = adminBlogService.findByTitleRoTypeRoRecommend(blogQuery);
+        System.out.println(byTitleRoTypeRoRecommend);
         return new PageInfo<>(byTitleRoTypeRoRecommend);
+    }
+
+    @GetMapping("/blog/delete")
+    public Integer delete(@RequestParam Long id) {
+        return adminBlogService.deleteByIdBlog(id);
     }
 
 }

@@ -5,14 +5,14 @@
 <mapper namespace="com.hy.blog.dao.adminDAO.AdminBlogDAO">
 
     <resultMap id="blog_type" type="com.hy.blog.entity.Blog">
-        <id property="id" column="id"/>
+        <id property="id" column="bid"/>
         <result property="title" column="title"/>
         <result property="updateTime" column="update_time"/>
         <result property="recommend" column="recommend"/>
         <result property="published" column="published"/>
         <result property="typeId" column="type_id"/>
         <association property="type" javaType="com.hy.blog.entity.Type">
-            <id property="id" column="id"/>
+            <id property="id" column="tid"/>
             <result property="name" column="name"/>
         </association>
     </resultMap>
@@ -46,13 +46,13 @@
 
     <select id="findAllBlog" resultMap="blog_type">
         select
-            b.id                ,
+            b.id bid            ,
             b.title             ,
             b.update_time       ,
             b.recommend         ,
             b.published         ,
             b.type_id           ,
-            t.id                ,
+            t.id tid            ,
             t.name
         from t_blog b           ,
             t_type t
@@ -159,19 +159,19 @@
             )
     </insert>
 
-    <select id="findByTitleRoTypeRoRecommend" parameterType="com.hy.blog.vo.BlogQuery">
+    <select id="findByTitleRoTypeRoRecommend" parameterType="com.hy.blog.vo.BlogQuery" resultMap="blog_type">
         <if test="title != null">
             <bind name="pattern" value=" '%' + title + '%' "/>
         </if>
         select
-        b.id            ,
-        b.title         ,
-        b.update_time   ,
-        b.recommend     ,
-        b.published     ,
-        b.type_id       ,
-        t.id            ,
-        t.name
+            b.id bid        ,
+            b.title         ,
+            b.update_time   ,
+            b.recommend     ,
+            b.published     ,
+            b.type_id       ,
+            t.id tid        ,
+            t.name
         from t_blog b, t_type t
         <where>
             <if test="1 == 1">
