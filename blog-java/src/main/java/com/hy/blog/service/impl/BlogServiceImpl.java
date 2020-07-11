@@ -43,6 +43,8 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog findByIdBlogOne(Long id, Boolean isAdd) {
         Blog byIdBlogOne = blogDAO.findByIdBlogOne(id);
+        byIdBlogOne.setCommentTotal(commentDAO.findByBlogIdCountComment(byIdBlogOne.getId()));
+        byIdBlogOne.setTags(blogAndTagDAO.findByBlogId(byIdBlogOne.getId()));
         if (byIdBlogOne == null) {
             throw new NotFoundException("抱歉~该博客不存在");
         }

@@ -36,11 +36,6 @@
             <result property="email" column="email"/>
             <result property="avatar" column="avatar"/>
         </association>
-<!--        <collection property="tags" ofType="com.hy.blog.entity.Tag">-->
-<!--            <id property="id" column="tagid"/>-->
-<!--            <result property="name" column="tagname"/>-->
-<!--            <result property="tagColour" column="tag_colour"/>-->
-<!--        </collection>-->
     </resultMap>
 
     <select id="findAllBlog" resultMap="blog">
@@ -67,19 +62,12 @@
             t.name typename     ,
             u.nickname          ,
             u.avatar
-<!--            tag.id tagid        ,-->
-<!--            tag.name tagname    ,-->
-<!--            tag.tag_colour-->
         from
             t_blog b            ,
             t_user u            ,
             t_type t
-<!--            t_tag tag           ,-->
-<!--            t_blog_tags tb-->
         where   b.user_id = u.id
         and     b.type_id = t.id
-<!--        and     tb.blog_id = b.id-->
-<!--        and     tb.tags_id = tag.id-->
         order by b.update_time desc
     </select>
 
@@ -103,18 +91,16 @@
             b.appreciation      ,
             b.description       ,
             b.tag_ids           ,
+            t.id typeid         ,
+            t.name typename     ,
             u.nickname          ,
-            u.avatar            ,
-            tag.id tagid        ,
-            tag.name tagname
+            u.avatar
         from
             t_blog b            ,
             t_user u            ,
-            t_tag tag           ,
-            t_blog_tags tb
+            t_type t
         where   b.user_id = u.id
-        and     tb.blog_id = b.id
-        and     tb.tags_id = tag.id
+        and     b.type_id = t.id
         and     b.id = #{id}
     </select>
 
