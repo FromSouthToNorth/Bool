@@ -23,8 +23,8 @@
 
       <blog-list></blog-list>
 
-      <div class="ui bottom attached segment grid" style="padding: 6px">
-      </div>
+<!--      <div class="ui bottom attached segment grid" style="padding: 6px">-->
+<!--      </div>-->
     </div>
   </div>
 </template>

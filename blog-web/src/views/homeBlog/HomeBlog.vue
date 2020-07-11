@@ -16,7 +16,7 @@
               </div>
             </div>
             <!-- /标题 -->
-            <blog-list ></blog-list>
+            <blog-list :pageData="pageData" :pageBlog="pageBlog"></blog-list>
           </div>
         </div>
         <div class="five wide column">
@@ -28,13 +28,18 @@
                   <i class="idea icon"></i>分类
                 </div>
                 <div class="right aligned column">
-                  <a href="" >more <i class="angle double right icon"></i></a>
+                  <router-link to="/type">
+                    more <i class="angle double right icon"></i>
+                  </router-link>
                 </div>
               </div>
             </div>
             <div class="ui teal segment">
               <div class="ui fluid vertical menu">
-                <a href="#"  class="item" ><span ></span><div class="ui teal basic left pointing label" ></div></a>
+                <a href="#"  class="item" v-for="item in listType">
+                  <span>{{item.name}}</span>
+                  <div class="ui teal basic left pointing label">{{item.blogs.length}}</div>
+                </a>
               </div>
             </div>
           </div>
@@ -47,14 +52,17 @@
                   <i class="tags icon"></i>标签
                 </div>
                 <div class="right aligned column">
-                  <a href="" >more <i class="angle double right icon"></i></a>
+                  <router-link to="/tag">
+                    more <i class="angle double right icon"></i>
+                  </router-link>
                 </div>
               </div>
             </div>
             <div class="ui teal segment">
-              <a href="" >
-                <span ></span>
-                <div class="detail" ></div>
+              <a href="" class="ui teal basic left pointing label m-margin-tb-tiny"
+                 v-for="item in listTag" :key="item.id">
+                <span>{{item.name}}</span>
+                <div class="detail" >{{item.blogs.length}}</div>
               </a>
             </div>
           </div>
@@ -64,8 +72,9 @@
             <div class="ui secondary segment m-navbar">
               <i class="bookmark icon"></i>最新推荐
             </div>
-            <div class="ui segment" >
-              <a href="#"  class="m-font-color" >用户故事(User Story)</a>
+            <div class="ui segment"
+            v-for="item in listRecommend" :key="item.id">
+              <a href="#"  class="m-font-color" >{{item.title}}</a>
             </div>
           </div>
           <!-- /最新推荐 -->
@@ -83,7 +92,62 @@
   import BlogList from "components/blogList/BlogList"
   export default {
     name: "HomeBlog",
-    components: { Marquee, BlogList }
+    components: { Marquee, BlogList },
+    data() {
+      return {
+       pageData: {
+         page: 0
+       },
+       pageBlog: {},
+       listType: [],
+       listTag: [],
+       listRecommend: []
+      }
+    },
+    mounted() {
+      this.getPageBlog()
+      this.getListType()
+      this.getListTag()
+      this.getListRecommend()
+    },
+    methods: {
+      getPageBlog() {
+        $.get({
+          url: 'blogs',
+          success: res => {
+            this.pageBlog = res
+            console.log(this.pageBlog);
+          }
+        })
+      },
+      getListType() {
+        $.get({
+          url: 'homeTypes',
+          success: res => {
+            this.listType = res
+            console.log(this.listType);
+          }
+        })
+      },
+      getListTag() {
+        $.get({
+          url: 'homeTags',
+          success: res => {
+            this.listTag = res
+            console.log(this.listTag);
+          }
+        })
+      },
+      getListRecommend() {
+        $.get({
+          url: 'recommendBlogs',
+          success: res => {
+            this.listRecommend = res
+            console.log(this.listRecommend);
+          }
+        })
+      }
+    },
   }
 </script>
 

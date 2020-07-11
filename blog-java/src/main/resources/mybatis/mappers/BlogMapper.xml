@@ -62,6 +62,8 @@
             b.appreciation      ,
             b.description       ,
             b.tag_ids           ,
+            t.id typeid         ,
+            t.name typename     ,
             u.nickname          ,
             u.avatar            ,
             tag.id tagid        ,
@@ -69,9 +71,11 @@
         from
             t_blog b            ,
             t_user u            ,
+            t_type t            ,
             t_tag tag           ,
             t_blog_tags tb
         where   b.user_id = u.id
+        and     b.type_id = t.id
         and     tb.blog_id = b.id
         and     tb.tags_id = tag.id
         order by b.update_time desc

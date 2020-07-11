@@ -23,19 +23,21 @@
 
       <blog-list></blog-list>
 
-      <div class="ui bottom attached segment" style="padding: 6px">
-      </div>
+<!--      <div class="ui bottom attached segment" style="padding: 6px">-->
+<!--      </div>-->
     </div>
   </div>
 </template>
 
 <script>
+
   import BlogList from "components/blogList/BlogList"
 
   export default {
     name: "Tag",
     components: { BlogList }
   }
+
 </script>
 
 <style scoped>

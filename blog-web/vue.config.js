@@ -9,12 +9,12 @@ module.exports = {
         'ajax': '@/ajax'
       }
     },
-    // externals: {
-    //   vue: 'Vue',
-    //   'vue-router': 'VueRouter',
-    //   'semantic': 'Semantic',
-    //   'jquery': '$',
-    //   'highlight.js': 'hljs'
-    // }
+    externals: {
+      vue: 'Vue',
+      'vue-router': 'VueRouter',
+      'semantic': 'Semantic',
+      'jquery': '$',
+      'highlight.js': 'hljs'
+    }
   },
 }

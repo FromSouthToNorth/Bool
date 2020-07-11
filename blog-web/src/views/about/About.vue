@@ -36,10 +36,10 @@
               <a href="#" class="ui qq circular icon button blue" data-content="598050554" data-position="bottom left"><i
                       class="qq icon"></i></a>
             </div>
-            <div class="ui wei-chat-qr flowing popup transparent hidden">
-              <img src="~assets/images/wechat.png" alt="" class="ui rounded image"
-                   style="width: 80px;">
-            </div>
+<!--            <div class="ui wei-chat-qr flowing popup transparent hidden">-->
+<!--              <img src="~assets/images/wechat.png" alt="" class="ui rounded image"-->
+<!--                   style="width: 80px;">-->
+<!--            </div>-->
           </div>
         </div>
       </div>
@@ -48,9 +48,11 @@
 </template>
 
 <script>
+
   export default {
     name: "About"
   }
+
 </script>
 
 <style scoped>

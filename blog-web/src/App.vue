@@ -10,6 +10,7 @@
 
   import NavBar from "components/navBar/NavBar"
   import FooterBar from "components/footerBar/FooterBar";
+  import 'ajax/base'
 
   export default {
     name: 'App',
@@ -23,6 +24,7 @@
       }
     },
   }
+
 </script>
 
 <style>

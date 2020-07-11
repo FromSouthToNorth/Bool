@@ -3,7 +3,7 @@
     <div class="sides">
       <div class="side" v-for="item in carousel.items" :key="item.id">
         <a>
-          <img :src="item.src" @load="loadOK" alt />
+          <img class="ui fluid image" :src="item.src" @load="loadOK" alt />
         </a>
       </div>
     </div>
@@ -31,7 +31,7 @@
           $(".shape").shape();
           setInterval(() => {
             $(".shape").shape("flip left");
-          }, 3000);
+          }, 5000);
         }
       }
     }
@@ -51,5 +51,6 @@
   .sides .side {
     width: 100%;
     height: 280px;
+    border-radius: 4px;
   }
 </style>
