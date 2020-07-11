@@ -1,5 +1,5 @@
 <template>
-  <div class="ui shape m-dialog-shadow">
+  <div class="ui shape m-dialog-shadow" style="margin-top: 2rem">
     <div class="sides">
       <div class="side" v-for="item in carousel.items" :key="item.id">
         <a>

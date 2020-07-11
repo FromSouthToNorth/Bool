@@ -1,8 +1,10 @@
 package com.hy.blog.service.impl;
 
+import com.hy.blog.dao.BlogAndTagDAO;
 import com.hy.blog.dao.BlogDAO;
 import com.hy.blog.dao.CommentDAO;
 import com.hy.blog.entity.Blog;
+import com.hy.blog.entity.BlogAndTag;
 import com.hy.blog.exception.NotFoundException;
 import com.hy.blog.service.BlogService;
 import com.hy.blog.utils.MarkdownUtils;
@@ -25,11 +27,15 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private CommentDAO commentDAO;
 
+    @Autowired
+    private BlogAndTagDAO blogAndTagDAO;
+
     @Override
     public List<Blog> findAllBlog() {
         List<Blog> allBlog = blogDAO.findAllBlog();
         for (Blog blog : allBlog) {
             blog.setCommentTotal(commentDAO.findByBlogIdCountComment(blog.getId()));
+            blog.setTags(blogAndTagDAO.findByBlogId(blog.getId()));
         }
         return allBlog;
     }

@@ -3,7 +3,7 @@
     <div class="ui center aligned container">
       <div class="m-padded-tb-tb" id="web-meta">
         <div>
-          <p>蒲公英和炊烟都在等你 | 本站访问次数: <span></span></p>
+          <p>蒲公英和炊烟都在等你 | 本站访问次数: <span>{{VisitTotal}}</span></p>
         </div>
       </div>
       <p class="m-text-spaced m-text-thi m-padded-tb-tb">
@@ -18,7 +18,13 @@
 
 <script>
   export default {
-    name: "FooterBar"
+    name: "FooterBar",
+    props: {
+      VisitTotal: {
+        type: Number,
+        default: 0
+      }
+    }
   }
 </script>
 

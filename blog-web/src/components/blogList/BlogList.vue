@@ -45,9 +45,10 @@
               <div class="row">
                 <div class="column">
                   <a href="" class="ui teal basic left pointing label m-padded-comm m-margin"
+                     :style="{'color': tag.tagColour + '!important', 'border-color': tag.tagColour + '!important'}"
                      v-for="tag in item.tags"
                      :key="tag.id"
-                     style="margin-top: 1rem">{{tag.name}}</a>
+                     style="margin-top: 1rem !important; font-size: 6px;">{{tag.name}}</a>
                 </div>
               </div>
             </div>
@@ -65,10 +66,38 @@
     <div class="ui bottom attached segment">
       <div class="ui middle aligned two column grid">
         <div class="column">
-          <a href="" class="ui mini teal basic button" >上一页</a>
         </div>
         <div class="right aligned column">
-          <a href="" class="ui mini teal basic button" >下一页</a>
+          <div class="ui mini teal pagination menu">
+            <a @click="pageClick(1)"
+               v-show="!pageBlog.isFirstPage"
+               :class="{active: pageBlog.firstPage === pageNum}"
+               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+             首页
+            </font></font></a>
+            <a @click="pageClick(pageBlog.prePage)"
+               v-show="pageBlog.hasPreviousPage "
+               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+              <i class="angle double left icon"></i>
+            </font></font></a>
+            <a @click="pageClick(item)"
+               :class="{active: item === pageNum}"
+               class="item"
+               v-for="item in pageBlog.navigatepageNums"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+              {{item}}
+            </font></font></a>
+            <a @click="pageClick(pageBlog.pageNum + 1)"
+               v-show="pageBlog.hasNextPage "
+               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+              <i class="angle double right icon"></i>
+            </font></font></a>
+            <a @click="pageClick(pageBlog.pages)"
+               v-show="!pageBlog.isLastPage"
+               :class="{active: pageBlog.pages === pageNum}"
+               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+              尾页
+            </font></font></a>
+          </div>
         </div>
       </div>
     </div>
@@ -84,10 +113,15 @@
     name: "BlogList",
     data() {
       return {
-
+        isActive: true,
+        pageNum: 1
       }
     },
     props: {
+      paging: {
+        type: Function,
+        default: null
+      },
       pageData: {
         page: 0
       },
@@ -96,8 +130,14 @@
     methods: {
       ChangeDateFormat(date) {
         return ChangeDateFormat(date).substring(0, 10)
+      },
+      pageClick(page) {
+        this.pageNum = page
+        if (this.pageBlog.pageNum === page)
+          return
+        this.paging(page)
       }
-    }
+    },
   }
 </script>
 

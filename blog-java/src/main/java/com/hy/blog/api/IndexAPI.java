@@ -31,9 +31,10 @@ public class IndexAPI {
 
     @GetMapping("/blogs")
     public PageInfo<Blog> blogs(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
-        PageHelper.startPage(pageNum, 6);
+        System.out.println(pageNum);
+        PageHelper.startPage(pageNum, 5);
         List<Blog> allBlog = blogService.findAllBlog();
-        return new PageInfo<>(allBlog);
+        return new PageInfo<>(allBlog, 4);
     }
 
     @GetMapping("/blog")

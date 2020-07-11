@@ -2,7 +2,7 @@
   <div id="app">
     <nav-bar></nav-bar>
     <router-view></router-view>
-    <footer-bar></footer-bar>
+    <footer-bar  :VisitTotal="VisitTotal"></footer-bar>
   </div>
 </template>
 
@@ -20,9 +20,22 @@
     },
     data() {
       return {
-
+        VisitTotal: 0
       }
     },
+    mounted() {
+      this.getVisitTotal()
+    },
+    methods: {
+      getVisitTotal() {
+        $.get({
+          url: 'getVisitTotal',
+          success: res => {
+            this.VisitTotal = res
+          }
+        })
+      }
+    }
   }
 
 </script>

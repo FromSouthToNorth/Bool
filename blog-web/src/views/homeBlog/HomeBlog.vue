@@ -11,12 +11,12 @@
                   <h3 class="ui teal header">文章</h3>
                 </div>
                 <div class="right aligned column">
-                  共 <h4 class="ui orange header m-inline-block" > 12 </h4> 篇
+                  共 <h4 class="ui orange header m-inline-block" >{{pageBlog.total}}</h4> 篇
                 </div>
               </div>
             </div>
             <!-- /标题 -->
-            <blog-list :pageData="pageData" :pageBlog="pageBlog"></blog-list>
+            <blog-list :paging="paging" :pageData="pageData" :pageBlog="pageBlog"></blog-list>
           </div>
         </div>
         <div class="five wide column">
@@ -37,7 +37,7 @@
             <div class="ui teal segment">
               <div class="ui fluid vertical menu">
                 <a href="#"  class="item" v-for="item in listType">
-                  <span>{{item.name}}</span>
+                  <span style="color: #00B5AD;">{{item.name}}</span>
                   <div class="ui teal basic left pointing label">{{item.blogs.length}}</div>
                 </a>
               </div>
@@ -60,7 +60,8 @@
             </div>
             <div class="ui teal segment">
               <a href="" class="ui teal basic left pointing label m-margin-tb-tiny"
-                 v-for="item in listTag" :key="item.id">
+                 v-for="item in listTag" :key="item.id"
+                 :style="{'color': item.tagColour + '!important', 'border-color': item.tagColour + '!important'}">
                 <span>{{item.name}}</span>
                 <div class="detail" >{{item.blogs.length}}</div>
               </a>
@@ -95,13 +96,11 @@
     components: { Marquee, BlogList },
     data() {
       return {
-       pageData: {
-         page: 0
-       },
-       pageBlog: {},
-       listType: [],
-       listTag: [],
-       listRecommend: []
+        pageNum: 0,
+        pageBlog: {},
+        listType: [],
+        listTag: [],
+        listRecommend: [],
       }
     },
     mounted() {
@@ -109,14 +108,15 @@
       this.getListType()
       this.getListTag()
       this.getListRecommend()
+      this.addVisit()
     },
     methods: {
       getPageBlog() {
         $.get({
           url: 'blogs',
+          data: {'pageNum': this.pageNum},
           success: res => {
             this.pageBlog = res
-            console.log(this.pageBlog);
           }
         })
       },
@@ -125,7 +125,6 @@
           url: 'homeTypes',
           success: res => {
             this.listType = res
-            console.log(this.listType);
           }
         })
       },
@@ -143,9 +142,17 @@
           url: 'recommendBlogs',
           success: res => {
             this.listRecommend = res
-            console.log(this.listRecommend);
           }
         })
+      },
+      addVisit() {
+        $.get({
+          url: 'addVisit',
+        })
+      },
+      paging(pageNum) {
+        this.pageNum = pageNum
+        this.getPageBlog()
       }
     },
   }

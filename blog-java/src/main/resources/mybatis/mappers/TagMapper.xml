@@ -7,6 +7,7 @@
     <resultMap id="tag" type="com.hy.blog.entity.Tag">
         <id property="id" column="tid"/>
         <result property="name" column="name"/>
+        <result property="tagColour" column="tag_colour"/>
         <collection property="blogs" ofType="com.hy.blog.entity.Blog">
             <id property="id" column="bid"/>
             <result property="title" column="title"/>
@@ -16,12 +17,13 @@
 
     <select id="findBlogTag" resultMap="tag">
         select
-            t.id tid    ,
-            t.name      ,
-            b.id bid    ,
+            t.id tid        ,
+            t.name          ,
+            t.tag_colour    ,
+            b.id bid        ,
             b.title
-        from t_tag t    ,
-             t_blog b   ,
+        from t_tag t        ,
+             t_blog b       ,
              t_blog_tags tbt
         where t.id = tbt.tags_id
         and b.id = tbt.blog_id
