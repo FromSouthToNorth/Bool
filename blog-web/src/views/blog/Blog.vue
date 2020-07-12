@@ -93,7 +93,7 @@
 <script>
 
   import CommentBar from "components/commentBar/CommentBar"
-  import BlogInfo from "components/ blogInfo/BlogInfo"
+  import BlogInfo from "components/blogInfo/BlogInfo"
 
   import tocbot from "../../assets/js/tocbot.min"
   import { imgAmp } from "../../utlis/imgAmp"
