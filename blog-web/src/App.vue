@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <router-view></router-view>
-    <footer-bar  :VisitTotal="VisitTotal"></footer-bar>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+    <footer-bar :VisitTotal="VisitTotal"></footer-bar>
   </div>
 </template>
 

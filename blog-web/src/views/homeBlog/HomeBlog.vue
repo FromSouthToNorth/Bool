@@ -133,7 +133,6 @@
           url: 'homeTags',
           success: res => {
             this.listTag = res
-            console.log(this.listTag);
           }
         })
       },

@@ -7,7 +7,10 @@
         <div class="ui middle aligned mobile reversed stackable grid">
           <div class="eleven wide column">
             <h3 class="ui header">
-              <a href="#" class="m-black">{{item.title}}</a>
+              <router-link :to="'/blog/'+item.id" tag="a" class="m-black">
+                {{item.title}}
+              </router-link>
+              <a href="#" class="m-black"></a>
             </h3>
             <p class="blog-text m-text">{{item.description}}</p>
             <div class="ui grid">
@@ -54,9 +57,9 @@
             </div>
           </div>
           <div class="ui five wide column">
-            <a href="#" >
+            <router-link :to="'/blog/'+item.id">
               <img :src="item.firstPicture" alt="..." class="ui rounded image fluid">
-            </a>
+            </router-link>
           </div>
         </div>
       </div>

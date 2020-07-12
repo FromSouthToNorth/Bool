@@ -1,5 +1,7 @@
 package com.hy.blog.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.List;
 // 标签
 public class Tag {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     @NotBlank(message = "标签名称不能为空")
     private String name;

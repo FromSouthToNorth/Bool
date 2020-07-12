@@ -1,5 +1,7 @@
 package com.hy.blog.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 // 类型
 public class Type {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     @NotBlank(message = "类型名称不能为空")
     private String name;

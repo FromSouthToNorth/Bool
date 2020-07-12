@@ -1,5 +1,7 @@
 package com.hy.blog.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,13 +17,16 @@ import java.util.List;
 // 评论
 public class Comment {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     private String nickname;
     private String email;
     private String content;
     private String avatar;
     private Date createTime;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long blogId;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long parentCommentId;
     private Boolean adminComment;
     private String parentNickname;

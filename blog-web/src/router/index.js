@@ -27,12 +27,24 @@ const routes = [
   {
     path: '/about',
     component: () => import('views/about/About')
+  },
+  {
+    path: '/blog',
+    component: () => import('views/blog/Blog')
+  },
+  {
+    path: '/blog/:bid',
+    component: () => import('views/blog/Blog')
   }
 ]
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  mode: 'history',
+})
+
+router.beforeEach((to, from, next) => {
+  next()
 })
 
 export default router
