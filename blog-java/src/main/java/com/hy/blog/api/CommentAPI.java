@@ -40,8 +40,7 @@ public class CommentAPI {
             session.setAttribute("time", System.currentTimeMillis());
         }
         // 判断评论参数是否完整
-        if (comment.getParentComment() == null ||
-            comment.getBlog() == null ||
+        if (comment.getBlog() == null ||
             comment.getNickname() == null ||
             comment.getContent() == null) {
             return 1;
@@ -52,7 +51,6 @@ public class CommentAPI {
             comment.setNickname(byEmailAdmin.getNickname());
             comment.setAdminComment(true);
         } else {
-            comment.setAvatar("tourist");
             comment.setAdminComment(false);
         }
         Integer integer = commentService.saveComment(comment);

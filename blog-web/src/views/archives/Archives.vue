@@ -60,6 +60,9 @@
         }
       })
     },
+    deactivated() {
+      console.log('deactivated');
+    },
     methods: {
       ChangeDateFormat(date) {
         var arr = date.split("T");

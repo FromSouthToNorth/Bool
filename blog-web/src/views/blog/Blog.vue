@@ -117,7 +117,6 @@
           data: { 'id': this.$route.params.bid },
           success: res => {
             this.blog = res;
-            console.log(res);
             $(window).scrollTo(0, 10)
             this.setTO()
           }
@@ -150,10 +149,6 @@
           popup: $('.toc-container.popup'),
           on: 'click',
           position: "left center"
-        })
-        $('.wechat').popup({
-          popup: $('.wechat'),
-          position: 'left center'
         })
       },
       tocbotInit() {

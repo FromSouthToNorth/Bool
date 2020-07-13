@@ -16,7 +16,7 @@
               </div>
             </div>
             <!-- /标题 -->
-            <blog-list :paging="paging" :pageData="pageData" :pageBlog="pageBlog"></blog-list>
+            <blog-list :paging="paging" :pageNum="pageNum" :pageBlog="pageBlog"></blog-list>
           </div>
         </div>
         <div class="five wide column">
@@ -36,8 +36,11 @@
             </div>
             <div class="ui teal segment">
               <div class="ui fluid vertical menu">
-                <router-link :to="'/type/' + item.id"
-                  class="item" v-for="item in listType">
+                <router-link
+                  :to="'/type/' + item.id"
+                  class="item" v-for="item in listType"
+                  :key="item.id"
+                >
                   <span style="color: #00B5AD;">{{item.name}}</span>
                   <div class="ui teal basic left pointing label">
                     {{item.blogs.length}}

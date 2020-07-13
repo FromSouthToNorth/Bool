@@ -20,16 +20,20 @@
           :key="item.id"
           @click.native="getBlog(item.id)"
           :to="'/type/' + item.id"
-          :class="{teal: $route.params.typeid === item.id}"
-          class="ui labeled button m-margin-tb-tiny" >
-          <a href="#"  class="ui basic button">{{item.name}}</a>
-          <div class="ui basic left pointing label" >
+          class="ui labeled button m-margin-tb-tiny"
+        >
+          <a href="#"  class="ui basic button"
+             :class="{teal: $route.params.typeid === item.id}">
+            {{item.name}}
+          </a>
+          <div class="ui basic left pointing label"
+               :class="{teal: $route.params.typeid === item.id}">
             {{item.blogs.length}}
           </div>
         </router-link>
       </div>
 
-      <blog-list :paging="paging" :pageBlog="pageTypeBlog"></blog-list>
+      <blog-list :paging="paging" :pageNum="pageNum" :pageBlog="pageBlog"></blog-list>
 
     </div>
   </div>
@@ -43,25 +47,28 @@
     data() {
       return {
         typeList: null,
-        pageTypeBlog: {},
+        pageBlog: {},
         typeId : 0,
         pageNum: 0
       }
     },
+    // 组件处于活跃时
     activated() {
       $.get({
         url: 'types',
         success: res => {
           this.typeList = res
-          if (!this.$route.params.tagid) {
-            this.$router.push('/blogType/' + res[0].id)
+          if (!this.$route.params.typeid) {
+            this.$router.push('/type/' + res[0].id)
             this.getBlog(res[0].id)
           } else {
-            this.getBlog(this.$route.params.tagid)
+            this.getBlog(this.$route.params.typeid)
           }
         }
       })
     },
+    // 组件失去活跃时
+    deactivated() {  },
     methods: {
       getBlog(id) {
         if (id !== -1) {
@@ -71,13 +78,13 @@
           url: 'blogType',
           data: {'typeId': this.typeId, 'pageNum': this.pageNum},
           success: res => {
-            this.pageTypeBlog = res
+            this.pageBlog = res
           }
         })
       },
       paging(pageNum) {
         this.pageNum = pageNum
-        this.getPageBlog()
+        this.getBlog(-1)
       }
     }
   }

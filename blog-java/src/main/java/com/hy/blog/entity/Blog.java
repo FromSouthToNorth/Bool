@@ -13,7 +13,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 // 博客
 public class Blog {
 

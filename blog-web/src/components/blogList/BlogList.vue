@@ -28,7 +28,7 @@
                   </div>
                 </div>
                 <div class="right aligned ten wide column">
-                  <router-link  tag="a" :to="'/type' + item.type.id"
+                  <router-link  tag="a" :to="'/type/' + item.type.id"
                     class="ui teal basic label m-padded-tiny m-opacity-mini" >
                     {{item.type.name}}
                   </router-link>
@@ -52,7 +52,7 @@
               </div>
               <div class="row">
                 <div class="column">
-                  <router-link :to="'/tag' + tag.id" tag="a"
+                  <router-link :to="'/tag/' + tag.id" tag="a"
                      class="ui teal basic left pointing label m-padded-comm m-margin"
                      :style="{'color': tag.tagColour + '!important', 'border-color': tag.tagColour + '!important'}"
                      v-for="tag in item.tags"
@@ -132,9 +132,6 @@
         type: Function,
         default: null
       },
-      pageData: {
-        page: 0
-      },
       pageBlog: {}
     },
     methods: {
@@ -143,8 +140,6 @@
       },
       pageClick(page) {
         this.pageNum = page
-        if (this.pageBlog.pageNum === page)
-          return
         this.paging(page)
       }
     },

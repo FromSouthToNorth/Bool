@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '',
+    path: '/',
     redirect: '/home'
   },
   {
@@ -43,6 +43,10 @@ const routes = [
   {
     path: '/blog/:bid',
     component: () => import('views/blog/Blog')
+  },
+  {
+    path: '/search',
+    component: () => import('views/search/Search')
   }
 ]
 

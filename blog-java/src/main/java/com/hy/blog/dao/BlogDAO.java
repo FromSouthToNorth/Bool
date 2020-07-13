@@ -26,4 +26,6 @@ public interface BlogDAO {
 
     Integer countBlog();
 
+    List<Blog> findByTitleBlog(String query);
+
 }

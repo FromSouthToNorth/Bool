@@ -34,12 +34,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> findAllBlog() {
-        List<Blog> allBlog = blogDAO.findAllBlog();
-        for (Blog blog : allBlog) {
-            blog.setCommentTotal(commentDAO.findByBlogIdCountComment(blog.getId()));
-            blog.setTags(blogAndTagDAO.findByBlogId(blog.getId()));
-        }
-        return allBlog;
+        return getTags(blogDAO.findAllBlog());
     }
 
     @Override
@@ -102,9 +97,15 @@ public class BlogServiceImpl implements BlogService {
         return blogDAO.countBlog();
     }
 
+    @Override
+    public List<Blog> findByTitleBlog(String query) {
+        return getTags(blogDAO.findByTitleBlog(query));
+    }
+
     private List<Blog> getTags(List<Blog> blogs) {
         if (blogs.size() > 0) {
             for (Blog blog : blogs) {
+                blog.setCommentTotal(commentDAO.findByBlogIdCountComment(blog.getId()));
                 blog.setTags(blogAndTagDAO.findByBlogId(blog.getId()));
             }
         }

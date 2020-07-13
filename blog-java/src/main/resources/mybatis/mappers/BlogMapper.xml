@@ -213,5 +213,32 @@
     <select id="countBlog" resultType="java.lang.Integer">
         select count(1) from t_blog
     </select>
+    
+    <select id="findByTitleBlog" resultMap="blog" parameterType="java.lang.String">
+        <if test="query != null">
+            <bind name="pattern" value=" '%' + query + '%' "/>
+        </if>
+        select
+            tb.id               ,
+            tb.title            ,
+            tb.first_picture    ,
+            tb.views            ,
+            tb.`like`           ,
+            tb.update_time      ,
+            tb.description      ,
+            tb.type_id          ,
+            tb.tag_ids          ,
+            tt.name             ,
+            tu.nickname         ,
+            tu.avatar
+        from t_blog tb
+        inner join t_type tt
+        on         tb.type_id = tt.id
+        inner join t_user tu
+        on         tb.user_id = tu.id
+        where      tb.title like #{pattern} or tb.description like #{pattern}
+        and        tb.published = 1
+        order by   tb.update_time desc
+    </select>
 
 </mapper>

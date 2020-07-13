@@ -25,4 +25,6 @@ public interface BlogService {
 
     Integer countBlog();
 
+    List<Blog> findByTitleBlog(String query);
+
 }

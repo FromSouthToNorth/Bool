@@ -25,7 +25,10 @@
                 {{item.content}}
               </div>
               <div class="actions">
-                <a class="reply" data-commentid="1" data-commentnickname="Matt">回复</a>
+                <a class="reply"
+                   @click="replyComment(item.id, item.nickname)"
+                   :data-commentid="item.id"
+                   :data-commentnickname="item.nickname">回复</a>
               </div>
             </div>
             <div class="comments" v-if="item.replyComments.length > 0">
@@ -50,7 +53,11 @@
                     {{reply.content}}
                   </div>
                   <div class="actions">
-                    <a class="reply" data-commentid="1" data-commentnickname="Matt">回复</a>
+                    <a class="reply" data-commentid="1" data-commentnickname="Matt"
+                    :data-commentid="reply.id"
+                    :data-commentIckName="reply.parentNickname"
+                    @click="replyComment(reply.id, reply.parentNickname)"
+                    >回复</a>
                   </div>
                 </div>
               </div>
@@ -63,23 +70,32 @@
       <input type="hidden" name="blog.id">
       <input type="hidden" name="parentComment.id" value="-1">
       <div class="field">
-        <textarea name="content" placeholder="请输入评论信息..."></textarea>
+        <textarea name="content" v-model="data.content" placeholder="请输入评论信息..."></textarea>
       </div>
       <div class="fields">
         <div class="field m-mobile-wide m-margin-bottom-small">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="nickname" placeholder="姓名">
+            <input type="text" name="nickname" placeholder="姓名"
+            :datafld="isDisabled"
+            v-model="data.nickname"
+            >
           </div>
         </div>
         <div class="field m-mobile-wide m-margin-bottom-small">
           <div class="ui left icon input">
             <i class="mail icon"></i>
-            <input type="email" name="email" placeholder="邮箱">
+            <input type="email" name="email" placeholder="邮箱" v-model="data.email">
           </div>
         </div>
         <div class="field m-mobile-wide m-margin-bottom-small">
-          <button id="comment-btn" type="button" class="ui teal button m-mobile-wide"><i class="edit icon"></i>发布</button>
+          <button @click="delInput" type="button" class="ui teal basic button m-mobile-wide">
+            <i class="eraser icon"></i>清空
+          </button>
+          <button @click="commentPost" type="button" class="ui teal button m-mobile-wide">
+            <i class="edit icon"></i>发布
+          </button>
+          <button id="error-message" style="display: none;"></button>
         </div>
       </div>
     </div>
@@ -94,21 +110,28 @@
     name: "CommentBar",
     data() {
       return {
+        isDisabled: true,
         comments: [],
         data: {
-          "parentComment.id": -1,
-          "blog.id": 0,
-          nickname: "",
-          email: "",
-          content: "",
-          avatar:
-            "http://47.113.92.137:8888/upload/io/img/2020/4/6/1586149620923.png"
+          parentCommentId: 0,
+          blogId: 0,
+          nickname: '',
+          email: '',
+          content: '',
+          avatar: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/avatar.png'
         }
       }
     },
-    activated() {
+    mounted() {
+      $('#error-message').popup({
+        position: 'top center',
+        target: '.popup-err-intput',
+        title: '提示',
+        on: 'click',
+        content: '稍等一会再留言吧'
+      })
       if (this.$route.params.bid) {
-        this.data["blog.id"] = this.$route.params.bid
+        this.data.blogId = this.$route.params.bid
         this.getCommentList(this.$route.params.bid)
       }
       //评论表单验证
@@ -145,6 +168,40 @@
       });
     },
     methods: {
+      commentPost() {
+        var boo = $('.ui.form').form('validate form')
+        if (boo) {
+          $.post({
+            url: 'comments',
+            data: this.data,
+            success: res => {
+              if (res === 0) {
+                this.getCommentList(this.$route.params.bid)
+                $(window).scrollTo('#comment-container', 400)
+                this.delInput()
+              } else {
+                $('#error-message').click()
+              }
+              this.isDisabled = true
+            }
+          })
+        } else {
+          console.log('校验失败');
+        }
+      },
+      delInput() {
+        $("[name='content']")
+        .attr('placeholder', '请输入评论信息...')
+        .focus()
+        this.data.content = ''
+      },
+      replyComment(id, nickname) {
+        $("[name='content']")
+        .attr('placeholder', '@' + nickname)
+        .focus()
+        this.data.parentComment = id
+        $(window).scrollTo($('#comment-form'), 500)
+      },
       ChangeDateFormat(date) {
         return ChangeDateFormat(date)
       },
@@ -154,7 +211,6 @@
           data: { 'blogId' : id },
           success: res => {
             this.comments = res
-            console.log(res);
           }
         })
       },
