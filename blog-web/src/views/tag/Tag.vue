@@ -8,17 +8,17 @@
             <h3 class="ui teal header">标签</h3>
           </div>
           <div class="right aligned column">
-            共 <h4 class="ui orange header m-inline-block"> 12 </h4> 个
+            共 <h4 class="ui orange header m-inline-block"> {{tagList.length}} </h4> 个
           </div>
         </div>
       </div>
       <!-- /header -->
       <div class="ui bottom attached segment teal">
-        <a href="#"
+        <router-link :to="'/tag/' + item.id" href="#" v-for="item in tagList"
            class="ui basic left pointing large label m-margin-tb-tiny">
-          <span></span>
-          <div class="detail">3</div>
-        </a>
+          <span>{{item.name}}</span>
+          <div class="detail">{{item.blogs.length}}</div>
+        </router-link>
       </div>
 
       <blog-list></blog-list>
@@ -35,7 +35,31 @@
 
   export default {
     name: "Tag",
-    components: { BlogList }
+    components: { BlogList },
+    data() {
+      return {
+        tagList: []
+      }
+    },
+    activated() {
+      this.getTagBlog()
+    },
+    methods: {
+      getTagBlog() {
+        $.get({
+          url: 'tags',
+          success: res => {
+            this.tagList = res
+            console.log(res);
+          }
+        })
+      },
+      getBlog() {
+        $.get({
+          
+        })
+      }
+    }
   }
 
 </script>

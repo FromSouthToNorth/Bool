@@ -9,7 +9,7 @@
           v-for="item in comments" :key="item.id"
           >
             <a class="avatar">
-              <img :src="item.avatar">
+              <img :src="item.avatar" alt="">
             </a>
             <div class="content">
               <a class="author">
@@ -106,7 +106,7 @@
         }
       }
     },
-    mounted() {
+    activated() {
       if (this.$route.params.bid) {
         this.data["blog.id"] = this.$route.params.bid
         this.getCommentList(this.$route.params.bid)

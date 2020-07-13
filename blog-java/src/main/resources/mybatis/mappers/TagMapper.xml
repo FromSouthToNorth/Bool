@@ -30,4 +30,20 @@
         and b.published = 1
     </select>
 
+    <select id="findByTagId" resultMap="tag" parameterType="java.lang.Long">
+        select
+            t.id tid        ,
+            t.name          ,
+            t.tag_colour    ,
+            b.id bid        ,
+            b.title
+        from t_tag t        ,
+             t_blog b       ,
+             t_blog_tags tbt
+        where t.id = tbt.tags_id
+        and b.id = tbt.blog_id
+        and b.published = 1
+        and t.id = #{tagId}
+    </select>
+
 </mapper>

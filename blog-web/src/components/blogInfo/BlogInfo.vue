@@ -4,8 +4,8 @@
     <div class="ui middle aligned grid">
       <div class="eleven wide column">
         <ul class="list">
-          <li>作者：<span></span><a href="#" target="_blank">(联系作者)</a></li>
-          <li>发表时间：<span></span></li>
+          <li>作者：<span>{{nickname}}</span><a href="#" target="_blank">(联系作者)</a></li>
+          <li>发表时间：<span>{{createTime}}</span></li>
         </ul>
       </div>
       <div class="five wide column">
@@ -17,7 +17,14 @@
 
 <script>
   export default {
-    name: "BlogInfo"
+    name: "BlogInfo",
+    props: {
+      nickname: {
+        type: String,
+        defaults: ''
+      },
+      createTime: null
+    }
   }
 </script>
 
