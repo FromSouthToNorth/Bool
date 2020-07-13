@@ -28,12 +28,8 @@ public class TypeAPI {
         return typeService.findBlogType();
     }
 
-    @GetMapping("/type")
+    @GetMapping("/blogType")
     public PageInfo<Blog> typeBlog(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, Long typeId) {
-        List<Type> blogType = typeService.findBlogType();
-        if (typeId == -1) {
-            typeId = blogType.get(0).getId();
-        }
         PageHelper.startPage(pageNum, 5);
         List<Blog> byTypeIdBlog = blogService.findByTypeIdBlog(typeId);
         return new PageInfo<>(byTypeIdBlog, 4);

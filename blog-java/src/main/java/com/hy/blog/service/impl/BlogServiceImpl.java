@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -75,12 +77,38 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> findByTypeIdBlog(Long typeId) {
-        return blogDAO.findByTypeIdBlog(typeId);
+        return getTags(blogDAO.findByTypeIdBlog(typeId));
     }
 
     @Override
     public List<Blog> findByTagIdBlog(Long tagId) {
-        return blogDAO.findByTagIdBlog(tagId);
+        return getTags(blogDAO.findByTagIdBlog(tagId));
+    }
+
+    @Override
+    public Map<String, List<Blog>> archiveBlog() {
+        Map<String, List<Blog>> map = new LinkedHashMap<>();
+        List<String> years = blogDAO.findBlogYear();
+        if (years.size() > 0) {
+            for (String year : years) {
+                map.put(year, blogDAO.findByYear(year));
+            }
+        }
+        return map;
+    }
+
+    @Override
+    public Integer countBlog() {
+        return blogDAO.countBlog();
+    }
+
+    private List<Blog> getTags(List<Blog> blogs) {
+        if (blogs.size() > 0) {
+            for (Blog blog : blogs) {
+                blog.setTags(blogAndTagDAO.findByBlogId(blog.getId()));
+            }
+        }
+        return blogs;
     }
 
 }

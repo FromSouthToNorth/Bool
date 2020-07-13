@@ -195,4 +195,23 @@
         order by b.update_time desc
     </select>
 
+    <select id="findBlogYear" resultType="java.lang.String">
+        select
+        date_format(b.update_time, '%Y') as year
+        from t_blog b
+        group by year order by year desc
+    </select>
+
+    <select id="findByYear" resultType="com.hy.blog.entity.Blog" parameterType="java.lang.String">
+        select
+        *
+        from t_blog b
+        where
+        date_format(b.update_time, '%Y') = #{year}
+    </select>
+
+    <select id="countBlog" resultType="java.lang.Integer">
+        select count(1) from t_blog
+    </select>
+
 </mapper>

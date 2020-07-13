@@ -5,6 +5,7 @@ import com.hy.blog.vo.RecommendBlog;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BlogService {
 
@@ -19,5 +20,9 @@ public interface BlogService {
     List<Blog> findByTypeIdBlog(@Param("typeId") Long typeId);
 
     List<Blog> findByTagIdBlog(@Param("tagId") Long tagId);
+
+    Map<String, List<Blog>> archiveBlog();
+
+    Integer countBlog();
 
 }

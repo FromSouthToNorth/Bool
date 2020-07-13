@@ -28,16 +28,9 @@ public class TagAPI {
     }
 
     @GetMapping("/blogTag")
-    public PageInfo<Blog> tagBlog(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-                                  Long tagId) {
-        System.out.println(tagId);
-        List<Tag> blogTag = tagService.findBlogTag();
-        if (tagId == -1) {
-            tagId = blogTag.get(0).getId();
-        }
+    public PageInfo<Blog> tagBlog(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, Long tagId) {
         PageHelper.startPage(pageNum, 5);
         List<Blog> byTagIdBlog = blogService.findByTagIdBlog(tagId);
-
         return new PageInfo<>(byTagIdBlog, 4);
     }
 

@@ -20,4 +20,10 @@ public interface BlogDAO {
 
     List<Blog> findByTagIdBlog(@Param("tagId") Long tagId);
 
+    List<String> findBlogYear();
+
+    List<Blog> findByYear(@Param("year") String year);
+
+    Integer countBlog();
+
 }
