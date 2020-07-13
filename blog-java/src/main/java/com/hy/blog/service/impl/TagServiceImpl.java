@@ -19,9 +19,4 @@ public class TagServiceImpl implements TagService {
         return tagDAO.findBlogTag();
     }
 
-    @Override
-    public Tag findByTagId(Long tagId) {
-        return tagDAO.findByTagId(tagId);
-    }
-
 }

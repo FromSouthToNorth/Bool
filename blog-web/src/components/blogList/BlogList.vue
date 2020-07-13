@@ -64,7 +64,7 @@
             </div>
           </div>
           <div class="ui five wide column">
-            <router-link :to="'/blog/'+item.id">
+            <router-link :to="'/blog/' + item.id">
               <img :src="item.firstPicture" alt="..." class="ui rounded image fluid">
             </router-link>
           </div>

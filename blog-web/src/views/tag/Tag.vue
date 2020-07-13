@@ -14,14 +14,14 @@
       </div>
       <!-- /header -->
       <div class="ui bottom attached segment teal">
-        <router-link :to="'/tag/' + item.id" href="#" v-for="item in tagList"
+        <router-link :to="'/tag/' + item.id" v-for="item in tagList"
            class="ui basic left pointing large label m-margin-tb-tiny">
           <span>{{item.name}}</span>
           <div class="detail">{{item.blogs.length}}</div>
         </router-link>
       </div>
 
-      <blog-list></blog-list>
+      <blog-list :pageBlog="pageTagBlog"></blog-list>
 
 <!--      <div class="ui bottom attached segment" style="padding: 6px">-->
 <!--      </div>-->
@@ -38,11 +38,14 @@
     components: { BlogList },
     data() {
       return {
-        tagList: []
+        tagList: [],
+        pageTagBlog: {},
+        pageNum: 0
       }
     },
     activated() {
       this.getTagBlog()
+      this.getBlog()
     },
     methods: {
       getTagBlog() {
@@ -55,10 +58,23 @@
         })
       },
       getBlog() {
+        let tagId = -1
+        if (this.$route.params.tagid) {
+          tagId = this.$route.params.tagid
+        }
         $.get({
-          
+          url: 'blogTag',
+          data: {'tagId': tagId},
+          success: res => {
+            this.pageTagBlog = res
+            console.log(res);
+          }
         })
-      }
+      },
+      // paging(pageNum) {
+      //   this.pageNum = pageNum
+      //   this.getPageBlog()
+      // }
     }
   }
 

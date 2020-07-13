@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0addeeb-3567-49ad-a1f1-bf1bd795d023" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/api/IndexAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/api/IndexAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/api/TagAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/api/TagAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/api/TypeAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/api/TypeAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/dao/BlogDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/dao/BlogDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/TypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/TypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/impl/TypeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/service/impl/TypeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/vo/RecommendBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/java/com/hy/blog/vo/RecommendBlog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog-java/src/main/resources/mybatis/mappers/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog-java/src/main/resources/mybatis/mappers/BlogMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/css/myCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/myCss.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/blogInfo/BlogInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/blogInfo/BlogInfo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/blogList/BlogList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/blogList/BlogList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/commentBar/CommentBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/commentBar/CommentBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/homeBlog/HomeBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/homeBlog/HomeBlog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/tag/Tag.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/tag/Tag.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +80,8 @@
       <workItem from="1594365279047" duration="3692000" />
       <workItem from="1594563286816" duration="630000" />
       <workItem from="1594565319525" duration="787000" />
-      <workItem from="1594601514744" duration="2564000" />
+      <workItem from="1594601514744" duration="7827000" />
+      <workItem from="1594611193198" duration="1031000" />
     </task>
     <servers />
   </component>
@@ -78,25 +89,25 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1516" height="310" key="GridCell.Tab.0.bottom" timestamp="1594566111155">
+    <state width="1516" height="365" key="GridCell.Tab.0.bottom" timestamp="1594612238928">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1516" height="310" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1594566111155" />
+    <state width="1516" height="365" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1594612238928" />
     <state width="1867" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1594563594257" />
-    <state width="1516" height="310" key="GridCell.Tab.0.center" timestamp="1594566111155">
+    <state width="1516" height="365" key="GridCell.Tab.0.center" timestamp="1594612238928">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1516" height="310" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1594566111155" />
+    <state width="1516" height="365" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1594612238928" />
     <state width="1867" height="281" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1594563594257" />
-    <state width="1516" height="310" key="GridCell.Tab.0.left" timestamp="1594566111155">
+    <state width="1516" height="365" key="GridCell.Tab.0.left" timestamp="1594612238928">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1516" height="310" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1594566111155" />
+    <state width="1516" height="365" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1594612238928" />
     <state width="1867" height="281" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1594563594257" />
-    <state width="1516" height="310" key="GridCell.Tab.0.right" timestamp="1594566111155">
+    <state width="1516" height="365" key="GridCell.Tab.0.right" timestamp="1594612238928">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1516" height="310" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1594566111155" />
+    <state width="1516" height="365" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1594612238928" />
     <state width="1867" height="281" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1594563594257" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1594602423401">
       <screen x="0" y="0" width="1536" height="864" />

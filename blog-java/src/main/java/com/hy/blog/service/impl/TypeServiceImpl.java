@@ -19,9 +19,4 @@ public class TypeServiceImpl implements TypeService {
         return typeDAO.findBlogType();
     }
 
-    @Override
-    public Type findByTypeId(Long typeId) {
-        return typeDAO.findByTypeId(typeId);
-    }
-
 }

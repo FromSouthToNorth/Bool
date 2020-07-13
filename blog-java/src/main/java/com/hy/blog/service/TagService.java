@@ -9,6 +9,5 @@ public interface TagService {
 
     List<Tag> findBlogTag();
 
-    Tag findByTagId(Long tagId);
 
 }

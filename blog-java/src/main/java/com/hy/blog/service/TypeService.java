@@ -8,6 +8,4 @@ public interface TypeService {
 
     List<Type> findBlogType();
 
-    Type findByTypeId(Long typeId);
-
 }
