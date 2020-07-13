@@ -1,3 +1,6 @@
+.m-background {
+    background: url("../images/wavy-dots.png");
+}
 
 .m-padded-tb-min.m-nav.fixed {
     position: fixed;

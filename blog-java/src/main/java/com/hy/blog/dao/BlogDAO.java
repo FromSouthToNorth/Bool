@@ -16,4 +16,8 @@ public interface BlogDAO {
 
     List<RecommendBlog> findRecommendBlog();
 
+    List<Blog> findByTypeIdBlog(@Param("typeId") Long typeId);
+
+    List<Blog> findByTagIdBlog(@Param("tagId") Long tagId);
+
 }

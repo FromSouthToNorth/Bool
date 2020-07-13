@@ -2,6 +2,7 @@ package com.hy.blog.service;
 
 import com.hy.blog.entity.Blog;
 import com.hy.blog.vo.RecommendBlog;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,5 +15,9 @@ public interface BlogService {
     void updateByIdBlogViews(Blog blog);
 
     List<RecommendBlog> findRecommendBlog();
+
+    List<Blog> findByTypeIdBlog(@Param("typeId") Long typeId);
+
+    List<Blog> findByTagIdBlog(@Param("tagId") Long tagId);
 
 }

@@ -66,8 +66,8 @@
             t_blog b            ,
             t_user u            ,
             t_type t
-        where   b.user_id = u.id
-        and     b.type_id = t.id
+        where    b.user_id = u.id
+        and      b.type_id = t.id
         order by b.update_time desc
     </select>
 
@@ -119,6 +119,80 @@
             from t_blog t2 where t2.views > t1.views
         )
         order by views desc
+    </select>
+
+    <select id="findByTypeIdBlog" parameterType="java.lang.Long" resultMap="blog">
+        select
+            b.id                ,
+            b.first_picture     ,
+            b.flag              ,
+            b.title             ,
+            b.content           ,
+            b.views             ,
+            b.`like`            ,
+            b.create_time       ,
+            b.update_time       ,
+            b.commentabled      ,
+            b.published         ,
+            b.recommend         ,
+            b.share_statement   ,
+            b.type_id           ,
+            b.user_id           ,
+            b.appreciation      ,
+            b.description       ,
+            b.tag_ids           ,
+            t.id typeid         ,
+            t.name typename     ,
+            u.nickname          ,
+            u.avatar
+        from
+            t_blog b            ,
+            t_user u            ,
+            t_type t
+        where    b.user_id = u.id
+        and      b.type_id = t.id
+        and      b.published = 1
+        and      b.type_id = #{typeId}
+        order by b.update_time desc
+    </select>
+
+    <select id="findByTagIdBlog" parameterType="java.lang.Long" resultMap="blog">
+        select
+            b.id                ,
+            b.first_picture     ,
+            b.flag              ,
+            b.title             ,
+            b.content           ,
+            b.views             ,
+            b.`like`            ,
+            b.create_time       ,
+            b.update_time       ,
+            b.commentabled      ,
+            b.published         ,
+            b.recommend         ,
+            b.share_statement   ,
+            b.type_id           ,
+            b.user_id           ,
+            b.appreciation      ,
+            b.description       ,
+            b.tag_ids           ,
+            t.id typeid         ,
+            t.name typename     ,
+            u.nickname          ,
+            u.avatar
+        from
+            t_blog b            ,
+            t_user u            ,
+            t_type t            ,
+            t_tag               ,
+            t_blog_tags tb
+        where    b.user_id = u.id
+        and      b.type_id = t.id
+        and      b.published = 1
+        and      t_tag.id = tb.tags_id
+        and      b.id = tb.blog_id
+        and      t_tag.id = #{tagId}
+        order by b.update_time desc
     </select>
 
 </mapper>

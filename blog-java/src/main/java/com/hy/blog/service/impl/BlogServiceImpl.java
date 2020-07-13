@@ -73,4 +73,14 @@ public class BlogServiceImpl implements BlogService {
         return blogDAO.findRecommendBlog();
     }
 
+    @Override
+    public List<Blog> findByTypeIdBlog(Long typeId) {
+        return blogDAO.findByTypeIdBlog(typeId);
+    }
+
+    @Override
+    public List<Blog> findByTagIdBlog(Long tagId) {
+        return blogDAO.findByTagIdBlog(tagId);
+    }
+
 }

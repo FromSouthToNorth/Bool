@@ -17,7 +17,15 @@ const routes = [
     component: () => import('views/type/Type')
   },
   {
+    path: '/type/:typeid',
+    component: () => import('views/type/Type')
+  },
+  {
     path: '/tag',
+    component: () => import('views/tag/Tag')
+  },
+  {
+    path: '/tag/:tagid',
     component: () => import('views/tag/Tag')
   },
   {

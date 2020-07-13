@@ -38,7 +38,7 @@ public class IndexAPI {
     }
 
     @GetMapping("/blog")
-    public Blog blog(@RequestParam String id, HttpSession session) {
+    public Blog blog(@RequestParam Long id, HttpSession session) {
         boolean isAdd = true;
         try {
             long time = (long) session.getAttribute("addTime");
@@ -50,7 +50,7 @@ public class IndexAPI {
             session.setAttribute("addTime", System.currentTimeMillis());
         }
         System.out.println(isAdd);
-        return blogService.findByIdBlogOne(Long.parseLong(id), isAdd);
+        return blogService.findByIdBlogOne(id, isAdd);
     }
 
     @GetMapping("/homeTags")

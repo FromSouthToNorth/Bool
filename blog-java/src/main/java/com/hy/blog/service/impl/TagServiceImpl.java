@@ -18,4 +18,5 @@ public class TagServiceImpl implements TagService {
     public List<Tag> findBlogTag() {
         return tagDAO.findBlogTag();
     }
+
 }

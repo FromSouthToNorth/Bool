@@ -20,13 +20,18 @@
                     <div class="item">
                       <img :src="item.user.avatar" alt="" class="ui avatar image">
                       <div class="content">
-                        <router-link to="/about" class="header">{{item.user.nickname}}</router-link>
+                        <router-link to="/about" class="header">
+                          {{item.user.nickname}}
+                        </router-link>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="right aligned ten wide column">
-                  <a href="" class="ui teal basic label m-padded-tiny m-opacity-mini" >{{item.type.name}}</a>
+                  <router-link  tag="a" :to="'/type' + item.type.id"
+                    class="ui teal basic label m-padded-tiny m-opacity-mini" >
+                    {{item.type.name}}
+                  </router-link>
                 </div>
               </div>
               <div class="row">
@@ -47,17 +52,19 @@
               </div>
               <div class="row">
                 <div class="column">
-                  <a href="" class="ui teal basic left pointing label m-padded-comm m-margin"
+                  <router-link :to="'/tag' + tag.id" tag="a"
+                     class="ui teal basic left pointing label m-padded-comm m-margin"
                      :style="{'color': tag.tagColour + '!important', 'border-color': tag.tagColour + '!important'}"
                      v-for="tag in item.tags"
                      :key="tag.id"
-                     style="margin-top: 1rem !important; font-size: 6px;">{{tag.name}}</a>
+                     style="margin-top: 1rem !important; font-size: 6px;">{{tag.name}}
+                  </router-link>
                 </div>
               </div>
             </div>
           </div>
           <div class="ui five wide column">
-            <router-link :to="'/blog/'+item.id">
+            <router-link :to="'/blog/' + item.id">
               <img :src="item.firstPicture" alt="..." class="ui rounded image fluid">
             </router-link>
           </div>
