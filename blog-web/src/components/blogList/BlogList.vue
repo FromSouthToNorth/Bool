@@ -1,9 +1,9 @@
 <template>
   <div>
     <!---->
-    <div class="ui attached segment teal">
+    <div class="ui top attached segment teal">
       <div class="ui padded vertical segment stackable m-padded-large"
-      v-for="item in pageBlog.list" :key="item.id">
+        v-for="item in pageBlog.list" :key="item.id">
         <div class="ui middle aligned mobile reversed stackable grid">
           <div class="eleven wide column">
             <h3 class="ui header">

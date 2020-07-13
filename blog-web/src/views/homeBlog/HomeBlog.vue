@@ -36,9 +36,12 @@
             </div>
             <div class="ui teal segment">
               <div class="ui fluid vertical menu">
-                <router-link :to="'/type/' + item.id" class="item" v-for="item in listType">
+                <router-link :to="'/type/' + item.id"
+                  class="item" v-for="item in listType">
                   <span style="color: #00B5AD;">{{item.name}}</span>
-                  <div class="ui teal basic left pointing label">{{item.blogs.length}}</div>
+                  <div class="ui teal basic left pointing label">
+                    {{item.blogs.length}}
+                  </div>
                 </router-link>
               </div>
             </div>
@@ -59,11 +62,15 @@
               </div>
             </div>
             <div class="ui teal segment">
-              <router-link :to="'/tag/' + item.id" class="ui teal basic left pointing label m-margin-tb-tiny"
+              <router-link
+                 :to="'/tag/' + item.id"
+                 class="ui teal basic left pointing label m-margin-tb-tiny"
                  v-for="item in listTag" :key="item.id"
                  :style="{'color': item.tagColour + '!important', 'border-color': item.tagColour + '!important'}">
                 <span>{{item.name}}</span>
-                <div class="detail" >{{item.blogs.length}}</div>
+                <div class="detail" >
+                  {{item.blogs.length}}
+                </div>
               </router-link>
             </div>
           </div>
