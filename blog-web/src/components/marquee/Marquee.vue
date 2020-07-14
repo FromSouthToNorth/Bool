@@ -19,7 +19,7 @@
         carousel: {
           items: [
             { id: 1, src: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/blogHomeMarquee/20200711110957.png' },
-            { id: 2, src: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/blogHomeMarquee/20200711111019.png' }
+            { id: 2, src: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/blogHomeMarquee/20200714224447.png' }
           ]
         }
       }
@@ -46,11 +46,11 @@
   .sides .side img {
     width: 100%;
     border-radius: 4px;
-    height: 280px;
+    height: 220px;
   }
   .sides .side {
     width: 100%;
-    height: 280px;
+    height: 220px;
     border-radius: 4px;
   }
 </style>
