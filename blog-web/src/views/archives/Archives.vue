@@ -56,7 +56,6 @@
         url: 'blogArchive',
         success: res => {
           this.mapArchives = res
-          console.log(this.mapArchives);
         }
       })
     },

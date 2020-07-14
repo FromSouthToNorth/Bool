@@ -151,7 +151,7 @@
             rules: [
               {
                 type: "empty",
-                prompt: "请输入你的大名"
+                prompt: "请输入你的名称"
               }
             ]
           },

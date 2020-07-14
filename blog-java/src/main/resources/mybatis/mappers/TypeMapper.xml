@@ -24,7 +24,7 @@
         from t_type t   ,
              t_blog b
         where t.id = b.type_id
-        and b.published = 1
+        and   b.published = 1
     </select>
 
     <select id="findByTypeId" resultMap="type" parameterType="java.lang.Long">
@@ -37,8 +37,8 @@
         from t_type t   ,
              t_blog b
         where t.id = b.type_id
-        and b.published = 1
-        and t.id = #{typeId}
+        and   b.published = 1
+        and   t.id = #{typeId}
     </select>
 
 </mapper>

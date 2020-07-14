@@ -18,7 +18,7 @@
           :to="'/tag/' + item.id"
           v-for="item in tagList"
           :key="item.id"
-          tag="div"
+          tag="a"
           :class="{teal:$route.params.tagid === item.id}"
           @click.native="getBlog(item.id)"
           class="ui basic left pointing large label m-margin-tb-tiny"

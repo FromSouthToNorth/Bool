@@ -3,7 +3,8 @@
     <!---->
     <div class="ui top attached segment teal">
       <div class="ui padded vertical segment stackable m-padded-large"
-        v-for="item in pageBlog.list" :key="item.id">
+        v-for="item in pageBlog.list" :key="item.id"
+      >
         <div class="ui middle aligned mobile reversed stackable grid">
           <div class="eleven wide column">
             <h3 class="ui header">
@@ -57,7 +58,7 @@
                      :style="{'color': tag.tagColour + '!important', 'border-color': tag.tagColour + '!important'}"
                      v-for="tag in item.tags"
                      :key="tag.id"
-                     style="margin-top: 1rem !important; font-size: 6px;">{{tag.name}}
+                     style="margin-top: 1rem !important; font-size: 10px;">{{tag.name}}
                   </router-link>
                 </div>
               </div>

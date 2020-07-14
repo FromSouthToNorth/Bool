@@ -41,11 +41,11 @@
         this.getBlog()
       }
     },
-    // watch: {
-    //   $route(newRoute) {
-    //     this.getBlog()
-    //   }
-    // },
+    watch: {
+      $route(newRoute) {
+        this.getBlog()
+      }
+    },
     methods: {
       getBlog() {
         this.query = this.$route.query.key

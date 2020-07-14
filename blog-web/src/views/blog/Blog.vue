@@ -40,10 +40,10 @@
           </div>
           <!-- 标签 -->
           <div class="m-padded-lr-responsive">
-            <div class="ui basic teal left pointing label"
+            <router-link :to="'/tag/'+ item.id" class="ui basic teal left pointing label"
             v-for="item in blog.tags" :key="item.id">
               {{item.name}}
-            </div>
+            </router-link>
           </div>
           <!-- 赞赏 -->
           <div class="ui center aligned basic segment">

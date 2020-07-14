@@ -12,7 +12,7 @@
         from t_blog_tags tbt    ,
              t_tag tt
         where tbt.tags_id = tt.id
-        and tbt.blog_id = #{blogId}
+        and   tbt.blog_id = #{blogId}
     </select>
 
 </mapper>
