@@ -76,7 +76,7 @@
         <div class="field m-mobile-wide m-margin-bottom-small">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="nickname" placeholder="姓名"
+            <input type="text" name="nickname" placeholder="昵称"
             :datafld="isDisabled"
             v-model="data.nickname"
             >
@@ -113,8 +113,8 @@
         isDisabled: true,
         comments: [],
         data: {
-          parentCommentId: 0,
-          blogId: 0,
+          'parentComment.id': -1,
+          'blog.id': 0,
           nickname: '',
           email: '',
           content: '',
@@ -131,7 +131,7 @@
         content: '稍等一会再留言吧'
       })
       if (this.$route.params.bid) {
-        this.data.blogId = this.$route.params.bid
+        this.data['blog.id'] = this.$route.params.bid
         this.getCommentList(this.$route.params.bid)
       }
       //评论表单验证
@@ -193,13 +193,20 @@
         $("[name='content']")
         .attr('placeholder', '请输入评论信息...')
         .focus()
+        $("[name='email']")
+        .attr('placeholder', '邮箱')
+        $("[name='nickname']")
+        .attr('placeholder', '昵称')
         this.data.content = ''
+        this.data['parentComment.id'] = -1
+        this.data.nickname = ''
+        this.data.email = ''
       },
       replyComment(id, nickname) {
         $("[name='content']")
         .attr('placeholder', '@' + nickname)
         .focus()
-        this.data.parentComment = id
+        this.data['parentComment.id'] = id
         $(window).scrollTo($('#comment-form'), 500)
       },
       ChangeDateFormat(date) {

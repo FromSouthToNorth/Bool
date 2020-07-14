@@ -32,7 +32,7 @@ public class CommentAPI {
         // 存储时间，防止耍评论
         try {
             long time = (long) session.getAttribute("time");
-            if (System.currentTimeMillis() - time < 5000) {
+            if (System.currentTimeMillis() - time < 1000) {
                 return 2;
             }
         } catch (Exception e){

@@ -37,6 +37,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Integer saveComment(Comment comment) {
         Long id = comment.getParentComment().getId();
+        comment.setBlogId(comment.getBlog().getId());
         if (id != -1) {
             comment.setParentCommentId(id);
         }
