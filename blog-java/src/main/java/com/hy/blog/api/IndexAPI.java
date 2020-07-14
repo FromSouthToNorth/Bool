@@ -70,10 +70,9 @@ public class IndexAPI {
 
     @GetMapping("/search")
     public PageInfo<Blog> search(@RequestParam String query, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
-        System.out.println(query);
         PageHelper.startPage(pageNum, 5);
         List<Blog> byTitleRoTypeRoRecommend = blogService.findByTitleBlog(query);
-        return new PageInfo<>(byTitleRoTypeRoRecommend);
+        return new PageInfo<>(byTitleRoTypeRoRecommend, 4);
     }
 
 }
