@@ -200,7 +200,7 @@
         this.data.content = ''
         this.data['parentComment.id'] = -1
         this.data.nickname = ''
-        this.data.email = ''
+        this.data.email = 'npm'
       },
       replyComment(id, nickname) {
         $("[name='content']")
