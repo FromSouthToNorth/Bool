@@ -33,11 +33,13 @@ public class BlogServiceImpl implements BlogService {
     private BlogAndTagDAO blogAndTagDAO;
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Blog> findAllBlog() {
         return getTags(blogDAO.findAllBlog());
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Blog findByIdBlogOne(Long id, Boolean isAdd) {
         Blog byIdBlogOne = blogDAO.findByIdBlogOne(id);
         if (byIdBlogOne == null) {
@@ -66,16 +68,19 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<RecommendBlog> findRecommendBlog() {
         return blogDAO.findRecommendBlog();
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Blog> findByTypeIdBlog(Long typeId) {
         return getTags(blogDAO.findByTypeIdBlog(typeId));
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Blog> findByTagIdBlog(Long tagId) {
         return getTags(blogDAO.findByTagIdBlog(tagId));
     }
@@ -93,11 +98,13 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Integer countBlog() {
         return blogDAO.countBlog();
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Blog> findByTitleBlog(String query) {
         return getTags(blogDAO.findByTitleBlog(query));
     }

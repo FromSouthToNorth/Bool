@@ -5,6 +5,7 @@ import com.hy.blog.entity.Tag;
 import com.hy.blog.service.adminService.AdminTagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class AdminTagServiceImpl implements AdminTagService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Tag findByIdTag(Long id) {
         return adminTagDAO.findByIdTag(id);
     }
@@ -38,11 +40,13 @@ public class AdminTagServiceImpl implements AdminTagService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Tag> findAllTag() {
         return adminTagDAO.findAllTag();
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Tag findByNameTag(String name) {
         return adminTagDAO.findByNameTag(name);
     }

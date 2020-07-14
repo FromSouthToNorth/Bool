@@ -11,6 +11,7 @@ import com.hy.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -27,11 +28,13 @@ public class AdminBlogServiceImpl implements AdminBlogService {
     private AdminBlogAndTagDAO adminBlogAndTagDAO;
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Blog> findAllBlog() {
         return adminBlogDAO.findAllBlog();
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Blog findByIdBlogOne(Long id) {
         Blog byIdBlogOne = adminBlogDAO.findByIdBlogOne(id);
         if (byIdBlogOne == null) {
@@ -79,6 +82,7 @@ public class AdminBlogServiceImpl implements AdminBlogService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Blog> findByTitleRoTypeRoRecommend(BlogQuery blogQuery) {
         return adminBlogDAO.findByTitleRoTypeRoRecommend(blogQuery);
     }

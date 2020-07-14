@@ -5,6 +5,7 @@ import com.hy.blog.entity.Comment;
 import com.hy.blog.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class CommentServiceImpl implements CommentService {
     private List<Comment> tempReplys = new ArrayList<>();
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Comment> findByBlogIdComment(Long blogId) {
         List<Comment> byBlogIdComment = commentDAO.findByBlogIdComment(blogId);
         for (Comment comment : byBlogIdComment) {
