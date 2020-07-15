@@ -74,7 +74,7 @@
     </div>
     <!---->
     <!-- 分页 -->
-    <div class="ui bottom attached segment">
+    <div class="ui bottom attached segment" v-if="pageBlog.pages > 1">
       <div class="ui middle aligned two column grid">
         <div class="column">
         </div>
