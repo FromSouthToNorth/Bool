@@ -4,6 +4,7 @@
     <div class="ui top attached segment teal">
       <div class="ui padded vertical segment stackable m-padded-large"
         v-for="item in pageBlog.list" :key="item.id"
+        v-if="pageBlog"
       >
         <div class="ui middle aligned mobile reversed stackable grid">
           <div class="eleven wide column">

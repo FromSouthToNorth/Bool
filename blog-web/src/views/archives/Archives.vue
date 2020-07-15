@@ -59,9 +59,7 @@
         }
       })
     },
-    deactivated() {
-      console.log('deactivated');
-    },
+    deactivated() {  },
     methods: {
       ChangeDateFormat(date) {
         var arr = date.split("T");

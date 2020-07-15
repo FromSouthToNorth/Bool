@@ -2,7 +2,7 @@
   <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
       <!-- header -->
-      <div class="ui top attached segment m-navbar">
+      <div class="ui top attached segment m-navbar"  v-if="tagList">
         <div class="ui middle aligned two column grid">
           <div class="column">
             <h3 class="ui teal header">标签</h3>
@@ -13,7 +13,7 @@
         </div>
       </div>
       <!-- /header -->
-      <div class="ui bottom attached segment teal">
+      <div class="ui bottom attached segment teal" v-if="tagList">
         <router-link
           :to="'/tag/' + item.id"
           v-for="item in tagList"

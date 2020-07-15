@@ -2,7 +2,7 @@
   <div>
     <!-- 主体 -->
     <div id="waypoint" class="m-container-small m-padded-tb-large">
-      <div class="ui container m-dialog-shadow">
+      <div class="ui container m-dialog-shadow" v-if="blog">
         <div class="ui top attached segment m-navbar">
           <div class="ui horizontal link list">
             <div class="item">
