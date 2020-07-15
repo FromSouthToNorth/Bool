@@ -76,7 +76,7 @@
         }
       },
       search() {
-        if (this.searchKey) {
+        if (this.searchKey !== null && this.searchKey !== '') {
           this.$router.push({
             path: '/search',
             query: {
@@ -84,8 +84,6 @@
             }
           })
           this.searchKey = ''
-        } else {
-          this.$router.push('/home')
         }
       }
     }
