@@ -84,6 +84,8 @@
             }
           })
           this.searchKey = ''
+        } else {
+          this.$router.push('/home')
         }
       }
     }

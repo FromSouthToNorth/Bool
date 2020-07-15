@@ -118,7 +118,7 @@
           nickname: '',
           email: '',
           content: '',
-          avatar: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/avatar.png'
+          avatar: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/avatar.png',
         }
       }
     },
@@ -130,10 +130,6 @@
         on: 'click',
         content: '稍等一会再留言吧'
       })
-      if (this.$route.params.bid) {
-        this.data['blog.id'] = this.$route.params.bid
-        this.getCommentList(this.$route.params.bid)
-      }
       //评论表单验证
       $(".ui.form").form({
         fields: {
@@ -166,6 +162,13 @@
           }
         }
       });
+    },
+    activated() {
+      if (this.$route.params.bid) {
+        console.log('activated');
+        this.data['blog.id'] = this.$route.params.bid
+        this.getCommentList(this.$route.params.bid)
+      }
     },
     methods: {
       commentPost() {
@@ -200,7 +203,7 @@
         this.data.content = ''
         this.data['parentComment.id'] = -1
         this.data.nickname = ''
-        this.data.email = 'npm'
+        this.data.email = ''
       },
       replyComment(id, nickname) {
         $("[name='content']")
@@ -218,6 +221,7 @@
           data: { 'blogId' : id },
           success: res => {
             this.comments = res
+            console.log(this.comments);
           }
         })
       },

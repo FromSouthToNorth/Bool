@@ -66,7 +66,7 @@
           </div>
           <div class="ui five wide column">
             <router-link :to="'/blog/' + item.id">
-              <img :src="item.firstPicture" alt="..." class="ui rounded image fluid">
+              <img :src="item.firstPicture" alt="" class="ui rounded image fluid">
             </router-link>
           </div>
         </div>
@@ -133,8 +133,9 @@
         type: Function,
         default: null
       },
-      pageBlog: {}
+      pageBlog: {  }
     },
+    activated() {  },
     methods: {
       ChangeDateFormat(date) {
         return ChangeDateFormat(date).substring(0, 10)

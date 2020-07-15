@@ -228,7 +228,8 @@
             tb.description      ,
             tb.type_id          ,
             tb.tag_ids          ,
-            tt.name             ,
+            tt.id   typeid      ,
+            tt.name typename    ,
             tu.nickname         ,
             tu.avatar
         from t_blog tb
