@@ -3,7 +3,7 @@
     <!-- 留言区域 -->
     <div id="comment-container" class="ui teal segment">
       <div>
-        <div class="ui threaded comments" style="max-width: 100%;">
+        <div class="ui threaded comments" style="max-width: 100%;" v-if="comments">
           <h3 class="ui dividing header">评论</h3>
           <div class="comment"
           v-for="item in comments" :key="item.id"
@@ -36,7 +36,7 @@
               v-for="reply in item.replyComments"
               >
                 <a class="avatar">
-                  <img :src="reply.avatar">
+                  <img :src="reply.avatar" alt="">
                 </a>
                 <div class="content">
                   <a class="author">
@@ -130,6 +130,12 @@
         on: 'click',
         content: '稍等一会再留言吧'
       })
+      // 获取评论内容
+      if (this.$route.params.bid) {
+        console.log('activated');
+        this.data['blog.id'] = this.$route.params.bid
+        this.getCommentList(this.$route.params.bid)
+      }
       //评论表单验证
       $(".ui.form").form({
         fields: {
@@ -163,13 +169,7 @@
         }
       });
     },
-    activated() {
-      if (this.$route.params.bid) {
-        console.log('activated');
-        this.data['blog.id'] = this.$route.params.bid
-        this.getCommentList(this.$route.params.bid)
-      }
-    },
+    activated() {  },
     methods: {
       commentPost() {
         var boo = $('.ui.form').form('validate form')
