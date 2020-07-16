@@ -187,6 +187,7 @@
                 and b.title like #{pattern}
             </if>
         </where>
+        order by b.update_time desc
     </select>
 
 </mapper>

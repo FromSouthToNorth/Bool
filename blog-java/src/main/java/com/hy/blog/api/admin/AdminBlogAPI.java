@@ -47,6 +47,7 @@ public class AdminBlogAPI {
 
     @PostMapping("/blog/search")
     public PageInfo<Blog> search(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, BlogQuery blogQuery) {
+
         PageHelper.startPage(pageNum, 6);
         List<Blog> byTitleRoTypeRoRecommend = adminBlogService.findByTitleRoTypeRoRecommend(blogQuery);
         System.out.println(byTitleRoTypeRoRecommend);

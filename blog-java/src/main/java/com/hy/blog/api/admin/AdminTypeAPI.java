@@ -16,11 +16,16 @@ public class AdminTypeAPI {
     @Autowired
     private AdminTypeService adminTypeService;
 
-    @GetMapping("/types")
-    public PageInfo<Type> tags(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
+    @GetMapping("/pagetypes")
+    public PageInfo<Type> types(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         PageHelper.startPage(pageNum, 6);
         List<Type> allType = adminTypeService.findAllType();
         return new PageInfo<>(allType);
+    }
+
+    @GetMapping("/types")
+    public List<Type> types() {
+        return adminTypeService.findAllType();
     }
 
     @PostMapping("/types")
