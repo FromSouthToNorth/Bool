@@ -36,7 +36,9 @@ public class AdminBlogAPI {
         // 在session中获取管理员 ID
         User user = (User) session.getAttribute("user");
         blog.setUserId(user.getId());
+        System.out.println(blog.getId());
         blog.setTags(adminTagService.findTagByStringId(blog.getTagIds()));
+
         if (blog.getId() == null) {
             blog.setId(UuidUtils.getId());
             return adminBlogService.saveBlog(blog);

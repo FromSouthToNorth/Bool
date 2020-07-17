@@ -29,16 +29,24 @@ public class AdminTagAPI {
     }
 
     @PostMapping("/tags")
-    public Integer post(@RequestParam String name) {
-        Tag byNameTag = adminTagService.findByNameTag(name);
-        if (byNameTag != null) {
-            return 1;
-        }
-        Integer integer = adminTagService.saveTag(name);
-        if (integer < 0) {
+    public Integer post(Tag tag) {
+        if (tag.getName() == null) {
             return 2;
+        }
+        Integer integer;
+        if (tag.getId() != null) {
+            integer = adminTagService.updateByIdTag(tag);
         } else {
+            Tag byNameTag = adminTagService.findByNameTag(tag.getName());
+            if (byNameTag != null) {
+                return 1;
+            }
+            integer = adminTagService.saveTag(tag);
+        }
+        if (integer > 0) {
             return 0;
+        } else {
+            return 3;
         }
     }
 

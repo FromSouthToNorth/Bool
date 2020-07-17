@@ -19,8 +19,8 @@ public class AdminTagServiceImpl implements AdminTagService {
     private AdminTagDAO adminTagDAO;
 
     @Override
-    public Integer saveTag(String name) {
-        return adminTagDAO.saveTag(name);
+    public Integer saveTag(Tag tag) {
+        return adminTagDAO.saveTag(tag);
     }
 
     @Override

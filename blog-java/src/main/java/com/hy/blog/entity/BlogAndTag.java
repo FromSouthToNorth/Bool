@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class BlogAndTag {
 
-    private Long tagsId;
     private Long blogId;
+    private Long tagsId;
 
 }

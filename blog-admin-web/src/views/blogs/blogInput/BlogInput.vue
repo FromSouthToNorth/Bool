@@ -52,7 +52,7 @@
             <div class="ui left labeled action input">
               <label class="ui compact teal basic label">标签</label>
               <div class="ui fluid selection multiple search dropdown">
-                <input type="hidden" name="tagIds" :value="tagIds">
+                <input type="hidden" id="tagIds" :value="tagIds">
                 <i class="dropdown icon"></i>
                 <div class="default text">标签</div>
                 <div class="menu">
@@ -60,6 +60,7 @@
                        v-if="tagList"
                        v-for="item in tagList"
                        :key="item.id"
+                       :data-value="item.id"
                   >
                     {{ item.name }}
                   </div>
@@ -106,6 +107,7 @@
         <div class="ui error message"></div>
         <div class="ui right aligned container">
           <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+          <button type="button" @click="clean" class="ui red button">清空</button>
           <button type="button" id="save-btn" class="ui secondary button">保存</button>
           <button type="button" id="publish-btn" class="ui teal button">发布</button>
         </div>
@@ -128,10 +130,10 @@
         tagIds: "", //标签组合 1,2,3,4
         firstPicture: "", //封面地址
         description: "", //描述
-        recommend: false, //是否推荐
-        shareStatement: false, //是否展示转载声明
-        appreciation: false, //是否开启赞赏
-        commentabled: false, //是否允许评论
+        recommend: true, //是否推荐
+        shareStatement: true, //是否展示转载声明
+        appreciation: true, //是否开启赞赏
+        commentabled: true, //是否允许评论
         typeName: '',
         typeList: [],
         tagList: [],
@@ -153,8 +155,9 @@
       })
       if (this.$route.query.blogId) {
         this.getOneBlog(this.$route.query.blogId)
+        this.id = this.$route.query.blogId
       } else {
-
+        this.clean()
       }
     },
     mounted() {
@@ -162,11 +165,49 @@
         on: "hover"
       })
       $("#tagIds").change(() => {
-        this.data.tagIds = $("#tagIds").val();
-        console.log(this.data.tagIds);
+        this.tagIds = $("#tagIds").val();
+        console.log(this.tagIds);
+      })
+      // 保存
+      $('#save-btn').click(() => {
+        this.published = false
+        this.postBlog()
+      })
+      // 发布
+      $('#publish-btn').click(() => {
+        this.published = true
+        this.postBlog()
       })
     },
     methods: {
+      // 上传博客
+      postBlog() {
+        $.post({
+          url: 'blogs',
+          data: {
+            'id': this.id,
+            'title': this.title,
+            'content': this.content,
+            'flag':  this.flag,
+            'typeId': this.typeId,
+            'published': this.published,
+            'tagIds': this.tagIds,
+            'firstPicture': this.firstPicture,
+            'description': this.description,
+            'recommend': this.recommend,
+            'shareStatement': this.shareStatement,
+            'appreciation': this.appreciation,
+            'commentabled': this.commentabled
+          },
+          success: res => {
+            if (res === 1) {
+              this.$router.push('/blogs/list')
+            } else {
+              console.log(res, 'blogsInput')
+            }
+          }
+        })
+      },
       getOneBlog(blogId) {
         $.post({
           url: 'blog',
@@ -189,6 +230,21 @@
           }
         })
       },
+      clean() {
+        this.content = '' // 内容
+        this.flag = '' // 原创/转载/翻译
+        this.title = '' // 博客标题
+        this.published = '' // 是否发布 false/true
+        this.typeId = '' // 类型id
+        this.tagIds = '' // 标签组合 1,2,3,4
+        this.firstPicture = '' // 封面地址
+        this.description = ''
+        this.typeName = ''
+        this.recommend = true // 是否推荐
+        this.shareStatement = true // 是否展示转载声明
+        this.appreciation = true // 是否开启赞赏
+        this.commentabled = true // 是否允许评论
+      },
       setFlag(flag) {
         this.flag = flag
       },
@@ -202,7 +258,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .ui.form textarea:not([rows]) {
     height: inherit;
     max-height: inherit;

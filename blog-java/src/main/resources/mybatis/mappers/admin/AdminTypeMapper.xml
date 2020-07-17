@@ -5,7 +5,7 @@
 <mapper namespace="com.hy.blog.dao.adminDAO.AdminTypeDAO">
 
     <insert id="saveType" parameterType="java.lang.String">
-        insert into t_type (`name`) values (`name` = #{name})
+        insert into t_type (`name`) values (#{name})
     </insert>
 
     <delete id="deleteByIdType" parameterType="java.lang.Long">

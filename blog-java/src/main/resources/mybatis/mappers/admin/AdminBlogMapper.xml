@@ -63,6 +63,7 @@
     <select id="findByIdBlogOne" resultMap="blog_type_tags" parameterType="java.lang.Long">
         select
             b.id                        ,
+            b.title                     ,
             b.content                   ,
             b.first_picture             ,
             b.flag                      ,
@@ -121,6 +122,7 @@
     <insert id="saveBlog" parameterType="com.hy.blog.entity.Blog">
         insert into t_blog
             (
+                id                  ,
                 title               ,
                 content             ,
                 first_picture       ,
@@ -140,6 +142,7 @@
             )
             values
             (
+                #{id}               ,
                 #{title}            ,
                 #{content}          ,
                 #{firstPicture}     ,

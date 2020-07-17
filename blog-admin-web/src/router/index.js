@@ -18,14 +18,40 @@ const routes =[
     children: [{
       path: '',
       redirect: 'list'
-    },
-    {
+    }, {
       path: 'list',
       component: () => import('views/blogs/blogList/BlogList')
-    },
-    {
+    }, {
       path: 'input',
-      component: () => import('views/blogs/blogInput/BlogInput.vue')
+      component: () => import('views/blogs/blogInput/BlogInput')
+    }]
+  },
+  {
+    path: '/types',
+    component: () => import('views/types/Types'),
+    children: [{
+      path: '',
+      redirect: 'list'
+    }, {
+      path: 'list',
+      component: () => import('views/types/typeList/TypeList')
+    }, {
+      path: 'input',
+      component: () => import('views/types/typeInput/TypeInput')
+    }]
+  },
+  {
+    path: '/tags',
+    component: () => import('views/tags/Tags'),
+    children: [{
+      path: '',
+      redirect: 'list'
+    }, {
+      path: 'list',
+      component: () => import('views/tags/tagList/TagList')
+    }, {
+      path: 'input',
+      component: () => import('views/tags/tagInput/TagInput')
     }]
   }
 ]

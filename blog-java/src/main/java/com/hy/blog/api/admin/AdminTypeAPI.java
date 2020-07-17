@@ -29,12 +29,20 @@ public class AdminTypeAPI {
     }
 
     @PostMapping("/types")
-    public Integer post(@RequestParam String name) {
-        Type byNameType = adminTypeService.findByNameType(name);
-        if (byNameType != null) {
-            return 1;
+    public Integer post(Type type) {
+        if (type.getName() == null) {
+            return 3;
         }
-        Integer integer = adminTypeService.saveType(name);
+        Integer integer;
+        if (type.getId() != null) {
+            integer = adminTypeService.updateByIdType(type);
+        } else {
+            Type byNameType = adminTypeService.findByNameType(type.getName());
+            if (byNameType != null) {
+                return 1;
+            }
+            integer = adminTypeService.saveType(type.getName());
+        }
         if (integer < 0) {
             return 2;
         } else {
@@ -47,30 +55,9 @@ public class AdminTypeAPI {
         return adminTypeService.findByIdType(id);
     }
 
-    @PostMapping("/type")
-    public Integer editPost(Type type) {
-        if (type.getId() == null || type.getName() == null) {
-            return 2;
-        }
-        Type byNameType = adminTypeService.findByNameType(type.getName());
-        if (byNameType != null) {
-            return 1;
-        }
-        Integer integer = adminTypeService.updateByIdType(type);
-        if (integer < 0) {
-            return 3;
-        } else {
-            return 0;
-        }
-    }
-
     @PostMapping("/deleteType")
     public Integer delete(Long id) {
-        if (adminTypeService.deleteByIdType(id) > 0) {
-            return 0;
-        } else {
-            return 1;
-        }
+       return adminTypeService.deleteByIdType(id);
     }
 
 }

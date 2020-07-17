@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdminTagDAO {
 
-    Integer saveTag(@Param("name") String name);
+    Integer saveTag(Tag tag);
 
     Tag findByIdTag(@Param("id") Long id);
 

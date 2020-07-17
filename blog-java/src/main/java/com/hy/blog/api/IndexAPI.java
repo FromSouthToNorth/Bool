@@ -49,7 +49,6 @@ public class IndexAPI {
         } finally {
             session.setAttribute("addTime", System.currentTimeMillis());
         }
-        System.out.println(isAdd);
         return blogService.findByIdBlogOne(id, isAdd);
     }
 

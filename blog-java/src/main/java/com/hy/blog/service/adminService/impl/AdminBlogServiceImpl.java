@@ -50,6 +50,7 @@ public class AdminBlogServiceImpl implements AdminBlogService {
             throw new NotFoundException("抱歉该博客找不着！");
         }
         adminBlogAndTagDAO.deleteByBlogId(blog.getId());
+        blog.setViews(byIdBlogOne.getViews());
         blog.setUpdateTime(new Date());
         String tagIds = blog.getTagIds();
         String[] split = tagIds.split(",");

@@ -64,7 +64,7 @@
             <td>{{ getTime(item.updateTime) }}</td>
             <td>
               <a @click="blogEditor(item.id)" class="ui mini teal basic button">编辑</a>
-              <a class="ui mini red basic button">删除</a>
+              <a @click="deleteBlog(item.id)" class="ui mini red basic button">删除</a>
             </td>
           </tr>
           </tbody>
@@ -103,12 +103,12 @@
         typeList: [  ]
       }
     },
-    mounted() {
+    activated() {
       $(".ui.dropdown").dropdown({
         on: "hover"
       })
       $("#clear-btn").on("click", () => {
-        $(".ui.type.dropdown").dropdown("clear");
+        $(".ui.types.dropdown").dropdown("clear");
         this.data.typeId = "";
       })
       $.get({
@@ -153,6 +153,20 @@
             blogId: blogId
           }
         })
+      },
+      deleteBlog(blogId) {
+        let meg = confirm('确认删除编号：'+ blogId + '吗？')
+        if (meg) {
+          $.get({
+            url: '/blog/delete',
+            data: { 'id': blogId },
+            success: res => {
+              if (res === 1) {
+                this.getPageBlog()
+              }
+            }
+          })
+        }
       },
       clear() {
         this.title = ''

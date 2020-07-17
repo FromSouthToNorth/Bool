@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdminTagService {
 
-    Integer saveTag(String name);
+    Integer saveTag(Tag tag);
 
     Tag findByIdTag(Long id);
 
