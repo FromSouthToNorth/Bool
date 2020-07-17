@@ -22,6 +22,10 @@ const routes =[
     {
       path: 'list',
       component: () => import('views/blogs/blogList/BlogList')
+    },
+    {
+      path: 'input',
+      component: () => import('views/blogs/blogInput/BlogInput.vue')
     }]
   }
 ]

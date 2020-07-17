@@ -16,11 +16,16 @@ public class AdminTagAPI {
     @Autowired
     private AdminTagService adminTagService;
 
-    @GetMapping("/tags")
+    @GetMapping("/pagetags")
     public PageInfo<Tag> tags(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         PageHelper.startPage(pageNum, 6);
         List<Tag> allTag = adminTagService.findAllTag();
         return new PageInfo<>(allTag);
+    }
+
+    @GetMapping("/tags")
+    public List<Tag> tags() {
+        return adminTagService.findAllTag();
     }
 
     @PostMapping("/tags")

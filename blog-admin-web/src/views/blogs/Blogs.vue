@@ -15,8 +15,8 @@
     data() {
       return {
         menuList: [
-          { id: 1, name: '发布', url: '/blog/input'},
-          { id: 2, name: '列表', url: '/blog/list' }
+          { id: 1, name: '发布', url: '/blogs/input'},
+          { id: 2, name: '列表', url: '/blogs/list' }
         ]
       }
     },

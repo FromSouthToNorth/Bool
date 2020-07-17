@@ -45,6 +45,11 @@ public class AdminBlogAPI {
         }
     }
 
+    @PostMapping("/blog")
+    public Blog post(Long blogId) {
+        return adminBlogService.findByIdBlogOne(blogId);
+    }
+
     @PostMapping("/blog/search")
     public PageInfo<Blog> search(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, BlogQuery blogQuery) {
 

@@ -63,8 +63,8 @@
             <td v-text="item.published ? '发布' : '草稿'"></td>
             <td>{{ getTime(item.updateTime) }}</td>
             <td>
-              <a href="#" class="ui mini teal basic button">编辑</a>
-              <a href="#" class="ui mini red basic button">删除</a>
+              <a @click="blogEditor(item.id)" class="ui mini teal basic button">编辑</a>
+              <a class="ui mini red basic button">删除</a>
             </td>
           </tr>
           </tbody>
@@ -75,7 +75,7 @@
                 <a @click="pageTo(pageBlog.prePage)" v-if="!pageBlog.isFirstPage"  class="item">上一页</a>
                 <a @click="pageTo(pageBlog.nextPage)" v-if="!pageBlog.isLastPage" class="item">下一页</a>
               </div>
-              <a href="" class="ui mini right floated teal basic button" style="margin-top: 20px">新增</a>
+              <a @click="addBtn()" class="ui mini right floated teal basic button" style="margin-top: 20px">新增</a>
             </th>
           </tr>
           </tfoot>
@@ -145,10 +145,22 @@
           }
         })
       },
+      // 跳转编辑页面
+      blogEditor(blogId) {
+        this.$router.push({
+          path: '/blogs/input',
+          query: {
+            blogId: blogId
+          }
+        })
+      },
       clear() {
         this.title = ''
         this.typeId = ''
         this.recommend = true
+      },
+      addBtn() {
+        this.$router.push('/blogs/input')
       }
     }
   }

@@ -47,7 +47,7 @@
           email: ''
         },
         routerList: [
-          {id: 1,name: '博客', icon: 'home', url: '/home'},
+          {id: 1,name: '博客', icon: 'home', url: '/blogs'},
           {id: 2,name: '分类', icon: 'idea', url: '/type'},
           {id: 3,name: '标签', icon: 'tags', url: '/tag'},
           {id: 4,name: '评论', icon: 'comment alternate outline', url: '/comment'}

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminLoginAPI {
+public class AdminUserAPI {
 
     @Autowired
     private AdminUserService adminUserService;
