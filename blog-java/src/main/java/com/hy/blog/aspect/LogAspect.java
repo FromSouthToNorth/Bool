@@ -1,20 +1,29 @@
 package com.hy.blog.aspect;
 
 
+import com.hy.blog.entity.Log;
+import com.hy.blog.service.adminService.AdminLogServe;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.Date;
 
 @Aspect
 @Component
 public class LogAspect {
+
+    @Autowired
+    private AdminLogServe adminLogServe;
+
+    private Log log;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -31,42 +40,19 @@ public class LogAspect {
         String ip = request.getRemoteAddr();
         String classMethod = joinPoint.getSignature().getDeclaringTypeName() + " . " + joinPoint.getSignature().getName();
         Object[] objects = joinPoint.getArgs();
-        RequestLog requestLog = new RequestLog(url, ip, classMethod, objects);
-        logger.info("doBefore : " + requestLog);
+        log = new Log(null, url, ip, classMethod, objects, new Date());
+        logger.info("doBefore : " + log);
+
     }
 
     @After("log()")
-    public void doAfter() {  }
+    public void doAfter() {
+        adminLogServe.saveBog(log);
+    }
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result) {
         logger.info("Result: {}", result);
     }
 
-    private static class RequestLog {
-        private String url;
-        private String ip;
-        private String classMethod;
-        private Object[] objects;
-
-        public RequestLog() {
-        }
-
-        public RequestLog(String url, String ip, String classMethod, Object[] objects) {
-            this.url = url;
-            this.ip = ip;
-            this.classMethod = classMethod;
-            this.objects = objects;
-        }
-
-        @Override
-        public String toString() {
-            return "RequestLog{" +
-                    "url='" + url + '\'' +
-                    ", ip='" + ip + '\'' +
-                    ", classMethod='" + classMethod + '\'' +
-                    ", objects=" + Arrays.toString(objects) +
-                    '}';
-        }
-    }
 }

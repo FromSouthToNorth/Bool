@@ -132,7 +132,6 @@
       })
       // 获取评论内容
       if (this.$route.params.bid) {
-        console.log('activated');
         this.data['blog.id'] = this.$route.params.bid
         this.getCommentList(this.$route.params.bid)
       }
@@ -221,7 +220,6 @@
           data: { 'blogId' : id },
           success: res => {
             this.comments = res
-            console.log(this.comments);
           }
         })
       },

@@ -24,6 +24,9 @@
             <mavon-editor
             v-model="content"
             ref="md"
+            :ishljs="true"
+            @imgAdd="$imgAdd"
+            @imgDel="$imgDel"
             style="z-index: 1 !important;"
             ></mavon-editor>
           </div>
@@ -253,8 +256,31 @@
       },
       setData(key) {
         this.key = !this.key
+      },
+      // 图片上传
+      $imgAdd(pos, $file) {
+        XMLHttpRequest.setRequestHeader
+        console.log($file);
+        const client = new OSS.Wrapper({
+          region: 'oss-cn-chengdu',                                             // 创建Bucket时会选择不同地区，根据自己的选择填入对应名称
+          accessKeyId: '',                              // 填入你的accessKeyId
+          accessKeySecret: '',                    // 填入你的accessKeySecret
+          bucket: ''                                                   // 填入你的bucket名
+        })
+        const name = $file._name
+        const suffix = name.substr(name.indexOf('.'))                           // 文件后缀
+        const filename = Date.parse(new Date()) + suffix                        // 组成新的文件名称
+        console.log(filename);
+        client.multipartUpload(filename, $file).then(res => {                   // 上传
+          console.log('上传成功：', res)
+          let url = 'http://.oss-cn-chengdu.aliyuncs.com/' + filename // 拼接回显url
+          this.$refs.md.$img2Url(pos, url)
+        }).catch(err => {
+          console.log('上传失败：', err)
+        })
+
       }
-    },
+    }
   }
 </script>
 

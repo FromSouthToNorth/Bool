@@ -2,7 +2,7 @@
   <div id="app" class="m-background">
     <nav-bar v-if="navShow"></nav-bar>
     <keep-alive>
-      <router-view style="min-height: 740px"></router-view>
+      <router-view></router-view>
     </keep-alive>
     <footer-bar v-if="navShow"></footer-bar>
   </div>

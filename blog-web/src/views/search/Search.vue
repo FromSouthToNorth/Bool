@@ -54,7 +54,6 @@
           data: { 'query': this.query, 'pageNum': this.pageNum },
           success: res => {
             this.pageBlog = res
-            console.log(res);
           }
         })
       },

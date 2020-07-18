@@ -26,10 +26,10 @@ public class BlogFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         // 设置允许访问本服务API的 多个域名
         String[] allowDomains = {
-                "http://localhost:8080",
+                "http://127.0.0.1",
+                "http://localhost",
                 "http://127.0.0.1:8080",
-                "http://localhost:8081",
-                "http://127.0.0.1:8081"
+                "http://localhost:8080"
         };
         Set allowOrigins = new HashSet(Arrays.asList(allowDomains));
         // 获取当前发起请求的域名

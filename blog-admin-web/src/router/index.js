@@ -53,6 +53,10 @@ const routes =[
       path: 'input',
       component: () => import('views/tags/tagInput/TagInput')
     }]
+  },
+  {
+    path: '/log',
+    component: () => import('views/log/Log')
   }
 ]
 

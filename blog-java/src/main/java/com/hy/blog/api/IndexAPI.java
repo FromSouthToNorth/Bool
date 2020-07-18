@@ -68,7 +68,7 @@ public class IndexAPI {
     }
 
     @GetMapping("/search")
-    public PageInfo<Blog> search(@RequestParam String query, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
+    public PageInfo<Blog> search(String query, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         PageHelper.startPage(pageNum, 5);
         List<Blog> byTitleRoTypeRoRecommend = blogService.findByTitleBlog(query);
         return new PageInfo<>(byTitleRoTypeRoRecommend, 4);

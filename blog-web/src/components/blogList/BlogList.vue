@@ -3,7 +3,8 @@
     <!---->
     <div class="ui top attached segment teal">
       <div class="ui padded vertical segment stackable m-padded-large"
-        v-for="item in pageBlog.list" :key="item.id"
+        v-for="item in pageBlog.list"
+        :key="item.id"
         v-if="pageBlog"
       >
         <div class="ui middle aligned mobile reversed stackable grid">
@@ -30,8 +31,10 @@
                   </div>
                 </div>
                 <div class="right aligned ten wide column">
-                  <router-link  tag="a" :to="'/type/' + item.type.id"
-                    class="ui teal basic label m-padded-tiny m-opacity-mini" >
+                  <router-link tag="a" :to="'/type/' + item.type.id"
+                    class="ui teal basic label m-padded-tiny m-opacity-mini"
+                    style="font-size: 10px;"
+                  >
                     {{item.type.name}}
                   </router-link>
                 </div>

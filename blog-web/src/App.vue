@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="m-background">
+  <div id="app" class="m-background" style="min-height: 1000px">
     <nav-bar></nav-bar>
     <keep-alive>
       <router-view></router-view>
