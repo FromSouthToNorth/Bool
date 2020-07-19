@@ -20,10 +20,10 @@ import java.util.Date;
 @Component
 public class LogAspect {
 
-    @Autowired
-    private AdminLogServe adminLogServe;
-
-    private Log log;
+//    @Autowired
+//    private AdminLogServe adminLogServe;
+//
+//    private Log log;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -40,14 +40,14 @@ public class LogAspect {
         String ip = request.getRemoteAddr();
         String classMethod = joinPoint.getSignature().getDeclaringTypeName() + " . " + joinPoint.getSignature().getName();
         Object[] objects = joinPoint.getArgs();
-        log = new Log(null, url, ip, classMethod, objects, new Date());
+        Log log = new Log(null, url, ip, classMethod, objects, new Date());
         logger.info("doBefore : " + log);
 
     }
 
     @After("log()")
     public void doAfter() {
-        adminLogServe.saveBog(log);
+//        adminLogServe.saveBog(log);
     }
 
     @AfterReturning(returning = "result", pointcut = "log()")

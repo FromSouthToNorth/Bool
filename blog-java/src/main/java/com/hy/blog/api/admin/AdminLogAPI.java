@@ -16,16 +16,16 @@ public class AdminLogAPI {
     @Autowired
     private AdminLogServe adminLogServe;
 
-    @GetMapping("/logs")
-    public PageInfo<Log> log(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
-        PageHelper.startPage(pageNum, 12);
-        List<Log> allLog = adminLogServe.findAllLog();
-        return new PageInfo<>(allLog, 6);
-    }
-
-    @PostMapping("/deletelog")
-    public Integer delete(@RequestParam Long id) {
-        return adminLogServe.deleteById(id);
-    }
+//    @GetMapping("/logs")
+//    public PageInfo<Log> log(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
+//        PageHelper.startPage(pageNum, 12);
+//        List<Log> allLog = adminLogServe.findAllLog();
+//        return new PageInfo<>(allLog, 6);
+//    }
+//
+//    @PostMapping("/deletelog")
+//    public Integer delete(@RequestParam Long id) {
+//        return adminLogServe.deleteById(id);
+//    }
 
 }
