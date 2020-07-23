@@ -5,6 +5,7 @@ import com.hy.blog.dao.adminDAO.AdminBlogDAO;
 import com.hy.blog.entity.Blog;
 import com.hy.blog.entity.Comment;
 import com.hy.blog.service.CommentService;
+import com.hy.blog.service.adminService.AdminBlogService;
 import com.hy.blog.service.adminService.AdminCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class AdminCommentServiceImpl implements AdminCommentService {
 
     @Autowired
-    private AdminBlogDAO adminBlogDAO;
+    private AdminBlogService adminBlogService;
 
     @Autowired
     private CommentService commentService;
@@ -30,7 +31,7 @@ public class AdminCommentServiceImpl implements AdminCommentService {
     @Override
     public Map<String, List<Comment>> findAllComment() {
         Map<String, List<Comment>> map = new LinkedHashMap<>();
-        List<Blog> allBlog = adminBlogDAO.findAllBlog();
+        List<Blog> allBlog = adminBlogService.findAllBlog();
         List<Comment> comments;
         for (Blog blog : allBlog) {
             comments = commentService.findByBlogIdComment(blog.getId());
