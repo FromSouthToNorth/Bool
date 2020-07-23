@@ -23,6 +23,7 @@
         <result property="content" column="content"/>
         <result property="firstPicture" column="first_picture"/>
         <result property="flag" column="flag"/>
+        <result property="views" column="views"/>
         <result property="appreciation" column="appreciation"/>
         <result property="shareStatement" column="share_statement"/>
         <result property="commentabled" column="commentabled"/>
@@ -67,6 +68,7 @@
             b.content                   ,
             b.first_picture             ,
             b.flag                      ,
+            b.views                     ,
             b.appreciation              ,
             b.share_statement           ,
             b.commentabled              ,

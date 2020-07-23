@@ -2,6 +2,24 @@
     background: url("../images/dust_scratches.png");
 }
 
+.m-item .input input {
+    height: 40px;
+}
+
+.ui.m-padded-tb-min.m-nav.headerWrapper {
+    position: fixed;
+    width: 100%;
+    max-height: 70px;
+    left: 0;
+    top: 0;
+    z-index: 1500;
+}
+
+.headerMaxHeight {
+    max-height: 280px !important;
+    opacity: 0.82;
+}
+
 .m-padded-tb-min.m-nav.fixed {
     position: fixed;
     z-index: 21;

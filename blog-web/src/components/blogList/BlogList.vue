@@ -80,9 +80,7 @@
     <!-- 分页 -->
     <div class="ui bottom attached segment" v-if="pageBlog.pages > 1">
       <div class="ui middle aligned two column grid">
-        <div class="column">
-        </div>
-        <div class="right aligned column">
+        <div class="right aligned column" style="width: 100%;">
           <div class="ui mini teal pagination menu">
             <a @click="pageClick(1)"
                v-show="!pageBlog.isFirstPage"

@@ -10,35 +10,35 @@
            class="m-item item"
            :class="{active:$route.path.indexOf('/home')!==-1,'m-mobile-hide':toggleClass}"
           >
-          <i class="mini home icon"></i> 首页
+          <i class="home icon"></i> 首页
         </a>
         <a href="#"
            @click="navSkip('/type')"
            class="m-item item"
            :class="{active:$route.path.indexOf('/type')!==-1,'m-mobile-hide':toggleClass}"
           >
-          <i class="mini idea icon"></i> 分类
+          <i class="idea icon"></i> 分类
         </a>
         <a href="#"
            @click="navSkip('/tag')"
            class="m-item item"
            :class="{active:$route.path.indexOf('/tag')!==-1,'m-mobile-hide':toggleClass}"
           >
-          <i class="mini tags icon"></i> 标签
+          <i class="tags icon"></i> 标签
         </a>
         <a href="#"
            @click="navSkip('/archives')"
            class="m-item item"
            :class="{active:$route.path.indexOf('/archives')!==-1,'m-mobile-hide':toggleClass}"
           >
-          <i class="mini clone icon"></i> 归档
+          <i class="clone icon"></i> 归档
         </a>
         <a href="#"
            @click="navSkip('/about')"
            class="m-item item"
            :class="{active:$route.path.indexOf('/about')!==-1,'m-mobile-hide':toggleClass}"
           >
-          <i class="mini info icon"></i> 关于我
+          <i class="info icon"></i> 关于我
         </a>
         <!-- 搜索 -->
         <div class="right m-item item" :class="{'m-mobile-hide':toggleClass}">
@@ -62,6 +62,7 @@
     data() {
       return {
         toggleClass: true,
+        headerClass: true,
         searchKey: ""
       }
     },

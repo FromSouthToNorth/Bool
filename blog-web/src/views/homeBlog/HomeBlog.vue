@@ -1,5 +1,5 @@
 <template>
-  <div class="m-container m-padded-tb-large">
+  <div class="m-container m-padded-tb-big">
     <div class="ui container">
       <div class="ui stackable grid">
         <div class="eleven wide column">

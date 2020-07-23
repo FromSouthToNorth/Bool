@@ -46,18 +46,19 @@ public class AdminBlogServiceImpl implements AdminBlogService {
     @Override
     public Integer updateByIdBlog(Blog blog) {
         Blog byIdBlogOne = adminBlogDAO.findByIdBlogOne(blog.getId());
+        System.out.println(byIdBlogOne.getViews());
         if (byIdBlogOne == null) {
             throw new NotFoundException("抱歉该博客找不着！");
         }
         adminBlogAndTagDAO.deleteByBlogId(blog.getId());
-        blog.setViews(byIdBlogOne.getViews());
-        blog.setUpdateTime(new Date());
         String tagIds = blog.getTagIds();
         String[] split = tagIds.split(",");
         for (String s : split) {
             adminBlogAndTagDAO.saveBlogAndTag(new BlogAndTag(blog.getId(), Long.parseLong(s)));
         }
+        blog.setUpdateTime(new Date());
         blog.setViews(byIdBlogOne.getViews());
+        System.out.println(blog.getViews());
         BeanUtils.copyProperties(blog, byIdBlogOne);
         return adminBlogDAO.updateByIdBlog(blog);
     }
