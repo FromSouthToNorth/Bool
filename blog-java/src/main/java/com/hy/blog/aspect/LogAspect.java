@@ -16,10 +16,6 @@ import java.util.Date;
 @Component
 public class LogAspect {
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d07288ff1520f1959620dbcfa31c10a5debf381f
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // 配置切入点
@@ -41,12 +37,7 @@ public class LogAspect {
     }
 
     @After("log()")
-<<<<<<< HEAD
     public void doAfter() {  }
-=======
-    public void doAfter() {
-    }
->>>>>>> d07288ff1520f1959620dbcfa31c10a5debf381f
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result) {
