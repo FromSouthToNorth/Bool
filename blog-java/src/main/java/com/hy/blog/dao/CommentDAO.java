@@ -21,4 +21,6 @@ public interface CommentDAO {
 
     Long findByBlogIdCountComment(@Param("blogId") Long blogId);
 
+    Integer findByIdDelete(@Param("id") Long id);
+
 }

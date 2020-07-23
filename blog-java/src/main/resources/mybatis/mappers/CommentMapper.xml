@@ -64,4 +64,8 @@
         where blog_id = #{blogId}
     </select>
 
+    <delete id="findByIdDelete" parameterType="java.lang.Long">
+        delete from t_comment where id = #{id}
+    </delete>
+
 </mapper>

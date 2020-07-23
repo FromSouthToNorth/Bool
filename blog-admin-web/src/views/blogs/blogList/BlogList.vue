@@ -1,5 +1,5 @@
 <template>
-  <div class="m-container-small m-padded-tb-big">
+  <div class="m-padded-tb-big">
     <div class="ui container">
       <form class="ui secondary segment form">
         <div class="inline fields">
@@ -64,6 +64,7 @@
             <td>{{ getTime(item.updateTime) }}</td>
             <td>
               <a @click="blogEditor(item.id)" class="ui mini teal basic button">编辑</a>
+              <a @click="getComment(item.id)" class="ui mini blue basic button">查看评论</a>
               <a @click="deleteBlog(item.id)" class="ui mini red basic button">删除</a>
             </td>
           </tr>
@@ -120,6 +121,14 @@
       this.getPageBlog()
     },
     methods: {
+      getComment(id) {
+        this.$router.push({
+          path: '/comment',
+          query: {
+            blogId: id
+          }
+        })
+      },
       getPageBlog() {
         $.get({
           url: 'blogs',

@@ -54,10 +54,14 @@ const routes =[
       component: () => import('views/tags/tagInput/TagInput')
     }]
   },
-  // {
-  //   path: '/log',
-  //   component: () => import('views/log/Log')
-  // }
+  {
+    path: '/comment',
+    component: () => import('views/comment/Comment')
+  },
+  {
+    path: '/comments',
+    component: () => import('views/comment/Comments')
+  }
 ]
 
 const router = new VueRouter({
