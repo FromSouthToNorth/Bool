@@ -40,8 +40,13 @@
           </div>
           <!-- 标签 -->
           <div class="m-padded-lr-responsive">
-            <router-link :to="'/tag/'+ item.id" class="ui basic teal left pointing label"
-            v-for="item in blog.tags" :key="item.id">
+            <router-link :to="'/tag/'+ item.id"
+            class="ui basic teal left pointing label"
+            style="margin: 4px; font-size: 10px"
+            :style="{'color': item.tagColour + '!important', 'border-color': item.tagColour + '!important'}"
+            v-for="item in blog.tags"
+            :key="item.id"
+            >
               {{item.name}}
             </router-link>
           </div>
