@@ -19,7 +19,7 @@ public class LogAspect {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // 配置切入点
-    @Pointcut("execution(* com.hy.blog.api.*..*(..))")
+    @Pointcut("execution(* com.hy.blog.api..*.*(..))")
     public void log() {  }
 
     @Before("log()")
