@@ -6,6 +6,19 @@
     height: 40px;
 }
 
+.blog-img {
+    transition: all .5s;
+}
+.tag-item:hover,
+.blog-img:hover {
+    transform: translateY(-3px);
+    box-shadow: 1px 1px 20px #999;
+}
+
+.tag-item:hover {
+    box-shadow: 1px 1px 8px #999 !important;
+}
+
 .ui.m-padded-tb-min.m-nav.headerWrapper {
     position: fixed;
     width: 100%;

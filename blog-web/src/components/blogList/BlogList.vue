@@ -70,7 +70,7 @@
           </div>
           <div class="ui five wide column">
             <router-link :to="'/blog/' + item.id">
-              <img :src="item.firstPicture" alt="" class="ui rounded image fluid">
+              <el-image :src="item.firstPicture" alt="" class="ui rounded image fluid blog-img"></el-image>
             </router-link>
           </div>
         </div>
@@ -81,36 +81,46 @@
     <div class="ui bottom attached segment" v-if="pageBlog.pages > 1">
       <div class="ui middle aligned two column grid">
         <div class="right aligned column" style="width: 100%;">
-          <div class="ui mini teal pagination menu">
-            <a @click="pageClick(1)"
-               v-show="!pageBlog.isFirstPage"
-               :class="{active: pageBlog.firstPage === pageNum}"
-               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-             首页
-            </font></font></a>
-            <a @click="pageClick(pageBlog.prePage)"
-               v-show="pageBlog.hasPreviousPage "
-               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-              <i class="angle double left icon"></i>
-            </font></font></a>
-            <a @click="pageClick(item)"
-               :class="{active: item === pageNum}"
-               class="item"
-               v-for="item in pageBlog.navigatepageNums"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-              {{item}}
-            </font></font></a>
-            <a @click="pageClick(pageBlog.pageNum + 1)"
-               v-show="pageBlog.hasNextPage "
-               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-              <i class="angle double right icon"></i>
-            </font></font></a>
-            <a @click="pageClick(pageBlog.pages)"
-               v-show="!pageBlog.isLastPage"
-               :class="{active: pageBlog.pages === pageNum}"
-               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-              尾页
-            </font></font></a>
+          <div class="block">
+            <el-pagination
+                layout="prev, pager, next"
+                :page-size=pageBlog.pageSize
+                :page-count="4"
+                background
+                @current-change="pageClick"
+                :total=pageBlog.total>
+            </el-pagination>
           </div>
+<!--          <div class="ui mini teal pagination menu">-->
+<!--            <a @click="pageClick(1)"-->
+<!--               v-show="!pageBlog.isFirstPage"-->
+<!--               :class="{active: pageBlog.firstPage === pageNum}"-->
+<!--               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
+<!--             首页-->
+<!--            </font></font></a>-->
+<!--            <a @click="pageClick(pageBlog.prePage)"-->
+<!--               v-show="pageBlog.hasPreviousPage "-->
+<!--               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
+<!--              <i class="angle double left icon"></i>-->
+<!--            </font></font></a>-->
+<!--            <a @click="pageClick(item)"-->
+<!--               :class="{active: item === pageNum}"-->
+<!--               class="item"-->
+<!--               v-for="item in pageBlog.navigatepageNums"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
+<!--              {{item}}-->
+<!--            </font></font></a>-->
+<!--            <a @click="pageClick(pageBlog.pageNum + 1)"-->
+<!--               v-show="pageBlog.hasNextPage "-->
+<!--               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
+<!--              <i class="angle double right icon"></i>-->
+<!--            </font></font></a>-->
+<!--            <a @click="pageClick(pageBlog.pages)"-->
+<!--               v-show="!pageBlog.isLastPage"-->
+<!--               :class="{active: pageBlog.pages === pageNum}"-->
+<!--               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
+<!--              尾页-->
+<!--            </font></font></a>-->
+<!--          </div>-->
         </div>
       </div>
     </div>
@@ -143,6 +153,7 @@
         return ChangeDateFormat(date).substring(0, 10)
       },
       pageClick(page) {
+        console.log(page);
         this.pageNum = page
         this.paging(page)
       }

@@ -4,8 +4,13 @@
       <div class="ui stackable grid">
         <div class="eleven wide column">
           <div class="ui segment m-dialog-shadow">
-            <img src="https://images.unsplash.com/photo-1593370629580-4e25015f9b84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                 alt="" class="ui rounded fluid image">
+<!--            <img src="https://images.unsplash.com/photo-1593370629580-4e25015f9b84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"-->
+<!--                 alt="" class="ui rounded fluid image">-->
+            <el-carousel direction="vertical" :autoplay="false">
+              <el-carousel-item v-for="(item, index) in imgList" :key="index">
+                <el-image :src="item"></el-image>
+              </el-carousel-item>
+            </el-carousel>
           </div>
         </div>
         <div class="five wide column">
@@ -30,16 +35,30 @@
               <div class="ui teal basic left pointing label m-margin-tb-tiny">MySQL</div>
             </div>
             <div class="ui bottom attached segment">
-              <a href="https://github.com/FromSouthToNorth" class="ui circular icon button violet"><i
-                      class="github icon"></i></a>
-              <a href="#" class="ui wechat circular icon button teal"><i class="wechat icon"></i></a>
-              <a href="#" class="ui qq circular icon button blue" data-content="598050554" data-position="bottom left"><i
-                      class="qq icon"></i></a>
+              <a href="https://github.com/FromSouthToNorth" class="ui circular icon button violet">
+                <i class="github icon"></i>
+              </a>
+              <el-dropdown>
+                <span class="el-dropdown-link">
+                  <a href="#" class="ui wechat circular icon button teal">
+                    <i class="wechat icon"></i>
+                  </a>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-image :src="src" style="width: 100px; height: 100px;"></el-image>
+                </el-dropdown-menu>
+              </el-dropdown>
+              <el-dropdown>
+                <span class="el-dropdown-link">
+                  <a href="#" class="ui qq circular icon button blue" data-content="598050554" data-position="bottom left">
+                    <i class="qq icon"></i>
+                  </a>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>598050554</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
             </div>
-<!--            <div class="ui wei-chat-qr flowing popup transparent hidden">-->
-<!--              <img src="~assets/images/wechat.png" alt="" class="ui rounded image"-->
-<!--                   style="width: 80px;">-->
-<!--            </div>-->
           </div>
         </div>
       </div>
@@ -50,11 +69,23 @@
 <script>
 
   export default {
-    name: "About"
+    name: "About",
+    data() {
+      return {
+        src: 'https://202007002.oss-cn-chengdu.aliyuncs.com/weix.jpg',
+        imgList: [
+            'https://images.unsplash.com/photo-1596052690099-7421fbdfe3c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+            'https://images.unsplash.com/photo-1596055318757-2bd56e35ed84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+            'https://images.unsplash.com/photo-1596092720646-4713637c5976?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+        ]
+      }
+    }
   }
 
 </script>
 
-<style scoped>
-
+<style>
+.el-carousel__button {
+  background-color: #909399;
+}
 </style>

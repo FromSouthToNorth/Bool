@@ -43,7 +43,9 @@
         <!-- 搜索 -->
         <div class="right m-item item" :class="{'m-mobile-hide':toggleClass}">
           <div class="ui icon inverted transparent input">
-            <input type="text" v-model="searchKey" placeholder="请输入搜索内容...">
+            <label>
+              <input type="text" v-model="searchKey" placeholder="请输入搜索内容...">
+            </label>
             <i @click="search" class="search link icon"></i>
           </div>
         </div>

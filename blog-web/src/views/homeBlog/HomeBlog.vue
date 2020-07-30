@@ -67,7 +67,7 @@
             <div class="ui teal segment">
               <router-link
                  :to="'/tag/' + item.id"
-                 class="ui teal basic left pointing label m-margin-tb-tiny"
+                 class="ui teal basic left pointing label m-margin-tb-tiny tag-item"
                  v-for="item in listTag" :key="item.id"
                  :style="{'color': item.tagColour + '!important', 'border-color': item.tagColour + '!important'}">
                 <span>{{item.name}}</span>
@@ -130,6 +130,7 @@
           data: {'pageNum': this.pageNum},
           success: res => {
             this.pageBlog = res
+            console.log(this.pageBlog);
           }
         })
       },
