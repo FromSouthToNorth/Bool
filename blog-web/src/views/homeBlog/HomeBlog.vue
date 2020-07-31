@@ -80,7 +80,7 @@
           <!-- /标签 -->
           <!-- 最新推荐 -->
           <div class="ui segments m-margin-top m-dialog-shadow">
-            <div class="ui secondary segment m-navbar">
+            <div class="ui secondary segment m-navbar border-bot">
               <i class="bookmark icon"></i>最新推荐
             </div>
             <div class="ui segment"

@@ -34,6 +34,7 @@ public class AdminUserAPI {
     public User getUser(HttpSession session) {
         User user = new User();
         User attribute = (User) session.getAttribute("user");
+        System.out.println(attribute);
         user.setId(attribute.getId());
         user.setNickname(attribute.getNickname());
         user.setUsername(attribute.getUsername());

@@ -4,33 +4,29 @@
       <form class="ui secondary segment form">
         <div class="inline fields">
           <div class="field">
-            <input type="text" v-model="title" placeholder="标题">
+            <el-input v-model="title" placeholder="请输入标题"></el-input>
           </div>
           <div class="field">
             <div class="ui labeled acton input">
-              <div class="ui type selection dropdown">
-                <input type="hidden" v-model="typeId">
-                <i class="dropdown icon"></i>
-                <div class="default text">分类</div>
-                <div class="menu">
-                  <div class="item"
-                  v-if="typeList"
-                  v-for="item in typeList"
-                  :key="item.id"
-                  :data-value="item.id"
-                  >{{ item.name }}</div>
-                </div>
-              </div>
-              <button @click="clear" class="ui compact clear button" type="button">clear</button>
+              <template>
+                <el-select v-model="typeId" clearable placeholder="请选择">
+                  <el-option
+                      v-for="item in typeList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                  </el-option>
+                </el-select>
+              </template>
+              <el-button @click="clear" size="mini" style="margin-left: 10px">清除</el-button>
             </div>
           </div>
           <div class="field">
             <div class="ui checkbox">
-              <input type="checkbox"
-                     @click="recommend=!recommend"
-                     :checked="recommend"
-                     id="recommend">
-              <label for="recommend">推荐</label>
+              <el-switch
+                  v-model="recommend"
+                  inactive-text="是否推荐">
+              </el-switch>
             </div>
           </div>
           <div class="field">
@@ -72,20 +68,21 @@
           <tfoot>
           <tr>
             <th colspan="7">
-              <div class="ui mini pagination menu">
-                <a @click="pageTo(pageBlog.prePage)" v-if="!pageBlog.isFirstPage"  class="item">上一页</a>
-                <a @click="pageTo(pageBlog.nextPage)" v-if="!pageBlog.isLastPage" class="item">下一页</a>
+              <div class="block">
+                <el-pagination
+                    layout="prev, pager, next"
+                    :page-size=pageBlog.pageSize
+                    :page-count="4"
+                    background
+                    @current-change="pageTo"
+                    :total=pageBlog.total>
+                </el-pagination>
               </div>
               <a @click="addBtn()" class="ui mini right floated teal basic button" style="margin-top: 20px">新增</a>
             </th>
           </tr>
           </tfoot>
         </table>
-<!--        <div class="ui success message">-->
-<!--          <i class="close icon"></i>-->
-<!--          <div class="header">提示：</div>-->
-<!--          <p></p>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -101,16 +98,13 @@
         recommend: true,
         pageNum: 0,
         pageBlog: {  },
-        typeList: [  ]
+        typeList: [  ],
+        value: ''
       }
     },
     activated() {
       $(".ui.dropdown").dropdown({
         on: "hover"
-      })
-      $("#clear-btn").on("click", () => {
-        $(".ui.types.dropdown").dropdown("clear");
-        this.data.typeId = "";
       })
       $.get({
         url: 'types',
@@ -181,6 +175,7 @@
         this.title = ''
         this.typeId = ''
         this.recommend = true
+        this.getPageBlog()
       },
       addBtn() {
         this.$router.push('/blogs/input')

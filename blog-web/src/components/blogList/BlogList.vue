@@ -1,7 +1,7 @@
 <template>
   <div>
     <!---->
-    <div class="ui top attached segment teal">
+    <div class="ui attached segment teal">
       <div class="ui padded vertical segment stackable m-padded-large"
         v-for="item in pageBlog.list"
         :key="item.id"
@@ -91,36 +91,6 @@
                 :total=pageBlog.total>
             </el-pagination>
           </div>
-<!--          <div class="ui mini teal pagination menu">-->
-<!--            <a @click="pageClick(1)"-->
-<!--               v-show="!pageBlog.isFirstPage"-->
-<!--               :class="{active: pageBlog.firstPage === pageNum}"-->
-<!--               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
-<!--             首页-->
-<!--            </font></font></a>-->
-<!--            <a @click="pageClick(pageBlog.prePage)"-->
-<!--               v-show="pageBlog.hasPreviousPage "-->
-<!--               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
-<!--              <i class="angle double left icon"></i>-->
-<!--            </font></font></a>-->
-<!--            <a @click="pageClick(item)"-->
-<!--               :class="{active: item === pageNum}"-->
-<!--               class="item"-->
-<!--               v-for="item in pageBlog.navigatepageNums"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
-<!--              {{item}}-->
-<!--            </font></font></a>-->
-<!--            <a @click="pageClick(pageBlog.pageNum + 1)"-->
-<!--               v-show="pageBlog.hasNextPage "-->
-<!--               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
-<!--              <i class="angle double right icon"></i>-->
-<!--            </font></font></a>-->
-<!--            <a @click="pageClick(pageBlog.pages)"-->
-<!--               v-show="!pageBlog.isLastPage"-->
-<!--               :class="{active: pageBlog.pages === pageNum}"-->
-<!--               class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-->
-<!--              尾页-->
-<!--            </font></font></a>-->
-<!--          </div>-->
         </div>
       </div>
     </div>
@@ -161,6 +131,8 @@
   }
 </script>
 
-<style scoped>
-
+<style>
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: #00b5ad;
+}
 </style>

@@ -84,26 +84,34 @@
         <div class="inline fields">
           <div class="field">
             <div class="ui checkbox">
-              <input type="checkbox" id="recommend" name="recommend" :checked="recommend" class="hidden">
-              <label @click="setData('recommend')" for="recommend">推荐</label>
+              <el-switch
+                  v-model="recommend"
+                  inactive-text="推荐">
+              </el-switch>
             </div>
           </div>
           <div class="field">
             <div class="ui checkbox">
-              <input type="checkbox" :checked="shareStatement" id="shareStatement" name="shareStatement" class="hidden">
-              <label @click="setData('shareStatement')" for="shareStatement">转载声明</label>
+              <el-switch
+                  v-model="shareStatement"
+                  inactive-text="转载声明">
+              </el-switch>
             </div>
           </div>
           <div class="field">
             <div class="ui checkbox">
-              <input type="checkbox" :checked="appreciation" id="appreciation" name="appreciation" class="hidden">
-              <label @click="setData('appreciation')" for="appreciation">赞赏</label>
+              <el-switch
+                  v-model="appreciation"
+                  inactive-text="赞赏">
+              </el-switch>
             </div>
           </div>
           <div class="field">
             <div class="ui checkbox">
-              <input type="checkbox" :checked="commentabled" id="commentabled" name="commentabled" class="hidden">
-              <label @click="setData('commentabled')" for="commentabled">评论</label>
+              <el-switch
+                  v-model="commentabled"
+                  inactive-text="评论">
+              </el-switch>
             </div>
           </div>
         </div>
@@ -120,6 +128,7 @@
 </template>
 
 <script>
+  import oos from "@/utils/oos";
   export default {
     name: "BlogInput",
     data() {
@@ -254,31 +263,25 @@
       setTypeId(id) {
         this.typeId = id
       },
-      setData(key) {
-        this.key = !this.key
-      },
       // 图片上传
       $imgAdd(pos, $file) {
         XMLHttpRequest.setRequestHeader
-        console.log($file);
         const client = new OSS.Wrapper({
-          region: 'oss-cn-chengdu',                                             // 创建Bucket时会选择不同地区，根据自己的选择填入对应名称
-          accessKeyId: '',                              // 填入你的accessKeyId
-          accessKeySecret: '',                    // 填入你的accessKeySecret
-          bucket: ''                                                   // 填入你的bucket名
+          region: oos.region,
+          accessKeyId: oos.accessKeyId,
+          accessKeySecret: oos.accessKeySecret,
+          bucket: oos.bucket
         })
         const name = $file._name
-        const suffix = name.substr(name.indexOf('.'))                           // 文件后缀
-        const filename = Date.parse(new Date()) + suffix                        // 组成新的文件名称
-        console.log(filename);
-        client.multipartUpload(filename, $file).then(res => {                   // 上传
+        const suffix = name.substr(name.indexOf('.'))                 // 文件后缀
+        const filename = Date.parse(new Date()) + suffix              // 组成新的文件名称
+        client.multipartUpload(filename, $file).then(res => {          // 上传
           console.log('上传成功：', res)
-          let url = 'http://.oss-cn-chengdu.aliyuncs.com/' + filename // 拼接回显url
+          let url = 'http://'+ oos.bucket +'.oss-cn-chengdu.aliyuncs.com/' + filename // 拼接回显url
           this.$refs.md.$img2Url(pos, url)
         }).catch(err => {
           console.log('上传失败：', err)
         })
-
       }
     }
   }

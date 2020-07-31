@@ -91,7 +91,6 @@
               if (this.comment.length === 0) {
                 this.isComment = !this.isComment
               }
-              console.log(this.comment);
             }
           })
         } else {

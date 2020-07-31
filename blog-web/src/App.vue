@@ -1,10 +1,12 @@
 <template>
-  <div id="app" class="m-background" style="min-height: 1000px">
-    <nav-bar></nav-bar>
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
-    <footer-bar :VisitTotal="VisitTotal"></footer-bar>
+  <div id="app">
+    <div class="m-background">
+      <nav-bar></nav-bar>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+      <footer-bar :VisitTotal="VisitTotal"></footer-bar>
+    </div>
   </div>
 </template>
 

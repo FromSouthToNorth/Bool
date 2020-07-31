@@ -86,7 +86,6 @@
           url: 'comments',
           success: res => {
             this.comments = res
-            console.log(this.comments);
           }
         })
       },

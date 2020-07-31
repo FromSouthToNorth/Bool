@@ -27,9 +27,15 @@
         <tfoot>
         <tr>
           <th colspan="6">
-            <div class="ui mini pagination menu">
-              <a @click="pageTo(pageTag.prePage)" v-if="!pageTag.isFirstPage"  class="item">上一页</a>
-              <a @click="pageTo(pageTag.nextPage)" v-if="!pageTag.isLastPage" class="item">下一页</a>
+            <div class="block">
+              <el-pagination
+                  layout="prev, pager, next"
+                  :page-size=pageTag.pageSize
+                  :page-count="4"
+                  background
+                  @current-change="pageTo"
+                  :total=pageTag.total>
+              </el-pagination>
             </div>
             <a @click="addBtn" class="ui addType mini right floated teal basic button">新增</a>
           </th>
