@@ -7,6 +7,10 @@
     height: 40px;
 }
 
+#app .m-footer {
+    margin-top: 60px;
+}
+
 .blog-img {
     transition: all .5s;
 }

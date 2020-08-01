@@ -1,5 +1,5 @@
 <template>
-  <footer class="ui vertical segment">
+  <footer class="ui vertical segment m-footer">
     <div class="ui center aligned container">
       <div class="m-padded-tb-tb" id="web-meta">
         <div>

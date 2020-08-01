@@ -7,6 +7,7 @@
     <resultMap id="blog_type" type="com.hy.blog.entity.Blog">
         <id property="id" column="bid"/>
         <result property="title" column="title"/>
+        <result property="firstPicture" column="first_picture"/>
         <result property="updateTime" column="update_time"/>
         <result property="recommend" column="recommend"/>
         <result property="published" column="published"/>
@@ -49,6 +50,7 @@
         select
             b.id bid            ,
             b.title             ,
+            b.first_picture     ,
             b.update_time       ,
             b.recommend         ,
             b.published         ,

@@ -18,7 +18,10 @@
                   </el-option>
                 </el-select>
               </template>
-              <el-button @click="clear" size="mini" style="margin-left: 10px">清除</el-button>
+              <el-button @click="clear"
+                size="mini"
+                style="margin-left: 10px"
+                icon="el-icon-setting">清除</el-button>
             </div>
           </div>
           <div class="field">
@@ -30,41 +33,84 @@
             </div>
           </div>
           <div class="field">
-            <button type="button" @click="search" class="ui mini teal basic button"><i class="search icon"></i>搜索</button>
+            <el-button type="primary"
+              @click="search"
+              size="mini"
+              icon="el-icon-search" plain>搜索</el-button>
           </div>
         </div>
       </form>
       <div id="table-container">
         <table class="ui compact teal table">
-          <thead>
-          <tr>
-            <th></th>
-            <th>标题</th>
-            <th>类型</th>
-            <th>推荐</th>
-            <th>状态</th>
-            <th>更新时间</th>
-            <th>操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-if="pageBlog"
-          v-for="item in pageBlog.list"
-          :key="item.id"
-          >
-            <td>{{ item.id }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.type.name }}</td>
-            <td v-text="item.recommend ? '是' : '否'"></td>
-            <td v-text="item.published ? '发布' : '草稿'"></td>
-            <td>{{ getTime(item.updateTime) }}</td>
-            <td>
-              <a @click="blogEditor(item.id)" class="ui mini teal basic button">编辑</a>
-              <a @click="getComment(item.id)" class="ui mini blue basic button">查看评论</a>
-              <a @click="deleteBlog(item.id)" class="ui mini red basic button">删除</a>
-            </td>
-          </tr>
-          </tbody>
+          <el-table
+              :data="pageBlog.list"
+              style="width: 100%">
+            <el-table-column
+                label="名称"
+                width="">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top">
+                  <div class="block">
+                    <el-image :src="scope.row.firstPicture" style="width: 200px;"></el-image>
+                  </div>
+                  <div slot="reference" class="name-wrapper">
+                    <el-tag size="medium">{{ scope.row.title }}</el-tag>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+                label="类型">
+              <template slot-scope="scope">
+                <span>{{ scope.row.type.name }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+                width="100px;"
+                label="是否推荐">
+              <template slot-scope="scope">
+                <el-tag
+                    :type="scope.row.recommend ? 'success' : 'warning'"
+                    disable-transitions
+                    :text="scope.row.recommend ? isRecommend = '是': isPublished = '否'">
+                  {{ isRecommend }}
+                </el-tag>
+              </template>
+            </el-table-column>
+            <el-table-column
+                width="100px;"
+                label="状态">
+              <template slot-scope="scope">
+                <el-tag
+                  :type="scope.row.published ? 'success' : 'warning'"
+                  disable-transitions
+                  :text="scope.row.published ? isPublished = '是': isPublished = '否'">
+                  {{ isPublished }}
+                </el-tag>
+              </template>
+            </el-table-column>
+            <el-table-column
+                label="更新日期"
+                width="180">
+              <template slot-scope="scope">
+                <i class="el-icon-time"></i>
+                <span style="margin-left: 10px">{{ getTime(scope.row.updateTime) }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                    size="mini"
+                    icon="el-icon-edit"
+                    @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                <el-button
+                    size="mini"
+                    type="danger"
+                    icon="el-icon-delete"
+                    @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
           <tfoot>
           <tr>
             <th colspan="7">
@@ -96,16 +142,16 @@
         title: '',
         typeId: '',
         recommend: true,
+        showRecommend: '是',
         pageNum: 0,
         pageBlog: {  },
         typeList: [  ],
-        value: ''
+        value: '',
+        isPublished: '',
+        isRecommend: '',
       }
     },
     activated() {
-      $(".ui.dropdown").dropdown({
-        on: "hover"
-      })
       $.get({
         url: 'types',
         success: res => {
@@ -113,6 +159,9 @@
         }
       })
       this.getPageBlog()
+      if (this.$route.query.massage) {
+        this.open('编辑')
+      }
     },
     methods: {
       getComment(id) {
@@ -148,28 +197,40 @@
           }
         })
       },
-      // 跳转编辑页面
-      blogEditor(blogId) {
-        this.$router.push({
-          path: '/blogs/input',
-          query: {
-            blogId: blogId
-          }
-        })
-      },
-      deleteBlog(blogId) {
-        let meg = confirm('确认删除编号：'+ blogId + '吗？')
+      handleDelete(index, row) {
+        let meg = confirm('确认删除标题为：'+ row.title + ' 的博客吗？')
         if (meg) {
           $.get({
             url: '/blog/delete',
-            data: { 'id': blogId },
+            data: { 'id': row.id },
             success: res => {
               if (res === 1) {
                 this.getPageBlog()
+                this.open('删除')
+              } else {
+                this.openError('删除')
               }
             }
           })
         }
+      },
+      open(msg) {
+        this.$message({
+          message: msg + '博客成功。',
+          type: 'success'
+        });
+      },
+      openError(msg) {
+        this.$message.error(msg + '博客失败！');
+      },
+      // 跳转编辑页面
+      handleEdit(index, row) {
+        this.$router.push({
+          path: '/blogs/input',
+          query: {
+            blogId: row.id
+          }
+        })
       },
       clear() {
         this.title = ''

@@ -213,8 +213,14 @@
           },
           success: res => {
             if (res === 1) {
-              this.$router.push('/blogs/list')
+              this.$router.push({
+                path: '/blogs/list',
+                query: {
+                  massage: true
+                }
+              })
             } else {
+              this.openError('编辑博客')
               console.log(res, 'blogsInput')
             }
           }
@@ -256,6 +262,9 @@
         this.shareStatement = true // 是否展示转载声明
         this.appreciation = true // 是否开启赞赏
         this.commentabled = true // 是否允许评论
+      },
+      openError(msg) {
+        this.$message.error(msg + '失败！');
       },
       setFlag(flag) {
         this.flag = flag

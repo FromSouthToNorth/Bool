@@ -3,8 +3,8 @@
     min-height: 1000px;
 }
 
-.el-pagination.is-background .el-pager li:not(.disabled).active {
-    background-color: #00b5ad!important;
+.block {
+    display: inline-block!important;
 }
 
 .m-padded-tb-min.m-nav.fixed {
