@@ -8,4 +8,5 @@ public interface AdminUserService {
 
     User findByEmailAdmin(String email);
 
+    void updateLoginTime(User user);
 }

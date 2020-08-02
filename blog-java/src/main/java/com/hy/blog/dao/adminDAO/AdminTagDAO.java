@@ -1,6 +1,7 @@
 package com.hy.blog.dao.adminDAO;
 
 import com.hy.blog.entity.Tag;
+import com.hy.blog.vo.DataPie;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,5 +19,7 @@ public interface AdminTagDAO {
     Integer updateByIdTag(Tag tag);
 
     List<Tag> findAllTag();
+
+    Integer countTag();
 
 }

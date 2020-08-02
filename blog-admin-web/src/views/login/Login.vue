@@ -66,7 +66,7 @@
           success: res => {
             this.isShowMassage = res
             if (res === 0) {
-              this.$router.push('/blogs')
+              this.$router.push('/home')
             } else  {
             }
             this.username = ''

@@ -9,7 +9,7 @@
           :key="item.id"
           :to='item.url'
           class="item"
-          :class="{active: $route.path==item.url}"
+          :class="{active: $route.path === item.url}"
           >
           {{ item.name }}
         </router-link>

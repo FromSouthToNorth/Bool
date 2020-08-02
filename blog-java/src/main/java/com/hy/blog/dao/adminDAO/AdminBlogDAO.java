@@ -20,4 +20,8 @@ public interface AdminBlogDAO {
 
     List<Blog> findByTitleRoTypeRoRecommend(BlogQuery blogQuery);
 
+    Integer countBlog();
+
+    Integer findByTypeIdCountBlog(@Param("typeId") Long typeId);
+
 }

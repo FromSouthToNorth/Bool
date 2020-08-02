@@ -3,20 +3,6 @@
     min-height: 1000px;
 }
 
-.block {
-    display: inline-block!important;
-}
-
-.m-padded-tb-min.m-nav.fixed {
-    position: fixed;
-    z-index: 21;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-bottom: 1px solid #dadada;
-    background-image: linear-gradient(#fff, #f1f1f1);
-}
-
 .m-black {
     color: #333!important;
 }
@@ -54,6 +40,10 @@ a {
     opacity: .9;
     float: none;
     margin: 0 6px 0 0;
+}
+
+.m-padded10 {
+    padding: 0 10px 0 10px;
 }
 
 .m-padded-min {

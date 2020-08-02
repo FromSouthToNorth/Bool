@@ -47,10 +47,11 @@
           email: ''
         },
         routerList: [
-          {id: 1,name: '博客', icon: 'home', url: '/blogs'},
-          {id: 2,name: '分类', icon: 'idea', url: '/types'},
-          {id: 3,name: '标签', icon: 'tags', url: '/tags'},
-          {id: 4,name: '评论', icon: 'comment alternate outline', url: '/comments'}
+          { id: 1, name: '首页', icon: 'home', url: '/home' },
+          { id: 2, name: '博客', icon: 'edit outline', url: '/blogs' },
+          { id: 3, name: '分类', icon: 'idea', url: '/types' },
+          { id: 4, name: '标签', icon: 'tags', url: '/tags' },
+          { id: 5, name: '评论', icon: 'comment alternate outline', url: '/comments' }
         ]
       }
     },

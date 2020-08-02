@@ -28,4 +28,8 @@
         select id, `name`, tag_colour from t_tag
     </select>
 
+    <select id="countTag" resultType="java.lang.Integer">
+        select count(1) from t_tag;
+    </select>
+
 </mapper>

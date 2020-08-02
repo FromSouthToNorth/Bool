@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "echarts": "^4.8.0",
     "element-ui": "^2.13.2",
     "jquery": "^3.5.1",
     "mavon-editor": "^2.9.0",

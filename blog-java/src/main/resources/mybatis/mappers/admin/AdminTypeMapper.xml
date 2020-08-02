@@ -28,4 +28,8 @@
         select id, `name` from t_type
     </select>
 
+    <select id="countType" resultType="java.lang.Integer">
+        select count(1) from t_type;
+    </select>
+
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/admin")
@@ -34,13 +35,13 @@ public class AdminUserAPI {
     public User getUser(HttpSession session) {
         User user = new User();
         User attribute = (User) session.getAttribute("user");
-        System.out.println(attribute);
         user.setId(attribute.getId());
         user.setNickname(attribute.getNickname());
         user.setUsername(attribute.getUsername());
         user.setType(attribute.getType());
         user.setAvatar(attribute.getAvatar());
         user.setEmail(attribute.getEmail());
+        user.setLoginTime(attribute.getLoginTime());
         return user;
     }
 
@@ -57,6 +58,9 @@ public class AdminUserAPI {
     // 注销
     @GetMapping("/logout")
     public Integer logout(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        user.setLoginTime(new Date());
+        adminUserService.updateLoginTime(user);
         session.removeAttribute("user");
         return 1;
     }

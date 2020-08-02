@@ -16,4 +16,14 @@
         insert into t_blog_tags (blog_id, tags_id) values (#{blogId}, #{tagsId})
     </insert>
 
+    <select id="findTagPie" resultType="com.hy.blog.vo.DataPie">
+        select
+        tt.name              ,
+        count(tags_id) value
+        from t_blog_tags tbt ,
+             t_tag tt
+        where tt.id = tbt.tags_id
+        group by tags_id
+    </select>
+
 </mapper>

@@ -11,7 +11,7 @@
   import Crumbs from 'components/crumbs/Crumbs'
   export default {
     name: "Blogs",
-    components: {Crumbs},
+    components: { Crumbs },
     data() {
       return {
         menuList: [

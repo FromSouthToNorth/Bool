@@ -1,5 +1,6 @@
 package com.hy.blog.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,8 @@ public class User {
     private Integer type;
     private Date createTime;
     private Date updateTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date loginTime;
 
     private List<Blog> blogs;
 

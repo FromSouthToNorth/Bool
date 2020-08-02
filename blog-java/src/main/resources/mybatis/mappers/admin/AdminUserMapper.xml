@@ -13,7 +13,8 @@
             avatar          ,
             `type`          ,
             create_time     ,
-            update_time
+            update_time     ,
+            login_time
         from
         t_user
         where
@@ -29,5 +30,11 @@
         from  t_user
         where email = #{email}
     </select>
+
+    <update id="updateLoginItem" parameterType="com.hy.blog.entity.User">
+        update t_user set
+        login_time = #{loginTime}
+        where id = #{id}
+    </update>
 
 </mapper>

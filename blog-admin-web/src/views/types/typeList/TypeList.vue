@@ -1,27 +1,42 @@
 <template>
   <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
+<!--      <div class="chart">-->
+<!--        <type-bar></type-bar>-->
+<!--      </div>-->
       <table class="ui teal table">
-        <thead>
-        <tr>
-          <th></th>
-          <th>名称</th>
-          <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-if="pageType"
-            v-for="item in pageType.list"
-            :key="item.id"
-        >
-          <td>{{ item.id }}</td>
-          <td>{{ item.name }}</td>
-          <td>
-            <a @click="editorType(item.id)" class="ui mini teal basic button">编辑</a>
-            <a @click="deleteType(item.id)" class="ui mini red basic button">删除</a>
-          </td>
-        </tr>
-        </tbody>
+        <el-table
+            :data="pageType.list"
+            style="width: 100%">
+          <el-table-column
+              label="id"
+              width="240">
+            <template slot-scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.id }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+              label="名称"
+              width="280">
+            <template slot-scope="scope">
+              <el-tag size="medium">{{ scope.row.name }}</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column
+              label="操作">
+            <template slot-scope="scope">
+              <el-button
+                  size="mini"
+                  icon="el-icon-edit"
+                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button
+                  size="mini"
+                  type="danger"
+                  icon="el-icon-delete"
+                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
         <tfoot>
         <tr>
           <th colspan="6">
@@ -45,8 +60,10 @@
 </template>
 
 <script>
+  import TypeBar from "@/views/typeBar/TypeBar";
   export default {
     name: "TypeList",
+    components: {TypeBar},
     data() {
       return {
         pageNum: 0,
@@ -55,6 +72,8 @@
     },
     mounted() {
       this.getPageType()
+      this.drawChart()
+      this.pieChart()
     },
     methods: {
       pageTo(pageNum) {
@@ -70,23 +89,23 @@
           }
         })
       },
-      editorType(id) {
+      handleEdit(index, row) {
         this.$router.push({
           path: '/types/input',
           query: {
-            typeId: id
+            typeId: row.id
           }
         })
       },
       addBtn() {
         this.$router.push('/types/input')
       },
-      deleteType(id) {
-        let meg = confirm('确认删除编号：'+ id + '吗？')
+      handleDelete(index, row) {
+        let meg = confirm('确认删除：'+ row.name + ' 分类吗？')
         if (meg) {
           $.post({
             url: 'deleteType',
-            data: { 'id': id },
+            data: { 'id': row.id() },
             success: res => {
               if (res === 1) {
                 this.getPageType()
@@ -95,7 +114,7 @@
           })
         }
       }
-    },
+    }
   }
 </script>
 

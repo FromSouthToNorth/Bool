@@ -197,4 +197,13 @@
         order by b.update_time desc
     </select>
 
+    <select id="countBlog" resultType="java.lang.Integer">
+        select count(1) from t_blog
+    </select>
+
+    <select id="findByTypeIdCountBlog" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select count(1) from t_blog
+        where type_id = #{typeId}
+    </select>
+
 </mapper>

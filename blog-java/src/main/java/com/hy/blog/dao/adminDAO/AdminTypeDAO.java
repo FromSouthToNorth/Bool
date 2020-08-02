@@ -20,4 +20,6 @@ public interface AdminTypeDAO {
 
     List<Type> findAllType();
 
+    Integer countType();
+
 }

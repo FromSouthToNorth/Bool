@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
-@Transactional
 public class AdminUserServiceImpl implements AdminUserService {
 
     @Autowired
@@ -25,5 +26,11 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public User findByEmailAdmin(String email) {
         return adminUserDAO.findByEmail(email);
+    }
+
+    @Override
+    @Transactional
+    public void updateLoginTime(User user) {
+        adminUserDAO.updateLoginItem(user);
     }
 }
