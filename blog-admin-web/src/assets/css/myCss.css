@@ -3,6 +3,10 @@
     min-height: 1000px;
 }
 
+.m-background .el-backtop, .el-calendar-table td.is-today {
+    color: #00b5ad;
+}
+
 .m-black {
     color: #333!important;
 }

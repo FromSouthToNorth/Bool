@@ -24,7 +24,7 @@ name: "Admin",
       }
     }
   },
-  activated() {
+  mounted() {
     // 获取头像名称
     if (this.$route.path !== '/') {
       $.get({
@@ -62,7 +62,7 @@ name: "Admin",
     margin-bottom: 20px;
   }
   .user .user-info-list {
-    font-size: 12px;
+    font-size: 13px;
     color: #999;
     line-height: 25px;
   }

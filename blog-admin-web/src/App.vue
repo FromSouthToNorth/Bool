@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="m-background">
+      <el-backtop></el-backtop>
       <nav-bar v-if="navShow"></nav-bar>
       <keep-alive>
         <router-view></router-view>

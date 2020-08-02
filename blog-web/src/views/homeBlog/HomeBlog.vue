@@ -130,7 +130,6 @@
           data: {'pageNum': this.pageNum},
           success: res => {
             this.pageBlog = res
-            console.log(this.pageBlog);
           }
         })
       },
