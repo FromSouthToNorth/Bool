@@ -3,10 +3,14 @@ package com.hy.blog.api.admin;
 import com.hy.blog.entity.User;
 import com.hy.blog.service.adminService.AdminUserService;
 import com.hy.blog.utils.MD5Utils;
+import com.hy.blog.vo.DataBar;
+import com.hy.blog.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
@@ -32,16 +36,15 @@ public class AdminUserAPI {
     }
 
     @GetMapping("/user")
-    public User getUser(HttpSession session) {
-        User user = new User();
+    public UserVO getUser(HttpSession session) {
+        UserVO user = new UserVO();
         User attribute = (User) session.getAttribute("user");
         user.setId(attribute.getId());
-        user.setNickname(attribute.getNickname());
-        user.setUsername(attribute.getUsername());
-        user.setType(attribute.getType());
         user.setAvatar(attribute.getAvatar());
-        user.setEmail(attribute.getEmail());
-        user.setLoginTime(attribute.getLoginTime());
+        user.setNickname(attribute.getNickname());
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        DateFormat dateFormat = new SimpleDateFormat(pattern);
+        user.setLoginTime(dateFormat.format(attribute.getLoginTime()));
         return user;
     }
 

@@ -17,7 +17,7 @@ name: "Admin",
   data() {
     return {
       user: {
-        nickname: '',
+        nickName: '',
         avatar: '',
         loginTime: ''
       }
@@ -34,6 +34,7 @@ name: "Admin",
       $.get({
         url: 'user',
         success: res => {
+          console.log(res);
           this.user = res;
         },
         error: res => {

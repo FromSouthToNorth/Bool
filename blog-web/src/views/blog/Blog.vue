@@ -129,8 +129,8 @@
       }
     },
     methods: {
-      ChangeDateFormat(data) {
-        return ChangeDateFormat(data)
+      ChangeDateFormat(date) {
+        return ChangeDateFormat(date)
       },
       setTO() {
         setTimeout(() => {

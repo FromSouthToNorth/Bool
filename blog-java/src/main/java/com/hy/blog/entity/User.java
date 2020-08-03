@@ -28,7 +28,6 @@ public class User {
     private Integer type;
     private Date createTime;
     private Date updateTime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date loginTime;
 
     private List<Blog> blogs;
