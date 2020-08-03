@@ -3,7 +3,7 @@
     <div class="ui container home">
       <el-row style="margin-bottom: 20px">
         <el-col :span="6" class="m-padded10">
-          <admin></admin>
+          <admin :isRes="isRes"></admin>
         </el-col>
         <el-col :span="18" class="m-padded10">
           <el-row :gutter="20">
@@ -51,7 +51,6 @@
           </el-row>
         </el-col>
       </el-row>
-
     </div>
   </div>
 </template>
@@ -62,14 +61,15 @@ import TypePie from "@/views/tagPie/TagPie";
 import Admin from "@/views/admin/Admin";
 export default {
 name: "Home",
-  components: {Admin, TypePie, TypeBar},
+  components: { Admin, TypePie, TypeBar },
   data() {
    return {
      total: {
        blogTotal: '',
        tagTotal: '',
        typeTotal: ''
-     }
+     },
+     isRes: null,
    }
   },
   activated() {

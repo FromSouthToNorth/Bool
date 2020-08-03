@@ -148,8 +148,8 @@
         commentabled: true, //是否允许评论
         typeName: '',
         typeList: [],
-        tagList: [],
-        getBlog: {}
+        tagList: { },
+        getBlog: {},
       }
     },
     activated() {
@@ -169,6 +169,7 @@
         this.getOneBlog(this.$route.query.blogId)
         this.id = this.$route.query.blogId
       } else {
+        this.id = null
         this.clean()
       }
     },
@@ -216,7 +217,7 @@
               this.$router.push({
                 path: '/blogs/list',
                 query: {
-                  massage: true
+                  blogMassage: true
                 }
               })
             } else {

@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import {getCookie, setCookie} from "@/utils/cookie"
 export default {
 name: "Admin",
   data() {
@@ -24,21 +23,23 @@ name: "Admin",
       }
     }
   },
+  props: {
+    isRes: {
+      default: false
+    }
+  },
+  activated() {  },
   mounted() {
-    // 获取头像名称
     if (this.$route.path !== '/') {
       $.get({
         url: 'user',
         success: res => {
           this.user = res;
-          setCookie('user', JSON.stringify(res))
         },
         error: res => {
           console.log(res, 'navBar')
         }
       })
-    } else if (getCookie('user')) {
-      this.user = JSON.parse(getCookie('user'))
     }
   },
   methods: {  }

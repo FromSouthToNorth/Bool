@@ -3,6 +3,10 @@
     min-height: 1000px;
 }
 
+tr th .block {
+    display: inline-block;
+}
+
 .m-background .el-backtop, .el-calendar-table td.is-today {
     color: #00b5ad;
 }

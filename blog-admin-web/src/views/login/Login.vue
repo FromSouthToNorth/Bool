@@ -66,7 +66,12 @@
           success: res => {
             this.isShowMassage = res
             if (res === 0) {
-              this.$router.push('/home')
+              this.$router.push({
+                path: '/home',
+                query: {
+                  isRes: true
+                }
+              })
             } else  {
             }
             this.username = ''

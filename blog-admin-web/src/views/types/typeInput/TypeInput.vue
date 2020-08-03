@@ -7,7 +7,6 @@
           <div class="ui left labeled input">
             <label class="ui teal basic label">名称</label>
             <input type="text" v-model="name" placeholder="分类名称">
-            {{ name }}
           </div>
         </div>
         <div class="ui error message"></div>
@@ -58,11 +57,21 @@
           data: { 'id': this.id, 'name': this.name },
           success: res => {
             if (res === 0) {
-              this.$router.push('/types/list')
+              this.$router.push({
+                path: '/types/list',
+                query: {
+                  typeMassage: true
+                }
+              })
               this.clean()
+            } else {
+              this.openError('编辑')
             }
           }
         })
+      },
+      openError(msg) {
+        this.$message.error(msg + '失败！');
       }
     }
   }

@@ -124,7 +124,7 @@
                     :total=pageBlog.total>
                 </el-pagination>
               </div>
-              <a @click="addBtn()" class="ui mini right floated teal basic button" style="margin-top: 20px">新增</a>
+              <a @click="addBtn()" class="ui mini right floated teal basic button">新增</a>
             </th>
           </tr>
           </tfoot>
@@ -159,7 +159,7 @@
         }
       })
       this.getPageBlog()
-      if (this.$route.query.massage) {
+      if (this.$route.query.blogMassage) {
         this.open('编辑')
       }
     },

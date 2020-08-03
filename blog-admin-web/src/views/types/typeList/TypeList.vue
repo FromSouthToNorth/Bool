@@ -72,9 +72,11 @@
     },
     mounted() {
       this.getPageType()
-      this.drawChart()
-      this.pieChart()
+      if (this.$route.query.typeMassage) {
+        this.open("编辑")
+      }
     },
+    activated() {  },
     methods: {
       pageTo(pageNum) {
         this.pageNum = pageNum
@@ -105,15 +107,27 @@
         if (meg) {
           $.post({
             url: 'deleteType',
-            data: { 'id': row.id() },
+            data: { 'id': row.id },
             success: res => {
               if (res === 1) {
                 this.getPageType()
+                this.open("删除")
+              } else {
+                this.openError("删除")
               }
             }
           })
         }
-      }
+      },
+      open(msg) {
+        this.$message({
+          message: msg + '分类成功。',
+          type: 'success'
+        });
+      },
+      openError(msg) {
+        this.$message.error(msg + '分类失败！');
+      },
     }
   }
 </script>

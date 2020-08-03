@@ -65,6 +65,7 @@
       },
       clean() {
         this.name = ''
+        this.color = ''
       },
       postTag() {
         $.post({
@@ -72,10 +73,21 @@
           data: { 'id': this.id, 'name': this.name, 'tagColour': this.color },
           success: res => {
             if (res === 0) {
-              this.$router.push('/tags/list')
+              this.$router.push({
+                path: '/tags/list',
+                query: {
+                  tagMassage: true
+                }
+              })
+              this.clean()
+            } else {
+              this.openError('编辑')
             }
           }
         })
+      },
+      openError(msg) {
+        this.$message.error(msg + '失败！');
       }
     }
   }
