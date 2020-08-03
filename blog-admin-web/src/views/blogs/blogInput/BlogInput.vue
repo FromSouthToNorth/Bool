@@ -64,9 +64,7 @@
                        v-for="item in tagList"
                        :key="item.id"
                        :data-value="item.id"
-                  >
-                    {{ item.name }}
-                  </div>
+                  >{{ item.name }}</div>
                 </div>
               </div>
             </div>
@@ -129,6 +127,7 @@
 
 <script>
   import oos from "@/utils/oos";
+  import mavonEditor from "mavon-editor";
   export default {
     name: "BlogInput",
     data() {
@@ -170,7 +169,6 @@
         this.id = this.$route.query.blogId
       } else {
         this.id = null
-        this.clean()
       }
     },
     mounted() {
@@ -179,7 +177,7 @@
       })
       $("#tagIds").change(() => {
         this.tagIds = $("#tagIds").val();
-        console.log(this.tagIds);
+        console.log(this.tagIds)
       })
       // 保存
       $('#save-btn').click(() => {
@@ -214,12 +212,9 @@
           },
           success: res => {
             if (res === 1) {
-              this.$router.push({
-                path: '/blogs/list',
-                query: {
-                  blogMassage: true
-                }
-              })
+              this.clean()
+              this.open('编辑博客')
+              this.$router.push('/blogs/list')
             } else {
               this.openError('编辑博客')
               console.log(res, 'blogsInput')
@@ -267,6 +262,12 @@
       openError(msg) {
         this.$message.error(msg + '失败！');
       },
+      open(msg) {
+        this.$message({
+          message: msg + '成功',
+          type: 'success'
+        });
+      },
       setFlag(flag) {
         this.flag = flag
       },
@@ -286,10 +287,12 @@
         const suffix = name.substr(name.indexOf('.'))                 // 文件后缀
         const filename = Date.parse(new Date()) + suffix              // 组成新的文件名称
         client.multipartUpload(filename, $file).then(res => {          // 上传
+          this.open('上传')
           console.log('上传成功：', res)
           let url = 'http://'+ oos.bucket +'.oss-cn-chengdu.aliyuncs.com/' + filename // 拼接回显url
           this.$refs.md.$img2Url(pos, url)
         }).catch(err => {
+          this.openError('上传')
           console.log('上传失败：', err)
         })
       }

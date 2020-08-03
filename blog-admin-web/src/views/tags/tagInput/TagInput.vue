@@ -73,13 +73,10 @@
           data: { 'id': this.id, 'name': this.name, 'tagColour': this.color },
           success: res => {
             if (res === 0) {
-              this.$router.push({
-                path: '/tags/list',
-                query: {
-                  tagMassage: true
-                }
-              })
+              this.open()
               this.clean()
+              this.id = null
+              this.$router.push('/tags/list')
             } else {
               this.openError('编辑')
             }
@@ -88,6 +85,12 @@
       },
       openError(msg) {
         this.$message.error(msg + '失败！');
+      },
+      open() {
+        this.$message({
+          message: '编辑标签成功。',
+          type: 'success'
+        });
       }
     }
   }

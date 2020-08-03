@@ -148,7 +148,7 @@
         typeList: [  ],
         value: '',
         isPublished: '',
-        isRecommend: '',
+        isRecommend: ''
       }
     },
     activated() {
@@ -159,9 +159,6 @@
         }
       })
       this.getPageBlog()
-      if (this.$route.query.blogMassage) {
-        this.open('编辑')
-      }
     },
     methods: {
       getComment(id) {

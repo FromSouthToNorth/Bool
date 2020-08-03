@@ -2,28 +2,6 @@
   <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
       <table class="ui teal table">
-<!--        <thead>-->
-<!--        <tr>-->
-<!--          <th></th>-->
-<!--          <th>名称</th>-->
-<!--          <th>颜色</th>-->
-<!--          <th>操作</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr v-if="pageTag"-->
-<!--            v-for="item in pageTag.list"-->
-<!--            :key="item.id"-->
-<!--        >-->
-<!--          <td>{{ item.id }}</td>-->
-<!--          <td>{{ item.name }}</td>-->
-<!--          <td :style="{'color': item.tagColour}">{{ item.tagColour }}</td>-->
-<!--          <td>-->
-<!--            <a @click="editorTag(item.id)" class="ui mini teal basic button">编辑</a>-->
-<!--            <a @click="deleteTag(item.id)" class="ui mini red basic button">删除</a>-->
-<!--          </td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
         <el-table
                 :data="pageTag.list"
                 style="width: 100%">
@@ -97,9 +75,6 @@
     },
     activated() {  },
     mounted() {
-      if (this.$route.query.tagMassage) {
-        this.open('编辑')
-      }
       this.getPageTag()
     },
     methods: {

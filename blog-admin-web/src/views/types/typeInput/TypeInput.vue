@@ -57,22 +57,24 @@
           data: { 'id': this.id, 'name': this.name },
           success: res => {
             if (res === 0) {
-              this.$router.push({
-                path: '/types/list',
-                query: {
-                  typeMassage: true
-                }
-              })
+              this.open()
               this.clean()
+              this.$router.push('/types/list')
             } else {
-              this.openError('编辑')
+              this.openError()
             }
           }
         })
       },
-      openError(msg) {
-        this.$message.error(msg + '失败！');
-      }
+      openError() {
+        this.$message.error('编辑类型失败！');
+      },
+      open() {
+        this.$message({
+          message: '编辑类型成功',
+          type: 'success'
+        });
+      },
     }
   }
 </script>
