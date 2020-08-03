@@ -11,6 +11,7 @@ import com.hy.blog.vo.DataBar;
 import com.hy.blog.vo.DataPie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class AdminDataServiceImpl implements AdminDataService {
     }
 
     @Override
+    @Transactional
     public List<String> findTagName() {
         List<Tag> allTag = adminTagDAO.findAllTag();
         List<String> names = new ArrayList<>();
@@ -46,6 +48,7 @@ public class AdminDataServiceImpl implements AdminDataService {
     }
 
     @Override
+    @Transactional
     public DataBar findTypeBar() {
         List<Type> allType = adminTypeDAO.findAllType();
         List<String> names = new ArrayList<>();

@@ -29,7 +29,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public void updateLoginTime(User user) {
         adminUserDAO.updateLoginItem(user);
     }
