@@ -89,11 +89,11 @@
           </div>
         </div>
         <div class="field m-mobile-wide m-margin-bottom-small">
-          <button @click="delInput" type="button" class="ui teal basic button m-mobile-wide">
-            <i class="eraser icon"></i>清空
-          </button>
-          <button @click="commentPost" type="button" class="ui teal button m-mobile-wide">
+          <button @click="commentPost" type="button" class="ui teal button m-mobile-wide m-margin-bottom-small">
             <i class="edit icon"></i>发布
+          </button>
+          <button @click="delInput" type="button" class="ui teal basic button m-mobile-wide m-margin-bottom-small">
+            <i class="eraser icon"></i>清空
           </button>
           <button id="error-message" style="display: none;"></button>
         </div>

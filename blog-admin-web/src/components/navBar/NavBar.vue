@@ -35,7 +35,7 @@
 
 <script>
 
-  import { setCookie, getCookie } from "../../utils/cookie"
+  import { setCookie, getCookie } from "@/utils/cookie"
 
   export default {
     name: "NavBar",
