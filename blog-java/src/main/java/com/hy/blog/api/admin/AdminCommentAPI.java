@@ -3,6 +3,7 @@ package com.hy.blog.api.admin;
 import com.hy.blog.entity.Comment;
 import com.hy.blog.service.CommentService;
 import com.hy.blog.service.adminService.AdminCommentService;
+import com.hy.blog.vo.CommentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,18 +17,15 @@ import java.util.Map;
 public class AdminCommentAPI {
 
     @Autowired
-    private CommentService commentService;
-
-    @Autowired
     private AdminCommentService adminCommentService;
 
     @GetMapping("/comment")
-    public List<Comment> getByIdComment(Long id) {
-        return commentService.findByBlogIdComment(id);
+    public CommentVO getByIdComment(Long id) {
+        return adminCommentService.findByBlogIdOne(id);
     }
 
     @GetMapping("/comments")
-    public Map<String, List<Comment>> comment() {
+    public CommentVO comment() {
         return adminCommentService.findAllComment();
     }
 

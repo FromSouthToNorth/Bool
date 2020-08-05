@@ -207,6 +207,12 @@ a {
     margin: auto !important;
 }
 
+.m-container-min {
+    max-width: 54em !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .m-mobile-show {
     display: none !important;
 }

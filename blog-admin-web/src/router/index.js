@@ -59,10 +59,6 @@ const routes =[
     }]
   },
   {
-    path: '/comment',
-    component: () => import('views/comment/Comment')
-  },
-  {
     path: '/comments',
     component: () => import('views/comment/Comments')
   }

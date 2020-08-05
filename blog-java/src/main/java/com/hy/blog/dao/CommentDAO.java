@@ -23,4 +23,7 @@ public interface CommentDAO {
 
     Integer findByIdDelete(@Param("id") Long id);
 
+    // 查询子 id
+    Long findByParentIdSonId(@Param("id") Long id);
+
 }

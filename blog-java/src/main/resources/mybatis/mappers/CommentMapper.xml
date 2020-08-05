@@ -68,4 +68,8 @@
         delete from t_comment where id = #{id}
     </delete>
 
+    <select id="findByParentIdSonId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        select id from t_comment where parent_comment_id = #{id}
+    </select>
+
 </mapper>

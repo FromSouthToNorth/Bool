@@ -3,12 +3,14 @@
     <div class="ui container home">
       <el-row style="margin-bottom: 20px">
         <el-col :span="6" class="m-padded10">
-          <admin :isRes="isRes"></admin>
+          <el-card class="el-card" shadow="hover">
+            <admin :isRes="isRes"></admin>
+          </el-card>
         </el-col>
         <el-col :span="18" class="m-padded10">
           <el-row :gutter="20">
             <el-col :span="8">
-              <div class="el-card">
+              <el-card class="el-card" shadow="hover">
                 <div class="grid-content grid-con-1">
                   <i class="grid-con-icon el-icon-location-outline"></i>
                   <div class="grid-cont-right">
@@ -16,10 +18,10 @@
                     <div>分类数量</div>
                   </div>
                 </div>
-              </div>
+              </el-card>
             </el-col>
             <el-col :span="8">
-              <div class="el-card">
+              <el-card class="el-card" shadow="hover">
                 <div class="grid-content grid-con-2">
                   <i class="grid-con-icon el-icon-price-tag"></i>
                   <div class="grid-cont-right">
@@ -27,10 +29,10 @@
                     <div>标签数量</div>
                   </div>
                 </div>
-              </div>
+              </el-card>
             </el-col>
             <el-col :span="8">
-              <div class="el-card">
+              <el-card class="el-card" shadow="hover">
                 <div class="grid-content grid-con-3">
                   <i class="grid-con-icon el-icon-reading"></i>
                   <div class="grid-cont-right">
@@ -38,15 +40,19 @@
                     <div>博客数量</div>
                   </div>
                 </div>
-              </div>
+              </el-card>
             </el-col>
           </el-row>
           <el-row style="margin-top: 40px;">
             <el-col :span="12">
-              <type-bar></type-bar>
+              <el-card class="el-card" shadow="hover">
+                <type-bar></type-bar>
+              </el-card>
             </el-col>
             <el-col :span="12">
-              <type-pie></type-pie>
+              <el-card class="el-card" shadow="hover">
+                <tag-pie></tag-pie>
+              </el-card>
             </el-col>
           </el-row>
         </el-col>
@@ -57,11 +63,12 @@
 
 <script>
 import TypeBar from "@/views/typeBar/TypeBar";
-import TypePie from "@/views/tagPie/TagPie";
+
 import Admin from "@/views/admin/Admin";
+import TagPie from "@/views/tagPie/TagPie";
 export default {
 name: "Home",
-  components: { Admin, TypePie, TypeBar },
+  components: {TagPie, Admin, TypeBar },
   data() {
    return {
      total: {

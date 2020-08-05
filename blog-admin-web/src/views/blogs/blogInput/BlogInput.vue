@@ -276,6 +276,8 @@
       },
       // 图片上传
       $imgAdd(pos, $file) {
+        console.log('pos：', pos)
+        console.log('$file：', $file)
         XMLHttpRequest.setRequestHeader
         const client = new OSS.Wrapper({
           region: oos.region,

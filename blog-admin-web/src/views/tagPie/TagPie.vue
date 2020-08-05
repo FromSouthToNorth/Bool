@@ -1,12 +1,12 @@
 <template>
-  <div class="chart el-card el-card__body" style="margin-left: 24px;">
+  <div class="chart">
     <div id="type-pie" style="width: 340px; height: 320px;"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "TypePie",
+  name: "TagPie",
   data() {
     return {
       typePie: {  },

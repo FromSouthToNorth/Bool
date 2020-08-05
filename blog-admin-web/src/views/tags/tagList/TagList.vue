@@ -38,6 +38,7 @@
                       size="mini"
                       type="danger"
                       icon="el-icon-delete"
+                      plain
                       @click="handleDelete(scope.$index, scope.row)">删除</el-button>
             </template>
           </el-table-column>
@@ -95,22 +96,19 @@
           }
         })
       },
-      handleDelete(idnex, row) {
-        let msg = confirm('确认删除 '+ row.name + ' 标签吗？')
-        if (msg) {
-          $.post({
-            url: 'deleteTag',
-            data: { 'id': row.id },
-            success: res => {
-              if (res === 0){
-                this.getPageTag()
-                this.open("删除")
-              } else {
-                this.openError("删除")
-              }
+      handleDelete(index, row) {
+        $.post({
+          url: 'deleteTag',
+          data: { 'id': row.id },
+          success: res => {
+            if (res === 0){
+              this.getPageTag()
+              this.open("删除")
+            } else {
+              this.openError("删除")
             }
-          })
-        }
+          }
+        })
       },
       addBtn() {
         this.$router.push('/tags/input')
@@ -128,6 +126,20 @@
       openError(msg) {
         this.$message.error(msg + '标签失败！');
       },
+      messageBox(index, row) {
+        this.$confirm('此操作将永久删除该标签, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.handleDelete(index, row)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      }
     }
   }
 </script>

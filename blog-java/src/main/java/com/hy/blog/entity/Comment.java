@@ -31,6 +31,8 @@ public class Comment {
     private Boolean adminComment;
     private String parentNickname;
 
+    private Boolean isComment;
+
     private Blog blog;
 
     private List<Comment> replyComments;

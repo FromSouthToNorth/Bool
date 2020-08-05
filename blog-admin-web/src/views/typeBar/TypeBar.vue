@@ -1,5 +1,5 @@
 <template>
-  <div class="chart el-card el-card__body">
+  <div class="chart">
     <div id="type-bar" style="width: 370px; height: 320px"></div>
   </div>
 </template>

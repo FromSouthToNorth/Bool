@@ -43,11 +43,9 @@
       <div id="table-container">
         <table class="ui compact teal table">
           <el-table
-              :data="pageBlog.list"
-              style="width: 100%">
+              :data="pageBlog.list">
             <el-table-column
-                label="名称"
-                width="">
+                label="名称">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top">
                   <div class="block">
@@ -60,6 +58,7 @@
               </template>
             </el-table-column>
             <el-table-column
+                width="100"
                 label="类型">
               <template slot-scope="scope">
                 <span>{{ scope.row.type.name }}</span>
@@ -105,9 +104,16 @@
                     @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                 <el-button
                     size="mini"
+                    type="success"
+                    plain
+                    icon="el-icon-chat-dot-round"
+                    @click="handleComment(scope.$index, scope.row)">评论</el-button>
+                <el-button
+                    size="mini"
                     type="danger"
+                    plain
                     icon="el-icon-delete"
-                    @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    @click="messageBox(scope.$index, scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -161,11 +167,11 @@
       this.getPageBlog()
     },
     methods: {
-      getComment(id) {
+      handleComment(index, row) {
         this.$router.push({
-          path: '/comment',
+          path: '/comments',
           query: {
-            blogId: id
+            blogId: row.id
           }
         })
       },
@@ -195,21 +201,18 @@
         })
       },
       handleDelete(index, row) {
-        let meg = confirm('确认删除标题为：'+ row.title + ' 的博客吗？')
-        if (meg) {
-          $.get({
-            url: '/blog/delete',
-            data: { 'id': row.id },
-            success: res => {
-              if (res === 1) {
-                this.getPageBlog()
-                this.open('删除')
-              } else {
-                this.openError('删除')
-              }
+        $.get({
+          url: '/blog/delete',
+          data: { 'id': row.id },
+          success: res => {
+            if (res === 1) {
+              this.getPageBlog()
+              this.open('删除')
+            } else {
+              this.openError('删除')
             }
-          })
-        }
+          }
+        })
       },
       open(msg) {
         this.$message({
@@ -237,6 +240,20 @@
       },
       addBtn() {
         this.$router.push('/blogs/input')
+      },
+      messageBox(index, row) {
+        this.$confirm('此操作将永久删除该博客, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.handleDelete(index, row)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
       }
     }
   }

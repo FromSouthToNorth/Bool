@@ -33,6 +33,7 @@
                   size="mini"
                   type="danger"
                   icon="el-icon-delete"
+                  plain
                   @click="handleDelete(scope.$index, scope.row)">删除</el-button>
             </template>
           </el-table-column>
@@ -103,21 +104,18 @@
         this.$router.push('/types/input')
       },
       handleDelete(index, row) {
-        let meg = confirm('确认删除：'+ row.name + ' 分类吗？')
-        if (meg) {
-          $.post({
-            url: 'deleteType',
-            data: { 'id': row.id },
-            success: res => {
-              if (res === 1) {
-                this.getPageType()
-                this.open("删除")
-              } else {
-                this.openError("删除")
-              }
+        $.post({
+          url: 'deleteType',
+          data: { 'id': row.id },
+          success: res => {
+            if (res === 1) {
+              this.getPageType()
+              this.open("删除")
+            } else {
+              this.openError("删除")
             }
-          })
-        }
+          }
+        })
       },
       open(msg) {
         this.$message({
@@ -128,6 +126,20 @@
       openError(msg) {
         this.$message.error(msg + '分类失败！');
       },
+      messageBox(index, row) {
+        this.$confirm('此操作将永久删除该分类, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.handleDelete(index, row)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      }
     }
   }
 </script>

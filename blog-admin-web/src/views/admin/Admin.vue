@@ -1,5 +1,5 @@
 <template>
-  <div class="user el-card el-card__body">
+  <div class="user">
     <div class="user-info">
       <div class="block"><el-avatar :size="100" :src="user.avatar"></el-avatar></div>
       <div class="user-name">{{ user.nickname }}</div>
@@ -34,7 +34,6 @@ name: "Admin",
       $.get({
         url: 'user',
         success: res => {
-          console.log(res);
           this.user = res;
         },
         error: res => {
