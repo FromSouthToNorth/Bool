@@ -291,7 +291,7 @@
         client.multipartUpload(filename, $file).then(res => {          // 上传
           this.open('上传')
           console.log('上传成功：', res)
-          let url = 'http://'+ oos.bucket +'.oss-cn-chengdu.aliyuncs.com/' + filename // 拼接回显url
+          let url = 'http://' + oos.bucket + '.' + oos.region + '.aliyuncs.com/' + filename // 拼接回显url
           this.$refs.md.$img2Url(pos, url)
         }).catch(err => {
           this.openError('上传')
