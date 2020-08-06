@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="loading">
     <!-- 主体 -->
     <div id="waypoint" class="m-container-small m-padded-tb-large">
       <div class="ui container m-dialog-shadow" v-if="blog">
@@ -110,10 +110,8 @@
     data() {
       return {
         blog: null,
+        loading: true
       }
-    },
-    deactivated() {
-      this.blog = null;
     },
     activated() {
       if (this.$route.params.bid) {
@@ -124,9 +122,15 @@
             this.blog = res;
             $(window).scrollTo(0, 10)
             this.setTO()
+            this.delayLoading()
           }
         })
       }
+
+    },
+    deactivated() {
+      this.blog = null
+      this.loading = true
     },
     methods: {
       ChangeDateFormat(date) {
@@ -136,8 +140,6 @@
         setTimeout(() => {
           this.litsenAll()
           this.tocbotInit()
-          var html = `<div style="width: 100%; overflow: auto;"></div>`
-          $('.tablee').wrap(html)
         }, 200)
       },
       litsenAll() {
@@ -148,13 +150,18 @@
           position: "bottom center"
         })
         $('#toTop-btn').click(function () {
-          $(window).scrollTo(0, 500)
+          $(window).scrollTo(0, 200)
         })
         $('.toc.button').popup({
           popup: $('.toc-container.popup'),
           on: 'click',
           position: "left center"
         })
+      },
+      delayLoading() {
+        setTimeout(() => {
+          this.loading = false
+        }, 600)
       },
       tocbotInit() {
         tocbot.init({

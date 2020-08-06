@@ -15,7 +15,8 @@
       <!-- /header -->
       <div v-for="(value, key) in mapArchives" :key="key">
         <h2 class="ui center aligned header" style="margin: 20px;">{{key}}</h2>
-        <div class="ui fluid vertical menu m-dialog-shadow">
+        <div class="ui fluid vertical menu m-dialog-shadow"
+             v-loading="loading">
           <router-link
             class="item"
             v-for="item in value"
@@ -42,7 +43,8 @@
     data() {
       return {
         blogCount: null,
-        mapArchives: null
+        mapArchives: null,
+        loading: true
       }
     },
     mounted() {
@@ -58,6 +60,7 @@
           this.mapArchives = res
         }
       })
+      this.delayLoading()
     },
     deactivated() {  },
     methods: {
@@ -80,6 +83,11 @@
         // ":" +
         // parseInt(marr[2]);
         return dd;
+      },
+      delayLoading() {
+        setTimeout(() => {
+          this.loading = false
+        }, 600)
       }
     }
   }

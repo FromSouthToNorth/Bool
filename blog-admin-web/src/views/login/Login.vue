@@ -24,10 +24,6 @@
               </div>
               <button @click="login" type="button" class="ui fluid large teal submit button">登 录</button>
             </div>
-            <div v-if="isShowMassage">
-              <div class="ui error mini message"></div>
-              <div class="ui mini negative message">用户名和密码错误</div>
-            </div>
           </form>
         </div>
       </div>
@@ -60,24 +56,44 @@
     inject: ['setNav'],
     methods: {
       login() {
-        $.post({
-          url: 'login',
-          data: {'userName': this.username, 'password': this.password},
-          success: res => {
-            this.isShowMassage = res
-            if (res === 0) {
-              this.$router.push({
-                path: '/home',
-                query: {
-                  isRes: true
-                }
-              })
-            } else  {
+        if (this.username !== '' && this.password !=='') {
+          $.post({
+            url: 'login',
+            data: {'userName': this.username, 'password': this.password},
+            success: res => {
+              if (res === 0) {
+                this.open()
+                this.$router.push({
+                  path: '/home',
+                  query: {
+                    isRes: true
+                  }
+                })
+              } else  {
+                this.openError()
+              }
+              this.username = ''
+              this.password = ''
             }
-            this.username = ''
-            this.password = ''
-          }
-        })
+          })
+        } else {
+          this.openWarn()
+        }
+      },
+      open() {
+        this.$message({
+          message: '登录成功',
+          type: 'success'
+        });
+      },
+      openWarn() {
+        this.$message({
+          message: '请输入用户名密码哦',
+          type: 'warning'
+        });
+      },
+      openError() {
+        this.$message.error('用户名或密码错了哦');
       }
     }
   }
