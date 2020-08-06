@@ -16,6 +16,7 @@
   import NavBar from "components/navBar/NavBar"
   import FooterBar from "components/footerBar/FooterBar";
   import 'ajax/base'
+  var _hmt = _hmt || []
 
   export default {
     name: 'App',
@@ -30,6 +31,7 @@
     },
     mounted() {
       this.getVisitTotal()
+      this.baidustatistical()
     },
     methods: {
       getVisitTotal() {
@@ -39,6 +41,12 @@
             this.VisitTotal = res
           }
         })
+      },
+      baidustatistical() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1a1f039af1dd3609fee0034a9d1767e5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
       }
     }
   }
