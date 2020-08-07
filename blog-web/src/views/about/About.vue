@@ -4,10 +4,8 @@
       <div class="ui stackable grid">
         <div class="eleven wide column">
           <div class="ui segment m-dialog-shadow">
-<!--            <img src="https://images.unsplash.com/photo-1593370629580-4e25015f9b84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"-->
-<!--                 alt="" class="ui rounded fluid image">-->
             <el-carousel direction="vertical" :autoplay="false">
-              <el-carousel-item v-for="(item, index) in imgList" :key="index">
+              <el-carousel-item v-for="(item, index) in imgList" :key="index" v-loading="loading">
                 <el-image :src="item"></el-image>
               </el-carousel-item>
             </el-carousel>
@@ -77,8 +75,19 @@
             'https://images.unsplash.com/photo-1596052690099-7421fbdfe3c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
             'https://images.unsplash.com/photo-1596055318757-2bd56e35ed84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
             'https://images.unsplash.com/photo-1596092720646-4713637c5976?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
-        ]
+        ],
+        loading: true
       }
+    },
+    activated() {
+      this.delayLoading()
+    },
+    methods: {
+      delayLoading() {
+        setTimeout(() => {
+          this.loading = false
+        }, 600)
+      },
     }
   }
 

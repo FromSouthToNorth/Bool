@@ -1,7 +1,7 @@
 <template>
   <div>
     <!---->
-    <div class="ui attached segment teal">
+    <div class="ui attached segment teal" v-loading="loading">
       <div class="ui padded vertical segment stackable m-padded-large"
         v-for="item in pageBlog.list"
         :key="item.id"
@@ -107,7 +107,8 @@
     data() {
       return {
         isActive: true,
-        pageNum: 1
+        pageNum: 1,
+        loading: true
       }
     },
     props: {
@@ -117,15 +118,21 @@
       },
       pageBlog: {  }
     },
-    activated() {  },
+    mounted() {
+    },
+    activated() { this.delayLoading() },
     methods: {
       ChangeDateFormat(date) {
         return ChangeDateFormat(date).substring(0, 10)
       },
       pageClick(page) {
-        console.log(page);
         this.pageNum = page
         this.paging(page)
+      },
+      delayLoading() {
+        setTimeout(() => {
+          this.loading = false
+        }, 600)
       }
     },
   }

@@ -3,9 +3,9 @@
     <div class="m-background">
       <el-backtop></el-backtop>
       <nav-bar v-if="navShow"></nav-bar>
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       <footer-bar v-if="navShow"></footer-bar>
     </div>
   </div>
