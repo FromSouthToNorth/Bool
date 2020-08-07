@@ -7,6 +7,7 @@ import com.hy.blog.entity.Blog;
 import com.hy.blog.entity.Type;
 import com.hy.blog.service.BlogService;
 import com.hy.blog.service.TypeService;
+import com.hy.blog.vo.DataStringValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,8 +25,8 @@ public class TypeAPI {
     private BlogService blogService;
 
     @GetMapping("/types")
-    public List<Type> types() {
-        return typeService.findBlogType();
+    public List<DataStringValue> types() {
+        return typeService.findAllType();
     }
 
     @GetMapping("/blogType")

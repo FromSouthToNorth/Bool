@@ -46,4 +46,31 @@
         and t.id = #{tagId}
     </select>
 
+    <select id="findHomeTag" resultType="com.hy.blog.vo.DataStringValue">
+        select
+            tt.id               ,
+            tt.name             ,
+            tt.tag_colour       ,
+            count(tt.id) value
+        from t_blog_tags tbt    ,
+             t_tag tt
+        where tbt.tags_id = tt.id
+        group by tt.id
+        order by value desc
+        limit 12
+    </select>
+
+    <select id="findAllTag" resultType="com.hy.blog.vo.DataStringValue">
+        select
+            tt.id               ,
+            tt.name             ,
+            tt.tag_colour       ,
+            count(tt.id) value
+        from t_blog_tags tbt    ,
+             t_tag tt
+        where tbt.tags_id = tt.id
+        group by tt.id
+        order by value desc
+    </select>
+
 </mapper>

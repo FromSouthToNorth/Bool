@@ -3,7 +3,7 @@ package com.hy.blog.api.admin;
 import com.hy.blog.service.adminService.AdminTotalService;
 import com.hy.blog.service.adminService.AdminDataService;
 import com.hy.blog.vo.DataBar;
-import com.hy.blog.vo.DataPie;
+import com.hy.blog.vo.DataStringValue;
 import com.hy.blog.vo.TypeRoTagRoBlogTotal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,7 @@ public class AdminTotalAPI {
     }
 
     @GetMapping("/tagdata")
-    public List<DataPie> typeData() {
+    public List<DataStringValue> typeData() {
         return adminDataService.findTagPie();
     }
 

@@ -239,7 +239,12 @@
         this.getPageBlog()
       },
       addBtn() {
-        this.$router.push('/blogs/input')
+        this.$router.push({
+          path: '/blogs/input',
+          query: {
+            isAdd: true
+          }
+        })
       },
       messageBox(index, row) {
         this.$confirm('此操作将永久删除该博客, 是否继续?', '提示', {

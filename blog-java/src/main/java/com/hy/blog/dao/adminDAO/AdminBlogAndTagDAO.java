@@ -1,7 +1,7 @@
 package com.hy.blog.dao.adminDAO;
 
 import com.hy.blog.entity.BlogAndTag;
-import com.hy.blog.vo.DataPie;
+import com.hy.blog.vo.DataStringValue;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -14,6 +14,6 @@ public interface AdminBlogAndTagDAO {
 
     Integer deleteByTagId(@Param("tagId") Long tagId);
 
-    List<DataPie> findTagPie();
+    List<DataStringValue> findTagPie();
 
 }

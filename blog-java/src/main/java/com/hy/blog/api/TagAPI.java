@@ -6,6 +6,7 @@ import com.hy.blog.entity.Blog;
 import com.hy.blog.entity.Tag;
 import com.hy.blog.service.BlogService;
 import com.hy.blog.service.TagService;
+import com.hy.blog.vo.DataStringValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +24,8 @@ public class TagAPI {
     private BlogService blogService;
 
     @GetMapping("/tags")
-    public List<Tag> tags() {
-        return tagService.findBlogTag();
+    public List<DataStringValue> tags() {
+        return tagService.findAllTat();
     }
 
     @GetMapping("/blogTag")

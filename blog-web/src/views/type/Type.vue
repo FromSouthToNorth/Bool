@@ -22,13 +22,13 @@
           :to="'/type/' + item.id"
           class="ui labeled button m-margin-tb-tiny"
         >
-          <a href="#"  class="ui basic button"
-             :class="{teal: $route.params.typeid === item.id}">
+          <span href="#"  class="ui basic button"
+             :class="{teal: $route.params.typeid == item.id}">
             {{item.name}}
-          </a>
+          </span>
           <div class="ui basic left pointing label"
-               :class="{teal: $route.params.typeid === item.id}">
-            {{item.blogs.length}}
+               :class="{teal: $route.params.typeid == item.id}">
+            {{item.value}}
           </div>
         </router-link>
       </div>

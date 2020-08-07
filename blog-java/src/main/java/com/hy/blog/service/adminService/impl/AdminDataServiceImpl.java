@@ -8,7 +8,7 @@ import com.hy.blog.entity.Tag;
 import com.hy.blog.entity.Type;
 import com.hy.blog.service.adminService.AdminDataService;
 import com.hy.blog.vo.DataBar;
-import com.hy.blog.vo.DataPie;
+import com.hy.blog.vo.DataStringValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,7 @@ public class AdminDataServiceImpl implements AdminDataService {
     private AdminBlogAndTagDAO adminBlogAndTagDAO;
 
     @Override
-    public List<DataPie> findTagPie() {
+    public List<DataStringValue> findTagPie() {
         return adminBlogAndTagDAO.findTagPie();
     }
 

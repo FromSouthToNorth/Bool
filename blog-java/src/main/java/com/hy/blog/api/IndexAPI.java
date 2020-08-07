@@ -8,6 +8,7 @@ import com.hy.blog.entity.Type;
 import com.hy.blog.service.BlogService;
 import com.hy.blog.service.TagService;
 import com.hy.blog.service.TypeService;
+import com.hy.blog.vo.DataStringValue;
 import com.hy.blog.vo.RecommendBlog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,13 +54,13 @@ public class IndexAPI {
     }
 
     @GetMapping("/homeTags")
-    public List<Tag> tags() {
-        return tagService.findBlogTag();
+    public List<DataStringValue> tags() {
+        return tagService.findHomeTag();
     }
 
     @GetMapping("/homeTypes")
-    public List<Type> types() {
-        return typeService.findBlogType();
+    public List<DataStringValue> types() {
+        return typeService.findHomeType();
     }
 
     @GetMapping("/recommendBlogs")

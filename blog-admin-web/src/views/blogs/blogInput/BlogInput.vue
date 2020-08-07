@@ -134,7 +134,7 @@
       return {
         content: "", //内容
         id: "", //修改时的id
-        flag: "", //原创/转载/翻译
+        flag: "原创", //原创/转载/翻译
         title: "", //博客标题
         published: "", //是否发布 false/true
         typeId: "", //类型id
@@ -169,6 +169,10 @@
         this.id = this.$route.query.blogId
       } else {
         this.id = null
+      }
+      if (this.$route.query.isAdd) {
+        this.id = null
+        this.clean()
       }
     },
     mounted() {
@@ -246,7 +250,7 @@
       },
       clean() {
         this.content = '' // 内容
-        this.flag = '' // 原创/转载/翻译
+        this.flag = '原创' // 原创/转载/翻译
         this.title = '' // 博客标题
         this.published = '' // 是否发布 false/true
         this.typeId = '' // 类型id

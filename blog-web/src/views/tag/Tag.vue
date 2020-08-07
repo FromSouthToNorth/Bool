@@ -19,12 +19,12 @@
           v-for="item in tagList"
           :key="item.id"
           tag="a"
-          :class="{teal:$route.params.tagid === item.id}"
+          :class="{teal:$route.params.tagid == item.id}"
           @click.native="getBlog(item.id)"
           class="ui basic left pointing large label m-margin-tb-tiny"
         >
           <span>{{item.name}}</span>
-          <div class="detail">{{item.blogs.length}}</div>
+          <div class="detail">{{item.value}}</div>
         </router-link>
       </div>
 

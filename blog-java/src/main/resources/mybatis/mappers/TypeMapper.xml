@@ -41,4 +41,29 @@
         and   t.id = #{typeId}
     </select>
 
+    <select id="findHomeType" resultType="com.hy.blog.vo.DataStringValue">
+        select
+            tt.id       ,
+            tt.name     ,
+            count(tt.id) value
+        from t_blog tb  ,
+             t_type tt
+        where tb.type_id = tt.id
+        group by tt.id
+        order by value desc
+        limit 5
+    </select>
+
+    <select id="findAllType" resultType="com.hy.blog.vo.DataStringValue">
+        select
+            tt.id       ,
+            tt.name     ,
+            count(tt.id) value
+        from t_blog tb  ,
+             t_type tt
+        where tb.type_id = tt.id
+        group by tt.id
+        order by value desc
+    </select>
+
 </mapper>

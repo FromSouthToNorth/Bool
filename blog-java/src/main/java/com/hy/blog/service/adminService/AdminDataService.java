@@ -1,13 +1,13 @@
 package com.hy.blog.service.adminService;
 
 import com.hy.blog.vo.DataBar;
-import com.hy.blog.vo.DataPie;
+import com.hy.blog.vo.DataStringValue;
 
 import java.util.List;
 
 public interface AdminDataService {
 
-    List<DataPie> findTagPie();
+    List<DataStringValue> findTagPie();
 
     List<String> findTagName();
 

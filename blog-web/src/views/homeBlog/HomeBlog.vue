@@ -43,7 +43,7 @@
                 >
                   <span style="color: #00B5AD;">{{item.name}}</span>
                   <div class="ui teal basic left pointing label">
-                    {{item.blogs.length}}
+                    {{item.value}}
                   </div>
                 </router-link>
               </div>
@@ -72,7 +72,7 @@
                  :style="{'color': item.tagColour + '!important', 'border-color': item.tagColour + '!important'}">
                 <span>{{item.name}}</span>
                 <div class="detail" >
-                  {{item.blogs.length}}
+                  {{item.value}}
                 </div>
               </router-link>
             </div>
