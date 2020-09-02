@@ -12,14 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class TagServiceImpl implements TagService {
 
     @Autowired
     private TagDAO tagDAO;
 
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Tag> findBlogTag() {
         return tagDAO.findBlogTag();
     }

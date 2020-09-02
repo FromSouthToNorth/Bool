@@ -1,6 +1,6 @@
 <template>
   <div class="m-container-small m-padded-tb-big">
-    <div class="ui container">
+    <div class="ui container m-dialog-shadow">
       <!-- header -->
       <div class="ui top attached segment m-navbar m-dialog-shadow">
         <div class="ui middle aligned two column grid">
@@ -13,9 +13,8 @@
         </div>
       </div>
       <!-- /header -->
-
       <blog-list :paging="paging" :pageNum="pageNum" :pageBlog="pageBlog"></blog-list>
-
+      <div v-if="pageBlogShow" class="query-is-null-hint">没有搜索到 {{ query }} 相关的博客</div>
     </div>
   </div>
 </template>
@@ -31,7 +30,8 @@
       return {
         pageNum: 0,
         query: '',
-        pageBlog: {  }
+        pageBlog: {  },
+        pageBlogShow: null
       }
     },
     activated() {
@@ -54,13 +54,14 @@
           data: { 'query': this.query, 'pageNum': this.pageNum },
           success: res => {
             this.pageBlog = res
+            this.pageBlogShow = this.pageBlog.total < 1
           }
         })
       },
       paging(pageNum) {
         this.pageNum = pageNum
         this.getBlog()
-      }
+      },
     }
   }
 

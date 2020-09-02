@@ -8,7 +8,7 @@
             <div class="ui top attached segment m-navbar">
               <div class="ui middle aligned two column grid">
                 <div class="column">
-                  <h3 class="ui teal header">文章</h3>
+                  <h3 class="ui title header">文章</h3>
                 </div>
                 <div class="right aligned column">
                   共 <h4 class="ui orange header m-inline-block" >{{pageBlog.total}}</h4> 篇
@@ -21,7 +21,7 @@
         </div>
         <div class="five wide column">
           <!-- 分类 -->
-          <div class="ui segments m-dialog-shadow">
+          <div class="ui segments m-dialog-shadow type-box">
             <div class="ui secondary segment m-navbar">
               <div class="ui two column grid">
                 <div class="column">
@@ -34,14 +34,14 @@
                 </div>
               </div>
             </div>
-            <div class="ui teal segment">
+            <div class="ui segment border-top-none">
               <div class="ui fluid vertical menu">
                 <router-link
                   :to="'/type/' + item.id"
                   class="item" v-for="item in listType"
                   :key="item.id"
                 >
-                  <span style="color: #00B5AD;">{{item.name}}</span>
+                  <span>{{item.name}}</span>
                   <div class="ui teal basic left pointing label">
                     {{item.value}}
                   </div>
@@ -51,7 +51,7 @@
           </div>
           <!-- /分类 -->
           <!-- 标签 -->
-          <div class="ui segments m-margin-top m-dialog-shadow">
+          <div class="ui segments m-margin-top m-dialog-shadow tag-box">
             <div class="ui secondary segment m-navbar">
               <div class="ui two column grid">
                 <div class="column">
@@ -64,12 +64,12 @@
                 </div>
               </div>
             </div>
-            <div class="ui teal segment">
+            <div class="ui segment border-top-none">
               <router-link
                  :to="'/tag/' + item.id"
-                 class="ui teal basic left pointing label m-margin-tb-tiny tag-item"
+                 class="ui basic left pointing label m-margin-tb-tiny tag-item"
                  v-for="item in listTag" :key="item.id"
-                 :style="{'color': item.tagColour + '!important', 'border-color': item.tagColour + '!important'}">
+                 :style="{'color': item.tagColour, 'border-color': item.tagColour}">
                 <span>{{item.name}}</span>
                 <div class="detail" >
                   {{item.value}}
@@ -84,7 +84,9 @@
               <i class="bookmark icon"></i>最新推荐
             </div>
             <div class="ui segment"
-            v-for="item in listRecommend" :key="item.id">
+                 v-for="(item, index) in listRecommend"
+                 :key="item.id"
+                 :class="index === 0 ? 'border-top-none' : ''">
               <router-link
               :to="'/blog/' + item.id" class="m-font-color">
                 {{item.title}}
@@ -130,6 +132,7 @@
           data: {'pageNum': this.pageNum},
           success: res => {
             this.pageBlog = res
+            console.log(this.pageBlog)
           }
         })
       },

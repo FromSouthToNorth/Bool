@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="blog-box">
+    <div v-loading="loading"></div>
     <!---->
-    <div class="ui attached segment teal" v-loading="loading">
+    <div class="ui attached segment blog-list-box">
       <div class="ui padded vertical segment stackable m-padded-large"
         v-for="item in pageBlog.list"
         :key="item.id"
@@ -9,12 +10,12 @@
       >
         <div class="ui middle aligned mobile reversed stackable grid">
           <div class="eleven wide column">
-            <h3 class="ui header">
+            <h6 class="ui blog-title header">
               <router-link :to="'/blog/'+item.id" tag="a" class="m-black">
                 {{item.title}}
               </router-link>
               <a href="#" class="m-black"></a>
-            </h3>
+            </h6>
             <p class="blog-text m-text">{{item.description}}</p>
             <div class="ui grid">
               <div class="row">
@@ -30,7 +31,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="right aligned ten wide column">
+                <div class="right aligned ten wide column blog-type-box">
                   <router-link tag="a" :to="'/type/' + item.type.id"
                     class="ui teal basic label m-padded-tiny m-opacity-mini"
                     style="font-size: 10px;"
@@ -56,13 +57,12 @@
                 </div>
               </div>
               <div class="row">
-                <div class="column">
+                <div class="column blog-tag-box">
                   <router-link :to="'/tag/' + tag.id" tag="a"
-                     class="ui teal basic left pointing label m-padded-comm m-margin"
+                     class="ui teal basic left pointing label m-padded-comm"
                      :style="{'color': tag.tagColour + '!important', 'border-color': tag.tagColour + '!important'}"
                      v-for="tag in item.tags"
-                     :key="tag.id"
-                     style="margin-top: 1rem !important; font-size: 10px;">{{tag.name}}
+                     :key="tag.id"> {{tag.name}}
                   </router-link>
                 </div>
               </div>
@@ -78,14 +78,14 @@
     </div>
     <!---->
     <!-- 分页 -->
-    <div class="ui bottom attached segment" v-if="pageBlog.pages > 1">
+    <div class="ui page-box bottom attached segment" v-if="pageBlog.pages > 1">
       <div class="ui middle aligned two column grid">
         <div class="right aligned column" style="width: 100%;">
           <div class="block">
             <el-pagination
                 layout="prev, pager, next"
                 :page-size=pageBlog.pageSize
-                :page-count="4"
+                pager-count="4"
                 background
                 @current-change="pageClick"
                 :total=pageBlog.total>

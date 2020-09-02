@@ -7,10 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 public class RecommendBlog {
 
     @JsonSerialize(using = ToStringSerializer.class)
@@ -19,4 +15,36 @@ public class RecommendBlog {
 
     private Boolean recommend;
 
+    public RecommendBlog() {
+    }
+
+    public RecommendBlog(Long id, String title, Boolean recommend) {
+        this.id = id;
+        this.title = title;
+        this.recommend = recommend;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Boolean getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(Boolean recommend) {
+        this.recommend = recommend;
+    }
 }

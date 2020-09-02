@@ -1,10 +1,12 @@
 <template>
-  <nav class="ui inverted attached segment m-padded-tb-min m-nav">
+  <nav class="ui attached segment m-padded-tb-min m-nav">
     <div class="ui container">
-      <div class="ui inverted secondary stackable menu">
-        <h2 class="ui header item">
-          <a href="" @click="navSkip('/home')" class="ui teal">HyZt</a>
-        </h2>
+      <div class="ui secondary stackable menu">
+        <div class="nav-logo">
+          <h2 class="ui header item">
+            <a href="" @click="navSkip('/home')" class="ui teal hyzt-logo">HyZt</a>
+          </h2>
+        </div>
         <a href="#"
            @click="navSkip('/home')"
            class="m-item item"
@@ -42,9 +44,9 @@
         </a>
         <!-- 搜索 -->
         <div class="right m-item item" :class="{'m-mobile-hide':toggleClass}">
-          <div class="ui icon inverted transparent input">
+          <div class="ui icon transparent input">
             <label>
-              <input type="text" v-model="searchKey" placeholder="请输入搜索内容...">
+              <input type="text" v-model="searchKey" placeholder="请输入搜索内容..." @keyup.enter="search">
             </label>
             <i @click="search" class="search link icon"></i>
           </div>
@@ -52,7 +54,7 @@
         <!-- /搜索 -->
       </div>
     </div>
-    <a @click="menuToggle" class="ui menu toggle black icon button m-right-top m-mobile-show">
+    <a @click="menuToggle" class="ui menu toggle icon button m-right-top m-mobile-show nav-button">
       <i class="sidebar icon"></i>
     </a>
   </nav>
@@ -65,7 +67,7 @@
       return {
         toggleClass: true,
         headerClass: true,
-        searchKey: ""
+        searchKey: "",
       }
     },
     methods: {
@@ -87,8 +89,16 @@
             }
           })
           this.searchKey = ''
+        } else {
+          this.message()
         }
-      }
+      },
+      message()  {
+        this.$notify.error({
+          title: '提示',
+          message: '请输入搜索的关键字~',
+        });
+      },
     }
   }
 </script>

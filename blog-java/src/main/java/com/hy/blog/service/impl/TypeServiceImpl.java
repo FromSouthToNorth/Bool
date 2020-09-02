@@ -12,14 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class TypeServiceImpl implements TypeService {
 
     @Autowired
     private TypeDAO typeDAO;
 
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Type> findBlogType() {
         return typeDAO.findBlogType();
     }

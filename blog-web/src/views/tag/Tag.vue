@@ -1,11 +1,11 @@
 <template>
   <div class="m-container-small m-padded-tb-big">
-    <div class="ui container">
+    <div class="ui container m-dialog-shadow">
       <!-- header -->
       <div class="ui top attached segment m-navbar"  v-if="tagList">
         <div class="ui middle aligned two column grid">
           <div class="column">
-            <h3 class="ui teal header">标签</h3>
+            <h3 class="ui title header">标签</h3>
           </div>
           <div class="right aligned column">
             共 <h4 class="ui orange header m-inline-block"> {{tagList.length}} </h4> 个
@@ -21,7 +21,7 @@
           tag="a"
           :class="{teal:$route.params.tagid == item.id}"
           @click.native="getBlog(item.id)"
-          class="ui basic left pointing large label m-margin-tb-tiny"
+          class="ui basic left pointing label tag-title m-margin-tb-tiny"
         >
           <span>{{item.name}}</span>
           <div class="detail">{{item.value}}</div>

@@ -1,12 +1,10 @@
 <template>
-  <div class="ui shape m-dialog-shadow" style="margin-top: 2rem">
-    <div class="sides">
-      <div class="side" v-for="item in carousel.items" :key="item.id">
-        <a>
-          <img class="ui fluid image" :src="item.src" @load="loadOK" alt />
-        </a>
-      </div>
-    </div>
+  <div class="ui shape m-dialog-shadow" style="margin-top: 1rem;">
+    <el-carousel :interval="5000">
+      <el-carousel-item v-for="item in carousel.items" :key="item.id">
+        <el-image :src="item.src" style="width: 100%; height: 100%"></el-image>
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 
@@ -19,7 +17,8 @@
         carousel: {
           items: [
             { id: 1, src: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/blogHomeMarquee/20200711110957.png' },
-            { id: 2, src: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/blogHomeMarquee/20200714224447.png' }
+            { id: 2, src: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/blogHomeMarquee/20200714224447.png' },
+            { id: 3, src: 'https://202007002.oss-cn-chengdu.aliyuncs.com/images/blogHomeMarquee/%E6%BB%91%E6%9D%BF.jpg' }
           ]
         }
       }
@@ -38,19 +37,13 @@
   }
 </script>
 
-<style scoped>
+<style>
   .ui.shape {
     width: 100%;
     border-radius: 4px;
+    overflow:hidden;
   }
-  .sides .side img {
-    width: 100%;
-    border-radius: 4px;
-    height: 220px;
-  }
-  .sides .side {
-    width: 100%;
-    height: 220px;
-    border-radius: 4px;
+  .ui.shape .el-carousel__container {
+    height: 200px;
   }
 </style>

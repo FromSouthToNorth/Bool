@@ -36,7 +36,7 @@
               <a href="https://github.com/FromSouthToNorth" class="ui circular icon button violet">
                 <i class="github icon"></i>
               </a>
-              <el-dropdown>
+              <el-dropdown trigger="click">
                 <span class="el-dropdown-link">
                   <a href="#" class="ui wechat circular icon button teal">
                     <i class="wechat icon"></i>
@@ -46,7 +46,7 @@
                   <el-image :src="src" style="width: 100px; height: 100px;"></el-image>
                 </el-dropdown-menu>
               </el-dropdown>
-              <el-dropdown>
+              <el-dropdown trigger="click">
                 <span class="el-dropdown-link">
                   <a href="#" class="ui qq circular icon button blue" data-content="598050554" data-position="bottom left">
                     <i class="qq icon"></i>

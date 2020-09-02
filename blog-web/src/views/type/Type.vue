@@ -1,11 +1,11 @@
 <template>
   <div class="m-container-small m-padded-tb-big">
-    <div class="ui container">
+    <div class="ui container m-dialog-shadow">
       <!-- header -->
       <div v-if="typeList" class="ui top attached segment m-navbar">
         <div class="ui middle aligned two column grid">
           <div class="column">
-            <h3 class="ui teal header">分类</h3>
+            <h3 class="ui title header">分类</h3>
           </div>
           <div class="right aligned column">
             共 <h4 class="ui orange header m-inline-block" > {{typeList.length}} </h4> 个
@@ -13,7 +13,7 @@
         </div>
       </div>
       <!-- /header -->
-      <div class="ui bottom attached segment teal" v-if="typeList">
+      <div class="ui bottom attached segment teal type-box" v-if="typeList">
         <router-link
           tag="div"
           v-for="item in typeList"
@@ -21,6 +21,7 @@
           @click.native="getBlog(item.id)"
           :to="'/type/' + item.id"
           class="ui labeled button m-margin-tb-tiny"
+          :class="{active: $route.params.typeid == item.id}"
         >
           <span href="#"  class="ui basic button"
              :class="{teal: $route.params.typeid == item.id}">
