@@ -179,6 +179,7 @@
             success: res => {
               if (res === 0) {
                 this.getCommentList(this.$route.params.bid)
+                this.sendCommentMail();
                 $(window).scrollTo('#comment-container', 400)
                 this.delInput()
               } else {
@@ -221,6 +222,13 @@
           success: res => {
             this.comments = res
           }
+        })
+      },
+      sendCommentMail() {
+        $.post({
+          url: 'sendmail',
+          data: { "commentId": this.data["parentComment.id"],
+            "blogId": this.data["blog.id"], "nikName": this.data.nickname, "content": this.data.content },
         })
       },
     }

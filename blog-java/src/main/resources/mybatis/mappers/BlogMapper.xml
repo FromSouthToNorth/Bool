@@ -5,7 +5,7 @@
 <mapper namespace="com.hy.blog.dao.BlogDAO">
 
     <resultMap id="blog" type="com.hy.blog.entity.Blog">
-        <id property="id" column="id"/>
+        <id     property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="content" column="content"/>
         <result property="flag" column="flag"/>
@@ -26,11 +26,11 @@
         <result property="userId" column="user_id"/>
         <result property="tagIds" column="tag_ids"/>
         <association property="type" javaType="com.hy.blog.entity.Type">
-            <id property="id" column="typeid"/>
+            <id     property="id" column="typeid"/>
             <result property="name" column="typename"/>
         </association>
         <association property="user" javaType="com.hy.blog.entity.User">
-            <id property="id" column="uid"/>
+            <id     property="id" column="uid"/>
             <result property="nickname" column="nickname"/>
             <result property="username" column="username"/>
             <result property="email" column="email"/>
@@ -215,9 +215,6 @@
     </select>
     
     <select id="findByTitleBlog" resultMap="blog" parameterType="java.lang.String">
-        <if test="query != null">
-            <bind name="pattern" value=" '%' + query + '%' "/>
-        </if>
         select
             tb.id               ,
             tb.title            ,
@@ -237,9 +234,20 @@
         on         tb.type_id = tt.id
         inner join t_user tu
         on         tb.user_id = tu.id
-        where      tb.title like #{pattern} or tb.description like #{pattern}
-        and        tb.published = 1
+        <where>
+            <if test="query != null and query != ''">
+                tb.title like concat('%', #{query}, '%')
+                or tb.description like concat('%', #{query}, '%')
+            </if>
+            <if test="1==1">
+                and tb.published = 1
+            </if>
+        </where>
         order by   tb.update_time desc
+    </select>
+
+    <select id="findByIdBlogTitle" parameterType="java.lang.Long" resultType="java.lang.String">
+        select title from t_blog where id = #{id}
     </select>
 
 </mapper>

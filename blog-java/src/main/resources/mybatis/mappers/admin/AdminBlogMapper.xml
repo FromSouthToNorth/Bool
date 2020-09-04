@@ -167,9 +167,6 @@
     </insert>
 
     <select id="findByTitleRoTypeRoRecommend" parameterType="com.hy.blog.vo.BlogQuery" resultMap="blog_type">
-        <if test="title != null">
-            <bind name="pattern" value=" '%' + title + '%' "/>
-        </if>
         select
             b.id bid        ,
             b.title         ,
@@ -191,7 +188,7 @@
                 and b.recommend = #{recommend}
             </if>
             <if test="title != null">
-                and b.title like #{pattern}
+                and b.title like concat('%', #{title}, '%')
             </if>
         </where>
         order by b.update_time desc

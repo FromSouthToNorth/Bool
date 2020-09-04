@@ -167,14 +167,8 @@
 .ui .tag-box .tag-item,
 .ui.basic.teal.label.tag-title,
 .type-box .ui.labeled.button.active,
-#app .ui a,
-.block .el-pagination.is-background .el-pager li,
 .ui.secondary.menu .item {
     transition: all .5s;
-}
-
-.block .el-pagination.is-background .el-pager li:not(.disabled):hover {
-    color: #00b5ad;
 }
 
 .blog-list-box .blog-img:hover,
