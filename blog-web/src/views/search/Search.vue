@@ -31,8 +31,12 @@
         pageNum: 0,
         query: '',
         pageBlog: {  },
-        pageBlogShow: null
+        pageBlogShow: null,
+        loading: []
       }
+    },
+    created() {
+      this.openLoading();
     },
     activated() {
       if (this.$route.query.key == null || this.$route.query.key === '') {
@@ -55,6 +59,7 @@
           success: res => {
             this.pageBlog = res
             this.pageBlogShow = this.pageBlog.total < 1
+            this.loading.close();
           }
         })
       },
@@ -62,6 +67,15 @@
         this.pageNum = pageNum
         this.getBlog()
       },
+      // 打开加载层
+      openLoading() {
+        this.loading = this.$loading({
+          lock: true,
+          text: "拼命读取中",
+          spinner: "el-icon-loading",
+          background: "rgba(0,0,0,0.7)"
+        });
+      }
     }
   }
 

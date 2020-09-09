@@ -116,7 +116,11 @@
         listType: [],
         listTag: [],
         listRecommend: [],
+        loading: []
       }
+    },
+    created() {
+      this.openLoading();
     },
     mounted() {
       this.getPageBlog()
@@ -132,6 +136,7 @@
           data: {'pageNum': this.pageNum},
           success: res => {
             this.pageBlog = res
+            this.loading.close();
           }
         })
       },
@@ -167,6 +172,15 @@
       paging(pageNum) {
         this.pageNum = pageNum
         this.getPageBlog()
+      },
+      // 打开加载层
+      openLoading() {
+        this.loading = this.$loading({
+          lock: true,
+          text: "拼命读取中",
+          spinner: "el-icon-loading",
+          background: "rgba(0, 0, 0, 0.5)"
+        });
       }
     },
   }

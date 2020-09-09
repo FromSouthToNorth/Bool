@@ -14,7 +14,7 @@ module.exports = {
       'vue-router': 'VueRouter',
       'semantic': 'Semantic',
       'jquery': '$',
-      'highlight.js': 'hljs'
+      // 'highlight.js': 'hljs'
     }
   },
 }

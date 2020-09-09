@@ -50,8 +50,12 @@
         typeList: null,
         pageBlog: {},
         typeId : 0,
-        pageNum: 0
+        pageNum: 0,
+        loading: []
       }
+    },
+    created() {
+      this.openLoading();
     },
     // 组件处于活跃时
     activated() {
@@ -62,8 +66,10 @@
           if (!this.$route.params.typeid) {
             this.$router.push('/type/' + res[0].id)
             this.getBlog(res[0].id)
+            this.loading.close();
           } else {
             this.getBlog(this.$route.params.typeid)
+            this.loading.close();
           }
         }
       })
@@ -86,6 +92,15 @@
       paging(pageNum) {
         this.pageNum = pageNum
         this.getBlog(-1)
+      },
+      // 打开加载层
+      openLoading() {
+        this.loading = this.$loading({
+          lock: true,
+          text: "拼命读取中",
+          spinner: "el-icon-loading",
+          background: "rgba(0,0,0,0.7)"
+        });
       }
     }
   }

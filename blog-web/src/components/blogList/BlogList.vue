@@ -1,6 +1,5 @@
 <template>
   <div class="blog-box">
-    <div v-loading="loading"></div>
     <!---->
     <div class="ui attached segment blog-list-box">
       <div class="ui padded vertical segment stackable m-padded-large"
@@ -108,7 +107,6 @@
       return {
         isActive: true,
         pageNum: 1,
-        loading: true
       }
     },
     props: {
@@ -118,9 +116,6 @@
       },
       pageBlog: {  }
     },
-    mounted() {
-    },
-    activated() { this.delayLoading() },
     methods: {
       ChangeDateFormat(date) {
         return ChangeDateFormat(date).substring(0, 10)
@@ -128,11 +123,6 @@
       pageClick(page) {
         this.pageNum = page
         this.paging(page)
-      },
-      delayLoading() {
-        setTimeout(() => {
-          this.loading = false
-        }, 600)
       }
     },
   }

@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="loading">
+  <div>
     <!-- 主体 -->
     <div id="waypoint" class="m-container-small m-padded-tb-large">
       <div class="ui container m-dialog-shadow" v-if="blog">
@@ -110,10 +110,14 @@
     data() {
       return {
         blog: null,
-        loading: true
+        loading: []
       }
     },
+    created() {
+
+    },
     activated() {
+      this.openLoading();
       if (this.$route.params.bid) {
         $.get({
           url: 'blog',
@@ -122,7 +126,7 @@
             this.blog = res;
             $(window).scrollTo(0, 10)
             this.setTO()
-            this.delayLoading()
+            this.loading.close();
           }
         })
       }
@@ -158,11 +162,6 @@
           position: "left center"
         })
       },
-      delayLoading() {
-        setTimeout(() => {
-          this.loading = false
-        }, 600)
-      },
       tocbotInit() {
         tocbot.init({
           // Where to render the table of contents.
@@ -172,6 +171,15 @@
           // Which headings to grab inside of the contentSelector element.
           headingSelector: "h1, h2, h3, h4"
         })
+      },
+      // 打开加载层
+      openLoading() {
+        this.loading = this.$loading({
+          lock: true,
+          text: "拼命读取中",
+          spinner: "el-icon-loading",
+          background: "rgba(0,0,0,0.7)"
+        });
       }
     }
   }

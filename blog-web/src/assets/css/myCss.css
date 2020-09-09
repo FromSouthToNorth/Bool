@@ -19,6 +19,7 @@
 }
 
 #app .m-dialog-shadow {
+    border-radius: .28571429rem;
     box-shadow: 1px 1px 20px #999;
 }
 
@@ -287,11 +288,14 @@ a {
 }
 
 .query-is-null-hint {
-    margin-top: 30px;
+    background: #fff;
     text-align: center;
+    margin: 0 -1px;
     font-size: 24px;
     font-weight: 500;
     color: #00B5AD;
+    border: 1px solid #d4d4d5;
+    border-top: none;
 }
 
 .m-fixed {

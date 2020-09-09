@@ -15,7 +15,6 @@
       <!-- /header -->
       <div v-for="(value, key) in mapArchives" :key="key">
         <h2 class="ui center aligned header" style="margin: 20px;">{{key}}</h2>
-        <div v-loading="loading"></div>
         <el-timeline>
           <el-timeline-item
               v-for="item in value"
@@ -59,8 +58,11 @@
       return {
         blogCount: null,
         mapArchives: null,
-        loading: true
+        loading: []
       }
+    },
+    created() {
+      this.openLoading();
     },
     mounted() {
       $.get({
@@ -73,10 +75,9 @@
         url: 'blogArchive',
         success: res => {
           this.mapArchives = res
-          console.log(this.mapArchives);
+          this.loading.close();
         }
       })
-      this.delayLoading()
     },
     deactivated() {  },
     methods: {
@@ -100,13 +101,17 @@
         // parseInt(marr[2]);
         return dd;
       },
-      delayLoading() {
-        setTimeout(() => {
-          this.loading = false
-        }, 800)
-      },
       dateFormat(date) {
         return ChangeDateFormat(date)
+      },
+      // 打开加载层
+      openLoading() {
+        this.loading = this.$loading({
+          lock: true,
+          text: "拼命读取中",
+          spinner: "el-icon-loading",
+          background: "rgba(0,0,0,0.7)"
+        });
       }
     }
   }
