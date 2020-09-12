@@ -12,7 +12,7 @@
       <div class="footer-info">
         <ul class="icp">
           <li>
-            <a target="_blank" href="http://www.beian.miit.gov.cn/">蜀ICP备20019889号-1</a>
+            <a target="_blank" href="http://www.beian.miit.gov.cn/">蜀ICP备20019889号</a>
           </li>
           <li class="public-security">
             <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202000694">川公网安备 51012202000694号</a>

@@ -6,7 +6,6 @@ public class Result<T> {
 
     private ResultEnum resultEnum;
     private T data;
-    private String error;
 
     public Result() {
     }
@@ -16,10 +15,6 @@ public class Result<T> {
         this.data = data;
     }
 
-    public Result(ResultEnum resultEnum, String error) {
-        this.resultEnum = resultEnum;
-        this.error = error;
-    }
 
     public ResultEnum getResultEnum() {
         return resultEnum;
@@ -37,11 +32,4 @@ public class Result<T> {
         this.data = data;
     }
 
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
-    }
 }
