@@ -26,7 +26,7 @@
               </div>
               <div class="actions">
                 <a class="reply"
-                   @click="replyComment(item.id, item.nickname)"
+                   @click="replyComment(item.id, item.nickname, item.email)"
                    :data-commentid="item.id"
                    :data-commentnickname="item.nickname">回复</a>
               </div>
@@ -56,7 +56,7 @@
                     <a class="reply" data-commentid="1" data-commentnickname="Matt"
                     :data-commentid="reply.id"
                     :data-commentIckName="reply.parentNickname"
-                    @click="replyComment(reply.id, reply.parentNickname)"
+                    @click="replyComment(reply.id, reply.parentNickname, reply.email)"
                     >回复</a>
                   </div>
                 </div>
@@ -112,6 +112,7 @@
       return {
         isDisabled: true,
         comments: [],
+        mail: '',
         data: {
           'parentComment.id': -1,
           'blog.id': 0,
@@ -204,12 +205,14 @@
         this.data['parentComment.id'] = -1
         this.data.nickname = ''
         this.data.email = ''
+        this.mail = ''
       },
-      replyComment(id, nickname) {
+      replyComment(id, nickname, email) {
         $("[name='content']")
         .attr('placeholder', '@' + nickname)
         .focus()
         this.data['parentComment.id'] = id
+        this.mail = email;
         $(window).scrollTo($('#comment-form'), 500)
       },
       ChangeDateFormat(date) {
@@ -227,8 +230,14 @@
       sendCommentMail() {
         $.post({
           url: 'sendmail',
-          data: { "commentId": this.data["parentComment.id"],
-            "blogId": this.data["blog.id"], "nikName": this.data.nickname, "content": this.data.content },
+          data: {
+            "commentId": this.data["parentComment.id"],
+            "blogId": this.data["blog.id"],
+            "nikName": this.data.nickname,
+            "content": this.data.content,
+            "email": this.data.email,
+            "mail": this.mail
+          },
         })
       },
     }

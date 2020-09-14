@@ -5,17 +5,27 @@ public class MailComment {
     private final String COMMENT = "评论了";
     private final String REPLY = "回复了";
 
-    private Long commentId;
-    private Long blogId;
+    private Long   commentId;
+    private Long   blogId;
     private String nikName;
     private String content;
+    private String mail;
+    private String email;
 
-    public MailComment() {
+    public String getEmail() {
+        return email;
     }
 
-    public MailComment(String nikName, String content) {
-        this.nikName = nikName;
-        this.content = content;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public Long getCommentId() {
@@ -67,6 +77,8 @@ public class MailComment {
                 ", blogId=" + blogId +
                 ", nikName='" + nikName + '\'' +
                 ", content='" + content + '\'' +
+                ", mail='" + mail + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
