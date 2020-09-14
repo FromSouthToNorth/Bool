@@ -1,14 +1,10 @@
 .m-background {
     background: url("../images/dust_scratches.png");
-    min-height: 1000px;
 }
 
-.m-nav .ui.input {
-    color: #DCDFE6;
-}
-
+.m-nav .ui.input,
 .ui .container .secondary .item{
-    color: #909399;
+    color: hsla(0,0%,100%,.7);
 }
 
 .ui .ui.menu.nav-button{
@@ -23,9 +19,12 @@
     box-shadow: 1px 1px 20px #999;
 }
 
-.ui.secondary.stackable.menu a.item:hover,
+.ui.secondary.stackable.menu a.item:hover {
+    color: #e5e5e5;
+}
 .ui .container .secondary .active.item {
-    color: #00897B;
+    color: #e5e5e5;
+    font-weight: 700;
 }
 
 .ui.blog-title.header {
@@ -60,11 +59,11 @@
 }
 
 .m-nav  .ui.input input {
-    color: #909399;
+    color: hsla(0,0%,100%,.7);
 }
 
 .ui.attached.m-nav {
-    background-image: linear-gradient(90deg, #212121, #424242, #212121);
+    background-image: linear-gradient(90deg, #222325, #3b3c3f, #222325);
 }
 
 .m-background .el-backtop, .el-calendar-table td.is-today {
@@ -101,7 +100,23 @@
 }
 
 .footer-box li a {
-    color: #666;
+    color: #909399;
+}
+
+.footer-box li a i {
+    color: #606266;
+}
+
+.footer-box li a .github:hover {
+    color: #673AB7;
+}
+
+.footer-box li a .qq:hover {
+    color: #2196F3;
+}
+
+.footer-box .icp li a {
+    color: #c0c4cc;
 }
 
 .footer-box li a:hover {
@@ -156,6 +171,11 @@
 
 .footer-info .icp li+li {
     border-left: 1px solid #ccc;
+}
+
+i:hover,
+a:hover {
+    transition: all .5s ease-out;
 }
 
 .ui .basic.teal.label.tag-title,
@@ -273,7 +293,7 @@ a {
 }
 
 .m-padded-lr-responsive {
-    padding: 2em 3em 2em 3em !important;
+    padding: .5em 1em .5em 1em !important;
 }
 
 .blog-text {
@@ -282,8 +302,7 @@ a {
 }
 
 .ui.m-padded-tb-min.m-nav {
-    -webkit-box-shadow:  0 8px 10px -8px rgba(0, 0, 0, .5);
-    box-shadow: 0 8px 10px -8px rgba(0, 0, 0, .5);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .5);
     border: none;
 }
 

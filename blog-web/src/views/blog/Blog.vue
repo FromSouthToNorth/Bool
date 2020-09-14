@@ -101,7 +101,7 @@
   import BlogInfo from "components/blogInfo/BlogInfo"
 
   import tocbot from "../../assets/js/tocbot.min"
-  import { imgAmp } from "../../utlis/imgAmp"
+  import { imgAmp } from "@/utlis/imgAmp"
   import ChangeDateFormat from "../../utlis/changeDateFormat"
 
   export default {
@@ -188,4 +188,5 @@
 <style scoped>
   @import "~assets/css/tocbot.css";
   @import "~assets/css/typo.css";
+  @import "~assets/css/base.css";
 </style>

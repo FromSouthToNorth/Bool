@@ -4,16 +4,19 @@
       <div class="ui secondary stackable menu">
         <div class="nav-logo">
           <h2 class="ui header item">
-            <a href="" @click="navSkip('/home')" class="ui teal hyzt-logo">HyZt</a>
+            <router-link to="/" class="ui teal hyzt-logo" tag="a">
+              HyZt
+            </router-link>
           </h2>
         </div>
-        <a href="#"
-           @click="navSkip('/home')"
+        <router-link
+            to="/"
+            tag="a"
            class="m-item item"
            :class="{active:$route.path.indexOf('/home')!==-1,'m-mobile-hide':toggleClass}"
           >
           <i class="home icon"></i> 首页
-        </a>
+        </router-link>
         <a href="#"
            @click="navSkip('/type')"
            class="m-item item"
