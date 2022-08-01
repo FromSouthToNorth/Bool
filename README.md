@@ -1,5 +1,7 @@
 ## 简介：
 
+### 本 blog 没有再维护，最新请查看 [log](https://github.com/FromSouthToNorth/log)
+
 此项目是一个基于个人的一个小博客，前台的个人博客展示，及后台博客数据管理，初步实现了前端与后端可以独立运行。
 
 - 在线预览：[博客](https://hyzt.vip) 
